@@ -47,10 +47,10 @@
       "Children": [
         {
           "Id": "37bf7151-a94a-4649-80ce-6cb829f505de",
-          "Name": "Directional Light",
+          "Name": "Sunlight",
           "Enabled": true,
-          "Position": "0,0,0",
-          "Rotation": "0.4351622,0.4351622,-0.5573454,0.5573453",
+          "Position": "0.00000004148387,-675.4678,-388.3916",
+          "Rotation": "-0.4598925,-0.5914862,0.2069919,-0.6291236",
           "Scale": "1,1,1",
           "Tags": "",
           "Components": [
@@ -75,8 +75,46 @@
             {
               "__type": "SkyBox2D",
               "__enabled": true,
-              "SkyMaterial": "materials/skybox/light_test_sky_sunny02.vmat",
+              "SkyMaterial": "materials/skybox/light_test_sky_night_basic.vmat",
               "Tint": "1,1,1,1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "3d6c1da1-ad2c-4ced-81d1-cfa111b2fd38",
+      "Name": "Rooms",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Children": [
+        {
+          "Id": "b8e371a5-2a54-4663-989b-7fedf5d391d4",
+          "Name": "testroom_01",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/rooms/testroom_02.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/rooms/testroom_02.vmdl",
+              "Surface": null
             }
           ]
         }
@@ -86,7 +124,7 @@
       "Id": "8456007e-a183-4165-a4f2-e1d2ed186071",
       "Name": "Camera",
       "Enabled": true,
-      "Position": "-232.7965,-1422.232,-487.3523",
+      "Position": "-232.7965,-1422.232,171.5332",
       "Rotation": "0,0,0.707107,0.7071065",
       "Scale": "1,1,1",
       "Tags": "camera",
@@ -106,30 +144,10 @@
       ]
     },
     {
-      "Id": "b8e371a5-2a54-4663-989b-7fedf5d391d4",
-      "Name": "testroom_01",
-      "Enabled": true,
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/rooms/testroom_01.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
       "Id": "3d530c53-29e6-4bd3-a72d-7ecde638fe05",
       "Name": "Player",
       "Enabled": true,
-      "Position": "-305.199,-75,-562.3321",
+      "Position": "-305.199,-75,6.68409",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "player",
@@ -140,7 +158,7 @@
           "Acceleration": 10,
           "GroundAngle": 45,
           "Height": 64,
-          "IgnoreLayers": "solid,trigger",
+          "IgnoreLayers": "trigger",
           "Radius": 14.29,
           "StepHeight": 18
         },
@@ -148,10 +166,16 @@
           "__type": "QuestPlayer",
           "__enabled": true,
           "AimCursor": "7ef83f06-bc6f-4c45-927b-0ef7df57ec6f",
+          "AirControl": 0.1,
           "AnimationHelper": "3d530c53-29e6-4bd3-a72d-7ecde638fe05",
           "Body": "07cc66a9-d292-4498-bedb-963abe9b9cae",
           "CameraDistance": 1400,
-          "Gravity": "0,0,800"
+          "Gravity": "0,0,800",
+          "GroundControl": 4,
+          "JumpForce": 400,
+          "MaxForce": 50,
+          "RunSpeed": 320,
+          "WalkSpeed": 210
         },
         {
           "__type": "CitizenAnimation",
@@ -200,7 +224,7 @@
       "Id": "7ef83f06-bc6f-4c45-927b-0ef7df57ec6f",
       "Name": "Aim Cursor",
       "Enabled": true,
-      "Position": "-173.8875,-75,-378.3763",
+      "Position": "-173.8875,-75,159.29",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": ""
