@@ -15,12 +15,14 @@ public sealed class QuestPlayer : BaseComponent
 	[Property] public float JumpForce { get; set; } = 400f;
 
 	// References
-	[Property] GameObject AimCursor { get; set; }
-	[Property] GameObject Body { get; set; }
+	[Property] public GameObject AimCursor { get; set; }
+	[Property] public GameObject Body { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
+	[Property] GameObject EmptyReference { get; set; }
 
 	public Vector3 WishVelocity { get; private set; }
 	public CameraComponent LocalCamera { get; private set; }
+	public BaseWeapon Weapon { get; private set; }
 
 	CharacterController characterController;
 
@@ -45,7 +47,8 @@ public sealed class QuestPlayer : BaseComponent
 	{
 		// Lerp camera position
 		float camLerp = 1.0f - MathF.Pow( 0.5f, Time.Delta * 10.0f );
-		var camPos = LocalCamera.Transform.Position.LerpTo( Transform.Position.WithY( Transform.Position.y - CameraDistance ), camLerp );
+		var camPos = Transform.Position.WithZ( Transform.Position.z + 70f ).WithY( Transform.Position.y - CameraDistance );
+		camPos = LocalCamera.Transform.Position.LerpTo( camPos, camLerp );
 		LocalCamera.Transform.Position = camPos;
 
 		// Set cursor position
@@ -95,6 +98,9 @@ public sealed class QuestPlayer : BaseComponent
 	public override void FixedUpdate()
 	{
 		BuildWishVelocity();
+
+		// Make sure player always has a weapon
+		if ( Weapon is null ) GiveWeapon( typeof( PistolWeapon ) );
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
 		if ( characterController is null ) return;
@@ -165,7 +171,18 @@ public sealed class QuestPlayer : BaseComponent
 		WishVelocity = WishVelocity.WithZ( 0 );
 		if ( !WishVelocity.IsNearZeroLength ) WishVelocity = WishVelocity.Normal;
 
-		if ( Input.Down( "run" ) ) WishVelocity *= RunSpeed;
+		if ( ducking ) WishVelocity *= WalkSpeed * 0.6f;
+		else if ( Input.Down( "run" ) ) WishVelocity *= RunSpeed;
 		else WishVelocity *= WalkSpeed;
+	}
+
+	public void GiveWeapon( Type weaponType )
+	{
+		// TODO: Destroy existing weapon or something
+
+		var weaponObj = SceneUtility.Instantiate( EmptyReference );
+		weaponObj.Name = weaponType.Name;
+		Weapon = weaponObj.AddComponent( TypeLibrary.GetType<BaseComponent>( weaponType.Name ) ) as BaseWeapon;
+		Weapon.Initialize( this );
 	}
 }
