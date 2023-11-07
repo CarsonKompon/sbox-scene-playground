@@ -1,0 +1,174 @@
+{
+  "GameObjects": [
+    {
+      "Id": "129ef82a-44d5-4767-85a3-ba44eee2a121",
+      "Name": "Environment",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Children": [
+        {
+          "Id": "37bf7151-a94a-4649-80ce-6cb829f505de",
+          "Name": "Directional Light",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0.4351622,0.4351622,-0.5573454,0.5573453",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "DirectionalLightComponent",
+              "__enabled": true,
+              "LightColor": "0.91373,0.98039,1,1",
+              "Shadows": true,
+              "SkyColor": "0.05882,0.07451,0.08235,1"
+            }
+          ]
+        },
+        {
+          "Id": "a8cd7e38-166c-4193-9f3e-969bcca80e83",
+          "Name": "SkyBox",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "SkyBox2D",
+              "__enabled": true,
+              "SkyMaterial": "materials/skybox/light_test_sky_sunny02.vmat",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "8456007e-a183-4165-a4f2-e1d2ed186071",
+      "Name": "Camera",
+      "Enabled": true,
+      "Position": "-232.7965,-1422.232,-487.3523",
+      "Rotation": "0,0,0.707107,0.7071065",
+      "Scale": "1,1,1",
+      "Tags": "camera",
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__enabled": true,
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "Color, Depth, Stencil",
+          "FieldOfView": 35,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "TargetEye": "None",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
+      "Id": "b8e371a5-2a54-4663-989b-7fedf5d391d4",
+      "Name": "testroom_01",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/rooms/testroom_01.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "3d530c53-29e6-4bd3-a72d-7ecde638fe05",
+      "Name": "Player",
+      "Enabled": true,
+      "Position": "-305.199,-75,-562.3321",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "player",
+      "Components": [
+        {
+          "__type": "CharacterController",
+          "__enabled": true,
+          "Acceleration": 10,
+          "GroundAngle": 45,
+          "Height": 64,
+          "IgnoreLayers": "solid,trigger",
+          "Radius": 14.29,
+          "StepHeight": 18
+        },
+        {
+          "__type": "QuestPlayer",
+          "__enabled": true,
+          "AimCursor": "7ef83f06-bc6f-4c45-927b-0ef7df57ec6f",
+          "AnimationHelper": "3d530c53-29e6-4bd3-a72d-7ecde638fe05",
+          "Body": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+          "CameraDistance": 1400,
+          "Gravity": "0,0,800"
+        },
+        {
+          "__type": "CitizenAnimation",
+          "__enabled": true,
+          "EyeSource": "ccbb64f6-bbe2-418c-8198-35b5e29e65cb",
+          "Height": 1,
+          "LookAtObject": "7ef83f06-bc6f-4c45-927b-0ef7df57ec6f",
+          "Target": "07cc66a9-d292-4498-bedb-963abe9b9cae"
+        }
+      ],
+      "Children": [
+        {
+          "Id": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+          "Name": "Body",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "AnimatedModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/citizen/citizen.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "ccbb64f6-bbe2-418c-8198-35b5e29e65cb",
+          "Name": "EyePos",
+          "Enabled": true,
+          "Position": "0,0,64",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": ""
+        }
+      ]
+    },
+    {
+      "Id": "7ef83f06-bc6f-4c45-927b-0ef7df57ec6f",
+      "Name": "Aim Cursor",
+      "Enabled": true,
+      "Position": "-173.8875,-75,-378.3763",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": ""
+    }
+  ],
+  "__references": []
+}
