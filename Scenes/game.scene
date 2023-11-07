@@ -172,7 +172,7 @@
           "CameraDistance": 1400,
           "Gravity": "0,0,800",
           "GroundControl": 4,
-          "JumpForce": 400,
+          "JumpForce": 420,
           "MaxForce": 50,
           "RunSpeed": 320,
           "WalkSpeed": 210
@@ -199,13 +199,107 @@
             {
               "__type": "AnimatedModelComponent",
               "__enabled": true,
-              "BodyGroups": 18446744073709551615,
+              "BodyGroups": 18446744073709551611,
               "CreateBoneObjects": false,
               "MaterialGroup": null,
               "MaterialOverride": null,
               "Model": "models/citizen/citizen.vmdl",
               "ShouldCastShadows": true,
               "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "acce9440-854e-4d67-9ce9-2eae40c5b275",
+              "Name": "Hair",
+              "Enabled": true,
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "AnimatedModelComponent",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/citizen_clothes/hair/hair_slickedback/models/hair_slickedback_black.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "1,1,1,1"
+                }
+              ]
+            },
+            {
+              "Id": "21b81df6-9f8c-4b77-a7b1-c45778cc7880",
+              "Name": "Makeup",
+              "Enabled": true,
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "AnimatedModelComponent",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/citizen_clothes/makeup/face_makeup/models/face_makeup.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "1,1,1,1"
+                }
+              ]
+            },
+            {
+              "Id": "fd80810c-cdd0-4835-9bab-7171d7010941",
+              "Name": "Shirt",
+              "Enabled": true,
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "AnimatedModelComponent",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/citizen_clothes/shirt/loose_shirt/models/loose_shirts.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "1,1,1,1"
+                }
+              ]
+            },
+            {
+              "Id": "b25aaf3e-8455-4c3f-aa3d-a3ea39b992f9",
+              "Name": "Pants",
+              "Enabled": true,
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "AnimatedModelComponent",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/citizen_clothes/trousers/cargopants/models/brown_cargo_pants.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "1,1,1,1"
+                }
+              ]
             }
           ]
         },

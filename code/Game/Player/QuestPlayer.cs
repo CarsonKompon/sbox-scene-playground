@@ -53,8 +53,15 @@ public sealed class QuestPlayer : BaseComponent
 
 		if ( characterController is null ) return;
 
-		// Release Jump
-		if ( !characterController.IsOnGround && Input.Released( "Jump" ) && characterController.Velocity.z > 0 )
+		// Jumping
+		// Press Jump
+		if ( characterController.IsOnGround && Input.Pressed( "Jump" ) )
+		{
+			float flGroundFactor = 1.0f;
+			characterController.Punch( Vector3.Up * JumpForce * flGroundFactor );
+			AnimationHelper?.TriggerJump();
+		}
+		else if ( !characterController.IsOnGround && Input.Released( "Jump" ) && characterController.Velocity.z > 0 )
 		{
 			characterController.Punch( Vector3.Down * characterController.Velocity.z * 0.5f );
 		}
@@ -64,6 +71,7 @@ public sealed class QuestPlayer : BaseComponent
 		{
 			AnimationHelper.WithVelocity( characterController.Velocity );
 			AnimationHelper.IsGrounded = characterController.IsOnGround;
+			AnimationHelper.MoveStyle = Input.Down( "Run" ) ? CitizenAnimation.MoveStyles.Run : CitizenAnimation.MoveStyles.Walk;
 		}
 	}
 
@@ -73,14 +81,6 @@ public sealed class QuestPlayer : BaseComponent
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
 		if ( characterController is null ) return;
-
-		// Press Jump
-		if ( characterController.IsOnGround && Input.Down( "Jump" ) )
-		{
-			float flGroundFactor = 1.0f;
-			characterController.Punch( Vector3.Up * JumpForce * flGroundFactor );
-			AnimationHelper?.TriggerJump();
-		}
 
 		// Apply friction/acceleration
 		if ( characterController.IsOnGround )
@@ -93,7 +93,7 @@ public sealed class QuestPlayer : BaseComponent
 		{
 			characterController.Velocity -= Gravity * Time.Delta * 0.5f;
 			characterController.Accelerate( WishVelocity.ClampLength( MaxForce ) );
-			characterController.ApplyFriction( 0.1f );
+			characterController.ApplyFriction( AirControl );
 		}
 
 		// Move the character controller
