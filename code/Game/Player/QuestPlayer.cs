@@ -53,6 +53,17 @@ public sealed class QuestPlayer : BaseComponent
 
 		if ( characterController is null ) return;
 
+		// Face towards cursor
+		float rotLerp = 1.0f - MathF.Pow( 0.5f, Time.Delta * 2.0f );
+		if ( AimCursor.Transform.Position.x < Transform.Position.x )
+		{
+			Body.Transform.LocalRotation = Rotation.Slerp( Body.Transform.LocalRotation, Rotation.FromYaw( 180 ), rotLerp );
+		}
+		else
+		{
+			Body.Transform.LocalRotation = Rotation.Slerp( Body.Transform.LocalRotation, Rotation.FromYaw( 0 ), rotLerp );
+		}
+
 		// Jumping
 		// Press Jump
 		if ( characterController.IsOnGround && Input.Pressed( "Jump" ) )
@@ -72,6 +83,8 @@ public sealed class QuestPlayer : BaseComponent
 			AnimationHelper.WithVelocity( characterController.Velocity );
 			AnimationHelper.IsGrounded = characterController.IsOnGround;
 			AnimationHelper.MoveStyle = Input.Down( "Run" ) ? CitizenAnimation.MoveStyles.Run : CitizenAnimation.MoveStyles.Walk;
+			AnimationHelper.HoldType = CitizenAnimation.HoldTypes.Pistol;
+			AnimationHelper.Handedness = CitizenAnimation.Hand.Right;
 		}
 	}
 
