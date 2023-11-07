@@ -300,6 +300,29 @@
                   "Tint": "1,1,1,1"
                 }
               ]
+            },
+            {
+              "Id": "bc5c332b-9bc6-441c-844c-2c487436fc3a",
+              "Name": "Object",
+              "Enabled": true,
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "AnimatedModelComponent",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": "07cc66a9-d292-4498-bedb-963abe9b9cae",
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "weapons/rust_pistol/rust_pistol.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "1,1,1,1"
+                }
+              ]
             }
           ]
         },

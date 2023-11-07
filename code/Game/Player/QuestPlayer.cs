@@ -24,6 +24,9 @@ public sealed class QuestPlayer : BaseComponent
 
 	CharacterController characterController;
 
+	bool ducking = false;
+	TimeUntil duckTimer = 0.0f;
+
 	public override void OnAwake()
 	{
 		base.OnAwake();
@@ -85,6 +88,7 @@ public sealed class QuestPlayer : BaseComponent
 			AnimationHelper.MoveStyle = Input.Down( "Run" ) ? CitizenAnimation.MoveStyles.Run : CitizenAnimation.MoveStyles.Walk;
 			AnimationHelper.HoldType = CitizenAnimation.HoldTypes.Pistol;
 			AnimationHelper.Handedness = CitizenAnimation.Hand.Right;
+			AnimationHelper.DuckLevel = ducking ? 1.0f : 0.0f;
 		}
 	}
 
@@ -94,6 +98,29 @@ public sealed class QuestPlayer : BaseComponent
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
 		if ( characterController is null ) return;
+
+		// Crouching
+		if ( ducking )
+		{
+			var duckTrace = Physics.Trace.Ray( Transform.Position, Transform.Position + Vector3.Up * 72f )
+				.WithoutTags( "trigger" )
+				.Run();
+			if ( duckTrace.Hit ) duckTimer = 0.25f;
+			if ( !Input.Down( "Duck" ) && duckTimer )
+			{
+				characterController.Height = 64f;
+				ducking = false;
+			}
+		}
+		else
+		{
+			if ( Input.Down( "Duck" ) )
+			{
+				characterController.Height = 32f;
+				duckTimer = 0f;
+				ducking = true;
+			}
+		}
 
 		// Apply friction/acceleration
 		if ( characterController.IsOnGround )
