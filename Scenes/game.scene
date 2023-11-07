@@ -1,6 +1,42 @@
 {
   "GameObjects": [
     {
+      "Id": "fdeff13d-5678-4d6a-a3d3-572109d0d4fd",
+      "Name": "Screen UI",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        }
+      ],
+      "Children": [
+        {
+          "Id": "c7b4a1db-57cd-482a-9438-8945b5c417d8",
+          "Name": "HUD",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "QuestHudPanel",
+              "__enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Id": "129ef82a-44d5-4767-85a3-ba44eee2a121",
       "Name": "Environment",
       "Enabled": true,

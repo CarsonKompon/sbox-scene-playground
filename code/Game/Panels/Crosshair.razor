@@ -1,0 +1,29 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+<root>
+   <div class="radial" />
+   <div class="dot" />
+</root>
+
+@code
+{
+   public override void Tick()
+   {
+      base.Tick();
+
+      @* var pos = Camera.Main.ToScreen(bounds.Center);
+      pos.x /= Camera.Main.Size.x;
+      pos.y /= Camera.Main.Size.y;
+      pos *= 100.0f; *@
+
+      Style.Left = Mouse.Position.x * ScaleFromScreen;
+      Style.Top = Mouse.Position.y * ScaleFromScreen;
+
+      SetClass("click", Input.Down("attack1"));
+   }
+
+   protected override int BuildHash() => System.HashCode.Combine( Time.Now );
+}

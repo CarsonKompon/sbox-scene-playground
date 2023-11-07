@@ -31,7 +31,9 @@ public sealed class QuestPlayer : BaseComponent
 	public override void Update()
 	{
 		// Lerp camera position
-		float camLerp = 1.0f - MathF.Pow( 0.5f, Time.Delta * 60.0f );
+		float camLerp = 1.0f - MathF.Pow( 0.5f, Time.Delta * 10.0f );
+		var camPos = LocalCamera.Transform.Position.LerpTo( Transform.Position.WithY( Transform.Position.y - CameraDistance ), camLerp );
+		LocalCamera.Transform.Position = camPos;
 
 		// Set cursor position
 		var tr = Physics.Trace.Ray( new Ray( LocalCamera.Transform.Position, Screen.GetDirection( Mouse.Position ) ), 1000 )
