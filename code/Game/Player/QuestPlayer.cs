@@ -1,7 +1,10 @@
 using Sandbox;
 
+[Category( "Quest" )]
 public sealed class QuestPlayer : BaseComponent
 {
+	public static QuestPlayer Local { get; private set; }
+
 	// Properties
 	[Property] public Vector3 Gravity { get; set; } = new Vector3( 0, 0, 800 );
 	[Property, Range( 1000f, 2000f )] public float CameraDistance { get; set; } = 1400f;
@@ -18,7 +21,11 @@ public sealed class QuestPlayer : BaseComponent
 	[Property] public GameObject AimCursor { get; set; }
 	[Property] public GameObject Body { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
+	[Property] public HealthComponent Health { get; set; }
 	[Property] GameObject EmptyReference { get; set; }
+
+	public int Level = 1;
+	public double Xp = 0;
 
 	public Vector3 WishVelocity { get; private set; }
 	public CameraComponent LocalCamera { get; private set; }
@@ -41,6 +48,9 @@ public sealed class QuestPlayer : BaseComponent
 		{
 			Log.Error( "No camera found in scene!" );
 		}
+
+		// TODO: Make this only pull if it's the local player
+		Local = this;
 	}
 
 	public override void Update()

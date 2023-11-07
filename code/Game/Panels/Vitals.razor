@@ -1,0 +1,54 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+
+@if(QuestPlayer.Local is null) return;
+
+<root>
+
+   <div class="bar health">
+      <div @ref="HealthBarFill" class="inner" />
+      <div class="text">
+         <label @ref="HealthBarText" class="value">90/100 HP</label>
+      </div>
+   </div>
+
+   <div class="bar xp">
+      <div @ref="XpBarFill" class="inner" />
+      <div class="text">
+         <label @ref="XpBarText" class="value">4,254 XP</label>
+      </div>
+   </div>
+
+</root>
+
+@code
+{
+   Panel HealthBarFill { get; set; }
+   Panel XpBarFill { get; set; }
+   Label HealthBarText { get; set; }
+   Label XpBarText { get; set; }
+
+   public override void Tick()
+   {
+      base.Tick();
+
+      if (QuestPlayer.Local is null) return;
+
+      var health = QuestPlayer.Local.Health.Health;
+      var maxHealth = QuestPlayer.Local.Health.MaxHealth;
+      HealthBarFill.Style.Width = Length.Percent(health / maxHealth * 100f);
+      HealthBarText.Text = $"{health}/{maxHealth} HP";
+
+      XpBarFill.Style.Width = Length.Percent((float)QuestPlayer.Local.Xp);
+      XpBarText.Text = $"{QuestPlayer.Local.Xp} XP";
+      // TODO: Make xp bar fill properly
+   }
+
+   protected override int BuildHash()
+   {
+      return HashCode.Combine(QuestPlayer.Local);
+   }
+}
