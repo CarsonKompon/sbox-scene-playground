@@ -116,6 +116,31 @@
               "Model": "models/rooms/testroom_02.vmdl",
               "Surface": null
             }
+          ],
+          "Children": [
+            {
+              "Id": "cea481dd-5b92-442b-9759-5f17f549fda3",
+              "Name": "Room Definition",
+              "Enabled": true,
+              "Position": "0,-127.5628,615.9578",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "trigger",
+              "Components": [
+                {
+                  "__type": "ColliderBoxComponent",
+                  "__enabled": true,
+                  "IsTrigger": true,
+                  "Scale": "908.7963,251.7995,1233.187",
+                  "Surface": null
+                },
+                {
+                  "__type": "QuestRoom",
+                  "__enabled": true,
+                  "Name": "Test Room"
+                }
+              ]
+            }
           ]
         }
       ]

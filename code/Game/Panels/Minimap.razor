@@ -1,47 +1,36 @@
 @using System;
+@using System.Collections.Generic;
+@using System.Linq;
 @using Sandbox;
 @using Sandbox.UI;
 @attribute [StyleSheet]
-@inherits PanelComponent
+@inherits Panel
 
 <root>
 
-   <ScenePanel @ref="Display" />
-   <i @ref="PlayerIcon" class="player">directions_run</i>
+   @* @foreach(var player in GameManager.ActiveScene.GetAllObjects(false).Where(x => x.Tags.Has("player")))
+   {
+      <i class="player"
+      style="
+            left: @((player.Transform.Position.x - Camera.Main.Position.x) * MINIMAP_SCALE);
+            top: @(-(player.Transform.Position.z - Camera.Main.Position.z) * MINIMAP_SCALE);
+      ">directions_run</i>
+   }
+   <i  class="player">directions_run</i>
+
+   @foreach(var room in GameManager.ActiveScene.GetAllObjects(false).Where(x => x.GetComponent<QuestRoom>() != null))
+   {
+      var roomCollider = room.GetComponent<ColliderBoxComponent>();
+      <div
+         class="room-rect"
+         style="
+            left: @((roomCollider.Transform.Position.x - Camera.Main.Position.x) * MINIMAP_SCALE);
+            top: @(-(roomCollider.Transform.Position.z - Camera.Main.Position.z + (Style.Height?.Value ?? 0)/2) * MINIMAP_SCALE);
+            width: @(roomCollider.Scale.x * MINIMAP_SCALE);
+            height: @(roomCollider.Scale.z * MINIMAP_SCALE);
+      "/>
+   } *@
+
+   <Image Texture=@Canvas />
 
 </root>
-
-@code
-{
-   public static Minimap Instance { get; set; }
-
-   ScenePanel Display { get; set; }
-   Panel PlayerIcon { get; set; }
-
-   SceneCamera Cam;
-
-   public Minimap()
-   {
-      Instance = this;
-   }
-
-   public override void Update()
-   {
-      base.Update();
-
-      if(QuestPlayer.Local is null || Display is null)
-         return;
-      
-      Display.Camera.Ortho = true;
-      Display.Camera.OrthoWidth = 1048;
-      Display.Camera.OrthoHeight = 1048;
-      Display.Camera.ZFar = 2000f;
-
-      var camLerp = 1.0f - MathF.Pow(0.5f, Time.Delta * 4f);
-      var camPos = Display.Camera.Position;
-
-      Display.World = Scene.SceneWorld;
-      Display.Camera.Position = camPos.LerpTo( QuestPlayer.Local.Transform.Position.WithY( -1000f ), camLerp );
-      Display.Camera.Rotation = Rotation.LookAt(Vector3.Left, Vector3.Up);
-   }
-}
