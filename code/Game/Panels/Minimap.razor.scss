@@ -1,0 +1,19 @@
+Minimap
+{
+    position: absolute;
+    top: 32px;
+    left: 2.5%;
+    width: 15%;
+    position: absolute;
+    background-color: pink;
+    aspect-ratio: 1;
+
+    ScenePanel
+    {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+    }
+}

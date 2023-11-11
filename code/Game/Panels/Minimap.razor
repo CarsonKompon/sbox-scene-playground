@@ -1,0 +1,49 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+<root>
+
+   <ScenePanel @ref="Display" />
+   <i @ref="PlayerIcon" class="player">directions_run</i>
+
+</root>
+
+@code
+{
+   public static Minimap Instance { get; set; }
+
+   ScenePanel Display { get; set; }
+   Panel PlayerIcon { get; set; }
+
+   SceneCamera Cam;
+
+   public Minimap()
+   {
+      Instance = this;
+   }
+
+   public override void Update()
+   {
+      base.Update();
+
+      if(QuestPlayer.Local is null || Display is null)
+         return;
+
+      Cam.
+      
+      Display.Camera.Ortho = true;
+      Display.Camera.OrthoWidth = 1048;
+      Display.Camera.OrthoHeight = 1048;
+      Display.Camera.ZFar = 2000f;
+
+      var camLerp = 1.0f - MathF.Pow(0.5f, Time.Delta * 4f);
+      var camPos = Display.Camera.Position;
+
+      Display.World = Scene.SceneWorld;
+      Display.Camera.Position = camPos.LerpTo( QuestPlayer.Local.Transform.Position.WithY( -1000f ), camLerp );
+      Display.Camera.Rotation = Rotation.LookAt(Vector3.Left, Vector3.Up);
+   }
+}
