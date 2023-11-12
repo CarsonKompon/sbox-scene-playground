@@ -6,6 +6,7 @@ public class BaseWeapon : BaseComponent
     [Property] QuestPlayer Holder { get; set; }
 
     public virtual Model Model { get; set; } = Model.Load( "models/weapons/usp/usp.vmdl" );
+    public virtual PrefabFile BulletPrefab { get; set; } = ResourceLibrary.Get<PrefabFile>( "Prefabs/Bullets/bullet_pistol.object" );
     public virtual int MaxAmmo => 12;
     public virtual float ReloadTime => 1f;
     public virtual float FireRate => 0.125f;
@@ -15,6 +16,7 @@ public class BaseWeapon : BaseComponent
     public int CurrentClip = 0;
 
     TimeUntil reloadTimer = 0f;
+    TimeUntil cooldownTimer = 0f;
     AnimatedModelComponent modelComponent;
 
     public virtual void OnFire() { }
@@ -58,7 +60,7 @@ public class BaseWeapon : BaseComponent
 
     public override void Update()
     {
-        if ( CurrentClip == 0 && !Reloading )
+        if ( !Reloading && (CurrentClip == 0 || Input.Pressed( "reload" )) )
         {
             Reloading = true;
             reloadTimer = ReloadTime;
@@ -68,15 +70,26 @@ public class BaseWeapon : BaseComponent
             CurrentClip = MaxAmmo;
             Reloading = false;
         }
+
+        if ( Input.Down( "attack1" ) )
+        {
+            Attack();
+        }
     }
 
     public void Attack()
     {
-        if ( CurrentClip == 0 )
+        if ( CurrentClip == 0 || Reloading || cooldownTimer > 0f )
             return;
+
+        var direction = (Holder.AimCursor.Transform.Position - (Holder.AimHeight.Transform.Position + Vector3.Up * 20f)).WithY( 0 ).Normal;
+        var bullet = SceneUtility.Instantiate( BulletPrefab.Scene, Holder.HandObject.Transform.Position );
+        var bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.Velocity = direction * 1000f;
 
         OnFire();
 
+        cooldownTimer = FireRate;
         CurrentClip--;
     }
 

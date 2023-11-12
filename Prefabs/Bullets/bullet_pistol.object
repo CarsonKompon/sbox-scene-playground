@@ -1,0 +1,48 @@
+{
+  "RootObject": {
+    "Id": "31829072-ee3d-4457-ae09-17244a5b5b51",
+    "Name": "bullet_pistol",
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "player,trigger",
+    "Components": [
+      {
+        "__type": "ColliderSphereComponent",
+        "__enabled": true,
+        "IsTrigger": true,
+        "Radius": 3.599998,
+        "Surface": null
+      },
+      {
+        "__type": "Bullet",
+        "__enabled": true,
+        "DestroyParticle": "prefabs/particles/bullet_pistol_destroy.object"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "149cfe9c-3bd7-4baf-b160-04bbf2f2ecfa",
+        "Name": "Sphere",
+        "Enabled": true,
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
+        "Scale": "0.1,0.1,0.1",
+        "Tags": "",
+        "Components": [
+          {
+            "__type": "ModelComponent",
+            "__enabled": true,
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/bullet/bullet_pistol.vmat",
+            "Model": "models/dev/sphere.vmdl",
+            "ShouldCastShadows": false,
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "__references": []
+}

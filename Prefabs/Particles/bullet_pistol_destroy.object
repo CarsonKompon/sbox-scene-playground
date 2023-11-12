@@ -1,0 +1,118 @@
+{
+  "RootObject": {
+    "Id": "0eba10c6-3211-405e-9459-db6b62d0611d",
+    "Name": "bullet_pistol_destroy",
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Components": [
+      {
+        "__type": "ParticleEffect",
+        "__enabled": true,
+        "Alpha": {
+          "Constants": "1,0,0,0"
+        },
+        "ApplyColor": true,
+        "ApplyRotation": false,
+        "ApplyShape": true,
+        "Bounce": {
+          "Constants": "1,0,0,0"
+        },
+        "Brightness": {
+          "Constants": "9.3,0,0,0"
+        },
+        "Bumpiness": {},
+        "Collision": false,
+        "CollisionIgnore": null,
+        "CollisionRadius": 0,
+        "Damping": {},
+        "DieOnCollisionChance": {
+          "Constants": "100,0,0,0"
+        },
+        "Force": false,
+        "ForceDirection": "0,0,0",
+        "ForceScale": {
+          "Constants": "1,0,0,0"
+        },
+        "Friction": {
+          "Constants": "1,0,0,0"
+        },
+        "Gradient": {
+          "color": [
+            {
+              "t": 0.5,
+              "c": "0.93069,0.55289,0.17508,1"
+            }
+          ],
+          "alpha": []
+        },
+        "Lifetime": {
+          "Type": "Range",
+          "Constants": "0.25,1,0,0"
+        },
+        "MaxParticles": 50,
+        "PerParticleTimeScale": {
+          "Constants": "1,0,0,0"
+        },
+        "PushStrength": {},
+        "Roll": {},
+        "Scale": {
+          "Type": "Curve",
+          "CurveA": [
+            {
+              "y": 1
+            },
+            {
+              "x": 1
+            }
+          ],
+          "Constants": "1,0,0,0"
+        },
+        "SequenceSpeed": 1,
+        "Space": "World",
+        "StartVelocity": {
+          "Constants": "1,0,0,0"
+        },
+        "Stretch": {},
+        "TimeScale": 1,
+        "Tint": "1,0.46,0,1"
+      },
+      {
+        "__type": "ParticleSpriteRenderer",
+        "__enabled": true,
+        "Additive": false,
+        "BlurAmount": 0.5,
+        "BlurOpacity": 0.5,
+        "BlurSpacing": 0.5,
+        "FaceVelocity": false,
+        "LeadingTrail": false,
+        "MotionBlur": true,
+        "RotationOffset": 0,
+        "Scale": 1,
+        "Shadows": false,
+        "SortMode": "Unsorted",
+        "Texture": "materials/tools/handle_circle_color_tga_f67bf942.generated.vtex"
+      },
+      {
+        "__type": "ParticleSphereEmitter",
+        "__enabled": true,
+        "Burst": 100,
+        "Delay": 0,
+        "Duration": 0.1,
+        "Loop": false,
+        "OnEdge": false,
+        "Radius": 4,
+        "Rate": 1,
+        "Velocity": 100
+      },
+      {
+        "__type": "DestroyAfter",
+        "__enabled": true,
+        "DestroyTime": 2
+      }
+    ]
+  },
+  "__references": []
+}

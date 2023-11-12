@@ -54,11 +54,12 @@ public partial class Minimap
         }
 
         // Draw all players
-        foreach ( var player in GameManager.ActiveScene.GetAllObjects( false ).Where( x => x.Tags.Has( "player" ) ) )
+        foreach ( var player in GameManager.ActiveScene.GetAllObjects( false ).Where( x => x.GetComponent<QuestPlayer>() != null ) )
         {
+            var playerScript = player.GetComponent<QuestPlayer>();
             canvas.Update( Color.Blue, new Rect(
-                (int)((player.Transform.Position.x - camPos.x) * scale) + (canvasWidth / 2) - 1,
-                (int)(-(player.Transform.Position.z - camPos.z) * scale) + (canvasHeight / 2) - 1,
+                (int)((playerScript.Center.x - camPos.x) * scale) + (canvasWidth / 2) - 1,
+                (int)(-(playerScript.Center.z - camPos.z) * scale) + (canvasHeight / 2) - 1,
                 3,
                 3
             ) );

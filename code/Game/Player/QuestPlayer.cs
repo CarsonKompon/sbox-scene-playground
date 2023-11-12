@@ -20,12 +20,26 @@ public sealed class QuestPlayer : BaseComponent
 	// References
 	[Property] public GameObject AimCursor { get; set; }
 	[Property] public GameObject Body { get; set; }
+	[Property] public GameObject HandObject { get; set; }
+	[Property] public GameObject AimHeight { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 	[Property] public HealthComponent Health { get; set; }
 	[Property] GameObject EmptyReference { get; set; }
 
 	public int Level = 1;
 	public double Xp = 0;
+
+	public Vector3 Center
+	{
+		get
+		{
+			if ( characterController is not null )
+			{
+				return Transform.Position + characterController.BoundingBox.Center;
+			}
+			return Transform.Position;
+		}
+	}
 
 	public Vector3 WishVelocity { get; private set; }
 	public CameraComponent LocalCamera { get; private set; }
