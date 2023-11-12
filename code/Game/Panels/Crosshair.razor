@@ -1,3 +1,4 @@
+@using System.Collections.Generic;
 @using Sandbox;
 @using Sandbox.UI;
 @attribute [StyleSheet]
@@ -10,6 +11,8 @@
 
 @code
 {
+   List<string> locks = new();
+
    public override void Tick()
    {
       base.Tick();
@@ -23,6 +26,19 @@
       Style.Top = Mouse.Position.y * ScaleFromScreen;
 
       SetClass("click", Input.Down("attack1"));
+      SetClass("hidden", locks.Count > 0);
+   }
+
+   public void Hide(string id = "default")
+   {
+      if( locks.Contains(id) ) return;
+      locks.Add(id);
+   }
+
+   public void Show(string id = "default")
+   {
+      if( !locks.Contains(id) ) return;
+      locks.Remove(id);
    }
 
    protected override int BuildHash() => System.HashCode.Combine( Time.Now );

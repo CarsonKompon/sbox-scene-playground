@@ -5,14 +5,41 @@
 
 <root>
 
-   <Minimap />
    <Vitals />
-   
-   <Crosshair />
+   <Minimap @ref="Minimap" />
 
+   @if(IsMapOpen)
+   {
+      <FullMap />
+   }
+
+   <Crosshair @ref="Crosshair" />
 </root>
 
 @code
 {
-    
+   public static QuestHudPanel Instance { get; private set; }
+
+   public Minimap Minimap { get; set; }
+   public Crosshair Crosshair { get; set; }
+
+   public bool IsMapOpen { get; private set; }
+
+   public override void OnAwake()
+   {
+      Instance = this;
+   }
+
+   public override void Update()
+   {
+      Panel.SetClass("has-cursor", IsMapOpen);
+   }
+
+   public void ToggleMap()
+   {
+      IsMapOpen = !IsMapOpen;
+
+      if(IsMapOpen) Crosshair.Hide("map");
+      else Crosshair.Show("map");
+   }
 }

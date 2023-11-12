@@ -6,31 +6,15 @@
 @attribute [StyleSheet]
 @inherits Panel
 
-<root>
+<root onclick=@OpenMap>
 
-   @* @foreach(var player in GameManager.ActiveScene.GetAllObjects(false).Where(x => x.Tags.Has("player")))
+   @if(QuestHudPanel.Instance.IsMapOpen)
    {
-      <i class="player"
-      style="
-            left: @((player.Transform.Position.x - Camera.Main.Position.x) * MINIMAP_SCALE);
-            top: @(-(player.Transform.Position.z - Camera.Main.Position.z) * MINIMAP_SCALE);
-      ">directions_run</i>
+      <p>Close Map</p>
    }
-   <i  class="player">directions_run</i>
-
-   @foreach(var room in GameManager.ActiveScene.GetAllObjects(false).Where(x => x.GetComponent<QuestRoom>() != null))
+   else
    {
-      var roomCollider = room.GetComponent<ColliderBoxComponent>();
-      <div
-         class="room-rect"
-         style="
-            left: @((roomCollider.Transform.Position.x - Camera.Main.Position.x) * MINIMAP_SCALE);
-            top: @(-(roomCollider.Transform.Position.z - Camera.Main.Position.z + (Style.Height?.Value ?? 0)/2) * MINIMAP_SCALE);
-            width: @(roomCollider.Scale.x * MINIMAP_SCALE);
-            height: @(roomCollider.Scale.z * MINIMAP_SCALE);
-      "/>
-   } *@
-
-   <Image Texture=@Canvas />
+      <Image Texture=@Canvas />
+   }
 
 </root>

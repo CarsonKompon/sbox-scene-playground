@@ -93,7 +93,7 @@
       "Children": [
         {
           "Id": "b8e371a5-2a54-4663-989b-7fedf5d391d4",
-          "Name": "testroom_01",
+          "Name": "Test Room 01",
           "Enabled": true,
           "Position": "0,0,0",
           "Rotation": "0,0,0,1",
@@ -138,6 +138,110 @@
                   "__type": "QuestRoom",
                   "__enabled": true,
                   "Name": "Test Room"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "7be2fa1b-d942-4713-97fb-876df5d05f90",
+          "Name": "Test Room 02",
+          "Enabled": true,
+          "Position": "1523.575,0.0001839762,-431.9179",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/rooms/testroom_02.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/rooms/testroom_02.vmdl",
+              "Surface": null
+            }
+          ],
+          "Children": [
+            {
+              "Id": "d0179c3a-ee4c-4e21-9415-9b32a7f5f7ff",
+              "Name": "Room Definition",
+              "Enabled": true,
+              "Position": "0,-127.5628,615.9578",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "trigger",
+              "Components": [
+                {
+                  "__type": "ColliderBoxComponent",
+                  "__enabled": true,
+                  "IsTrigger": true,
+                  "Scale": "908.7963,251.7995,1233.187",
+                  "Surface": null
+                },
+                {
+                  "__type": "QuestRoom",
+                  "__enabled": true,
+                  "Name": "Test Room 02"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "3d83c90c-7447-45a3-b1e2-d68f56cbbcfe",
+          "Name": "Test Room 03",
+          "Enabled": true,
+          "Position": "-1649.551,-0.0009551142,899.1401",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/rooms/testroom_02.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/rooms/testroom_02.vmdl",
+              "Surface": null
+            }
+          ],
+          "Children": [
+            {
+              "Id": "a7e64119-827e-4755-895f-d2b6320b9c8a",
+              "Name": "Room Definition",
+              "Enabled": true,
+              "Position": "0,-127.5628,615.9578",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "trigger",
+              "Components": [
+                {
+                  "__type": "ColliderBoxComponent",
+                  "__enabled": true,
+                  "IsTrigger": true,
+                  "Scale": "908.7963,251.7995,1233.187",
+                  "Surface": null
+                },
+                {
+                  "__type": "QuestRoom",
+                  "__enabled": true,
+                  "Name": "Test Room 03"
                 }
               ]
             }
@@ -234,7 +338,7 @@
             {
               "__type": "AnimatedModelComponent",
               "__enabled": true,
-              "BodyGroups": 18446744073709551611,
+              "BodyGroups": 18446744073709551595,
               "CreateBoneObjects": false,
               "MaterialGroup": null,
               "MaterialOverride": null,

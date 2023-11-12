@@ -1,0 +1,88 @@
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+<root>
+
+   <Image Texture=@Canvas />
+
+</root>
+
+@code
+{
+   Texture Canvas { get; set; }
+   public const int CanvasWidth = 1280;
+   public const int CanvasHeight = 720;
+   public float Zoom { get; set; } = 0.2f;
+   public Vector2 Offset { get; set; } = new Vector2( 0, 0 );
+
+   bool dragging = false;
+   float targetZoom = 0.2f;
+   Vector2 targetOffset = Vector2.Zero;
+   Vector2 previousMousePos = Vector2.Zero;
+
+   void ResetCanvas()
+   {
+      if ( Canvas is not null )
+         Canvas.Dispose();
+
+      Texture2DBuilder canvasBuilder = Texture.Create( CanvasWidth, CanvasHeight );
+      Canvas = canvasBuilder.Finish();
+   }
+
+   public override void Tick()
+   {
+      if(Canvas is null)
+         ResetCanvas();
+
+      // Click and drag
+      if ( dragging )
+      {
+         targetOffset += (previousMousePos - Mouse.Position) * ScaleFromScreen;
+         previousMousePos = Mouse.Position;
+      }
+
+      // Lerp Zoom
+      Zoom = Zoom.LerpTo(targetZoom, 1f - MathF.Pow(0.5f, 8f * Time.Delta));
+
+      // Lerp Offset
+      Offset = Offset.LerpTo(targetOffset, 1f - MathF.Pow(0.5f, 15f * Time.Delta));
+
+      // Draw Minimap
+      Minimap.DrawToCanvas(Canvas, CanvasWidth, CanvasHeight, Zoom, Offset);
+   }
+
+   public override void OnMouseWheel(float value)
+   {
+      float oldZoom = targetZoom;
+      targetZoom -= value * 0.078f;
+      targetZoom = Math.Clamp(targetZoom, 0.05f, 0.75f);
+
+      // Move the offset so that it zooms around the offset
+      targetOffset += (Mouse.Position - Offset) * (oldZoom - targetZoom);
+   }
+
+   protected override void OnMouseDown(MousePanelEvent e)
+   {
+      dragging = true;
+      previousMousePos = Mouse.Position;
+   }
+
+   protected override void OnMouseUp(MousePanelEvent e)
+   {
+      dragging = false;
+   }
+   protected override void OnMouseOut(MousePanelEvent e)
+   {
+      dragging = false;
+   }
+
+   protected override int BuildHash()
+   {
+      return HashCode.Combine(Time.Now);
+   }
+}

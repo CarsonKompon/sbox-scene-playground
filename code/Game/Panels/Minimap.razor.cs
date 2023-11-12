@@ -7,8 +7,8 @@ public partial class Minimap
     public const float MINIMAP_SCALE = 0.04f;
 
     public Texture Canvas { get; set; }
-    public int CanvasWidth = 0;
-    public int CanvasHeight = 0;
+    public int CanvasWidth = 160;
+    public int CanvasHeight = 90;
 
     void ResetCanvas()
     {
@@ -29,35 +29,45 @@ public partial class Minimap
         // Initialize Canvas if not already
         if ( Canvas is null ) ResetCanvas();
 
+        DrawToCanvas( Canvas, CanvasWidth, CanvasHeight, MINIMAP_SCALE );
+    }
+
+    public static void DrawToCanvas( Texture canvas, int canvasWidth, int canvasHeight, float scale, Vector2 offset = default )
+    {
         // Clear the Canvas
-        Canvas.Update( Color.Transparent, new Rect( 0, 0, CanvasWidth, CanvasHeight ) );
+        canvas.Update( Color.Transparent, new Rect( 0, 0, canvasWidth, canvasHeight ) );
 
         // Get Camera position
-        var camPos = Camera.Main.Position;
+        var camPos = Camera.Main.Position + new Vector3( offset.x, 0, -offset.y ) / scale;
 
         // Draw all rooms
         foreach ( var room in GameManager.ActiveScene.GetAllObjects( false ).Where( x => x.GetComponent<QuestRoom>() != null ) )
         {
             var roomCollider = room.GetComponent<ColliderBoxComponent>();
             var roomPos = roomCollider.Transform.Position;
-            Canvas.Update( new Color( 0.6f, 0.6f, 0.6f ), new Rect(
-                (int)((roomPos.x - camPos.x - roomCollider.Scale.x) * MINIMAP_SCALE) + (CanvasWidth / 2),
-                (int)(-(roomPos.z - camPos.z + roomCollider.Scale.z) * MINIMAP_SCALE) + (CanvasHeight / 2),
-                (int)(roomCollider.Scale.x * 2 * MINIMAP_SCALE),
-                (int)(roomCollider.Scale.z * 2 * MINIMAP_SCALE)
+            canvas.Update( new Color( 0.6f, 0.6f, 0.6f ), new Rect(
+                (int)((roomPos.x - camPos.x - roomCollider.Scale.x / 2) * scale) + canvasWidth / 2,
+                (int)(-(roomPos.z - camPos.z + roomCollider.Scale.z / 2) * scale) + canvasHeight / 2,
+                (int)(roomCollider.Scale.x * scale),
+                (int)(roomCollider.Scale.z * scale)
             ) );
         }
 
         // Draw all players
         foreach ( var player in GameManager.ActiveScene.GetAllObjects( false ).Where( x => x.Tags.Has( "player" ) ) )
         {
-            Canvas.Update( Color.Blue, new Rect(
-                (int)((player.Transform.Position.x - camPos.x) * MINIMAP_SCALE) + (CanvasWidth / 2) - 1,
-                (int)(-(player.Transform.Position.z - camPos.z) * MINIMAP_SCALE) + (CanvasHeight / 2) - 1,
+            canvas.Update( Color.Blue, new Rect(
+                (int)((player.Transform.Position.x - camPos.x) * scale) + (canvasWidth / 2) - 1,
+                (int)(-(player.Transform.Position.z - camPos.z) * scale) + (canvasHeight / 2) - 1,
                 3,
                 3
             ) );
         }
+    }
+
+    public void OpenMap()
+    {
+        QuestHudPanel.Instance.ToggleMap();
     }
 
     protected override int BuildHash()

@@ -57,7 +57,8 @@ public sealed class QuestPlayer : BaseComponent
 	{
 		// Lerp camera position
 		float camLerp = 1.0f - MathF.Pow( 0.5f, Time.Delta * 10.0f );
-		var camPos = Transform.Position.WithZ( Transform.Position.z + 70f ).WithY( Transform.Position.y - CameraDistance );
+		var camPos = Transform.Position.WithZ( Transform.Position.z + 70f );
+		camPos = camPos.LerpTo( AimCursor.Transform.Position, 0.2f ).WithY( Transform.Position.y - CameraDistance );
 		camPos = LocalCamera.Transform.Position.LerpTo( camPos, camLerp );
 		LocalCamera.Transform.Position = camPos;
 

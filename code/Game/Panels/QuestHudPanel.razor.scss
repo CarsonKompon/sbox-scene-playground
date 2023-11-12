@@ -7,4 +7,9 @@ QuestHudPanel
     height: 100%;
     
     cursor: none;
+
+    &.has-cursor
+    {
+        cursor: default;
+    }
 }
