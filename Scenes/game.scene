@@ -1503,7 +1503,7 @@
           "Name": "Zombie Body",
           "Enabled": true,
           "Position": "0,0,0",
-          "Rotation": "0,0,0,1",
+          "Rotation": "0.00000001023516,0.000000000000002914211,0.1717174,-0.9851454",
           "Scale": "1,1,1",
           "Tags": "",
           "Components": [
@@ -1568,8 +1568,15 @@
           "Tags": "trigger",
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "ColliderBoxComponent",
               "__enabled": true,
+              "IsTrigger": false,
+              "Scale": "468.9995,50,207.5001",
+              "Surface": null
+            },
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": false,
               "IsTrigger": true,
               "Radius": 330,
               "Surface": null
@@ -1638,6 +1645,698 @@
               "__enabled": true,
               "AlwaysShow": false,
               "TargetHealth": "fab692a3-4510-49ed-b202-7ea55ba25f1e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "17d19df2-30c9-43d6-8a3c-6cc75d7dcb53",
+      "Name": "Zombie",
+      "Enabled": true,
+      "Position": "116.0535,-128,291.287",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "enemy",
+      "Components": [
+        {
+          "__type": "CharacterController",
+          "__enabled": true,
+          "Acceleration": 10,
+          "GroundAngle": 45,
+          "Height": 71.18,
+          "IgnoreLayers": "trigger,enemy,player",
+          "Radius": 11.18,
+          "StepHeight": 18
+        }
+      ],
+      "Children": [
+        {
+          "Id": "8a38ef1a-ee9b-4987-a7d8-ac4532320861",
+          "Name": "Zombie Body",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "AnimatedModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
+              "Model": "models/citizen/citizen.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "HighlightOutline",
+              "__enabled": true,
+              "Color": "124.21,0,0,0.16",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "0,0,0,0",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.1
+            },
+            {
+              "__type": "CitizenAnimation",
+              "__enabled": true,
+              "Height": 1,
+              "IkLeftHand": "39dd611f-3f06-4811-b219-ca4edcba87c3",
+              "IkRightHand": "d0ebd347-e910-4e83-a331-517670a1621f",
+              "Target": "8a38ef1a-ee9b-4987-a7d8-ac4532320861"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "39dd611f-3f06-4811-b219-ca4edcba87c3",
+              "Name": "LeftHandPos",
+              "Enabled": true,
+              "Position": "35,10,50",
+              "Rotation": "0.9238794,0.0000002448248,0.3826836,-0.0000005910591",
+              "Scale": "1,1,1",
+              "Tags": ""
+            },
+            {
+              "Id": "d0ebd347-e910-4e83-a331-517670a1621f",
+              "Name": "RightHandPos",
+              "Enabled": true,
+              "Position": "35,-10,50",
+              "Rotation": "0,-0.3826836,0,0.9238794",
+              "Scale": "1,1,1",
+              "Tags": ""
+            }
+          ]
+        },
+        {
+          "Id": "32868b84-b692-4781-8db5-175eacd93732",
+          "Name": "Zombie Brain",
+          "Enabled": true,
+          "Position": "0,0,32.2",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "trigger",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Scale": "468.9995,50,207.5001",
+              "Surface": null
+            },
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": false,
+              "IsTrigger": true,
+              "Radius": 330,
+              "Surface": null
+            },
+            {
+              "__type": "Enemy",
+              "__enabled": true,
+              "AggroTime": 5,
+              "AnimationHelper": "8a38ef1a-ee9b-4987-a7d8-ac4532320861",
+              "Body": "8a38ef1a-ee9b-4987-a7d8-ac4532320861",
+              "characterController": "17d19df2-30c9-43d6-8a3c-6cc75d7dcb53",
+              "MovementLerp": 5,
+              "MovementSpeed": 80
+            }
+          ]
+        },
+        {
+          "Id": "507c4bc0-b435-456e-8b9e-9c3b4efe1b6b",
+          "Name": "Zombie Health",
+          "Enabled": true,
+          "Position": "0,-0.0000000000000005689893,34.1013",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "enemy",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "19.80002,20.7,72.99976",
+              "Surface": null
+            },
+            {
+              "__type": "HealthComponent",
+              "__enabled": true,
+              "ContactDamage": 10,
+              "ContactDamageDelay": 1,
+              "HealDelay": 0,
+              "HealRate": 0,
+              "Health": 50,
+              "MaxHealth": 50,
+              "ParentObject": "17d19df2-30c9-43d6-8a3c-6cc75d7dcb53"
+            }
+          ]
+        },
+        {
+          "Id": "fb840b3c-3fd5-4ad3-b350-a25f18db8e4d",
+          "Name": "Zombie Healthbar Panel",
+          "Enabled": true,
+          "Position": "0,-0.000000000000001249001,78.51305",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "WorldPanel",
+              "__enabled": true,
+              "HorizontalAlign": "Center",
+              "LookAtCamera": true,
+              "PanelSize": "800,50",
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "HealthbarPanel",
+              "__enabled": true,
+              "AlwaysShow": false,
+              "TargetHealth": "507c4bc0-b435-456e-8b9e-9c3b4efe1b6b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "abbbbd94-2096-40ae-9a9d-6635f644ea18",
+      "Name": "Zombie",
+      "Enabled": true,
+      "Position": "-271.9524,-128,463.5836",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "enemy",
+      "Components": [
+        {
+          "__type": "CharacterController",
+          "__enabled": true,
+          "Acceleration": 10,
+          "GroundAngle": 45,
+          "Height": 71.18,
+          "IgnoreLayers": "trigger,enemy,player",
+          "Radius": 11.18,
+          "StepHeight": 18
+        }
+      ],
+      "Children": [
+        {
+          "Id": "d944a0c8-999c-4300-b075-375dbbdb34fc",
+          "Name": "Zombie Body",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "AnimatedModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
+              "Model": "models/citizen/citizen.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "HighlightOutline",
+              "__enabled": true,
+              "Color": "124.21,0,0,0.16",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "0,0,0,0",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.1
+            },
+            {
+              "__type": "CitizenAnimation",
+              "__enabled": true,
+              "Height": 1,
+              "IkLeftHand": "99a6b7e6-b09b-4208-a3ce-98d7b0ba9afa",
+              "IkRightHand": "00966b07-f424-4b45-8139-06de606a86b6",
+              "Target": "d944a0c8-999c-4300-b075-375dbbdb34fc"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "99a6b7e6-b09b-4208-a3ce-98d7b0ba9afa",
+              "Name": "LeftHandPos",
+              "Enabled": true,
+              "Position": "35,10,50",
+              "Rotation": "0.9238794,0.0000002448248,0.3826836,-0.0000005910591",
+              "Scale": "1,1,1",
+              "Tags": ""
+            },
+            {
+              "Id": "00966b07-f424-4b45-8139-06de606a86b6",
+              "Name": "RightHandPos",
+              "Enabled": true,
+              "Position": "35,-10,50",
+              "Rotation": "0,-0.3826836,0,0.9238794",
+              "Scale": "1,1,1",
+              "Tags": ""
+            }
+          ]
+        },
+        {
+          "Id": "ee0f3350-fbd3-4921-8802-8dce2a96eaa3",
+          "Name": "Zombie Brain",
+          "Enabled": true,
+          "Position": "0,0,32.2",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "trigger",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Scale": "468.9995,50,207.5001",
+              "Surface": null
+            },
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": false,
+              "IsTrigger": true,
+              "Radius": 330,
+              "Surface": null
+            },
+            {
+              "__type": "Enemy",
+              "__enabled": true,
+              "AggroTime": 5,
+              "AnimationHelper": "d944a0c8-999c-4300-b075-375dbbdb34fc",
+              "Body": "d944a0c8-999c-4300-b075-375dbbdb34fc",
+              "characterController": "abbbbd94-2096-40ae-9a9d-6635f644ea18",
+              "MovementLerp": 5,
+              "MovementSpeed": 80
+            }
+          ]
+        },
+        {
+          "Id": "e75ed09a-d6e4-4e91-886a-de2eabb32eec",
+          "Name": "Zombie Health",
+          "Enabled": true,
+          "Position": "0,-0.0000000000000005689893,34.1013",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "enemy",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "19.80002,20.7,72.99976",
+              "Surface": null
+            },
+            {
+              "__type": "HealthComponent",
+              "__enabled": true,
+              "ContactDamage": 10,
+              "ContactDamageDelay": 1,
+              "HealDelay": 0,
+              "HealRate": 0,
+              "Health": 50,
+              "MaxHealth": 50,
+              "ParentObject": "abbbbd94-2096-40ae-9a9d-6635f644ea18"
+            }
+          ]
+        },
+        {
+          "Id": "803f8f39-a9ba-4146-86d8-4bd8aaaf4419",
+          "Name": "Zombie Healthbar Panel",
+          "Enabled": true,
+          "Position": "0,-0.000000000000001249001,78.51305",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "WorldPanel",
+              "__enabled": true,
+              "HorizontalAlign": "Center",
+              "LookAtCamera": true,
+              "PanelSize": "800,50",
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "HealthbarPanel",
+              "__enabled": true,
+              "AlwaysShow": false,
+              "TargetHealth": "e75ed09a-d6e4-4e91-886a-de2eabb32eec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "73f53579-791e-444d-ae93-8a0a716ee359",
+      "Name": "Zombie",
+      "Enabled": true,
+      "Position": "388.5705,-128,29.85464",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "enemy",
+      "Components": [
+        {
+          "__type": "CharacterController",
+          "__enabled": true,
+          "Acceleration": 10,
+          "GroundAngle": 45,
+          "Height": 71.18,
+          "IgnoreLayers": "trigger,enemy,player",
+          "Radius": 11.18,
+          "StepHeight": 18
+        }
+      ],
+      "Children": [
+        {
+          "Id": "e1e4b03a-cbb9-45b9-92f3-5396341df3da",
+          "Name": "Zombie Body",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0.00000005930582,0.000000000000003451987,0.9949866,0.1000056",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "AnimatedModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
+              "Model": "models/citizen/citizen.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "HighlightOutline",
+              "__enabled": true,
+              "Color": "124.21,0,0,0.16",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "0,0,0,0",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.1
+            },
+            {
+              "__type": "CitizenAnimation",
+              "__enabled": true,
+              "Height": 1,
+              "IkLeftHand": "63fc4d84-6bc0-4360-977d-e54ceffd6f2b",
+              "IkRightHand": "8ade07cf-b098-4d2d-a2b6-75c7767879c2",
+              "Target": "e1e4b03a-cbb9-45b9-92f3-5396341df3da"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "63fc4d84-6bc0-4360-977d-e54ceffd6f2b",
+              "Name": "LeftHandPos",
+              "Enabled": true,
+              "Position": "35,10,50",
+              "Rotation": "0.9238794,0.0000002448248,0.3826836,-0.0000005910591",
+              "Scale": "1,1,1",
+              "Tags": ""
+            },
+            {
+              "Id": "8ade07cf-b098-4d2d-a2b6-75c7767879c2",
+              "Name": "RightHandPos",
+              "Enabled": true,
+              "Position": "35,-10,50",
+              "Rotation": "0,-0.3826836,0,0.9238794",
+              "Scale": "1,1,1",
+              "Tags": ""
+            }
+          ]
+        },
+        {
+          "Id": "d6d0d187-b614-41f6-b6b2-bd02273bd7aa",
+          "Name": "Zombie Brain",
+          "Enabled": true,
+          "Position": "0,0,32.2",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "trigger",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Scale": "468.9995,50,207.5001",
+              "Surface": null
+            },
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": false,
+              "IsTrigger": true,
+              "Radius": 330,
+              "Surface": null
+            },
+            {
+              "__type": "Enemy",
+              "__enabled": true,
+              "AggroTime": 5,
+              "AnimationHelper": "e1e4b03a-cbb9-45b9-92f3-5396341df3da",
+              "Body": "e1e4b03a-cbb9-45b9-92f3-5396341df3da",
+              "characterController": "73f53579-791e-444d-ae93-8a0a716ee359",
+              "MovementLerp": 5,
+              "MovementSpeed": 80
+            }
+          ]
+        },
+        {
+          "Id": "3846fd0a-20de-4200-99c3-95f973595ec0",
+          "Name": "Zombie Health",
+          "Enabled": true,
+          "Position": "0,-0.0000000000000005689893,34.1013",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "enemy",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "19.80002,20.7,72.99976",
+              "Surface": null
+            },
+            {
+              "__type": "HealthComponent",
+              "__enabled": true,
+              "ContactDamage": 10,
+              "ContactDamageDelay": 1,
+              "HealDelay": 0,
+              "HealRate": 0,
+              "Health": 50,
+              "MaxHealth": 50,
+              "ParentObject": "73f53579-791e-444d-ae93-8a0a716ee359"
+            }
+          ]
+        },
+        {
+          "Id": "4a70917e-93c6-473d-a9af-6fbc642fc314",
+          "Name": "Zombie Healthbar Panel",
+          "Enabled": true,
+          "Position": "0,-0.000000000000001249001,78.51305",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "WorldPanel",
+              "__enabled": true,
+              "HorizontalAlign": "Center",
+              "LookAtCamera": true,
+              "PanelSize": "800,50",
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "HealthbarPanel",
+              "__enabled": true,
+              "AlwaysShow": false,
+              "TargetHealth": "3846fd0a-20de-4200-99c3-95f973595ec0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "2601824a-9118-44ab-b07d-ca4709d01a3d",
+      "Name": "Zombie",
+      "Enabled": true,
+      "Position": "417.7249,-128,211.9682",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "enemy",
+      "Components": [
+        {
+          "__type": "CharacterController",
+          "__enabled": true,
+          "Acceleration": 10,
+          "GroundAngle": 45,
+          "Height": 71.18,
+          "IgnoreLayers": "trigger,enemy,player",
+          "Radius": 11.18,
+          "StepHeight": 18
+        }
+      ],
+      "Children": [
+        {
+          "Id": "1f8ebb04-d71c-4753-b2d4-51875e95a976",
+          "Name": "Zombie Body",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0.0000000104171,0.0000000000000001869865,0.17477,-0.9846092",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "AnimatedModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
+              "Model": "models/citizen/citizen.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "HighlightOutline",
+              "__enabled": true,
+              "Color": "124.21,0,0,0.16",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "0,0,0,0",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.1
+            },
+            {
+              "__type": "CitizenAnimation",
+              "__enabled": true,
+              "Height": 1,
+              "IkLeftHand": "d312deba-5e84-4bd2-883d-2f159ffd1fa5",
+              "IkRightHand": "e58a1734-88c1-42d5-959e-59b822856b72",
+              "Target": "1f8ebb04-d71c-4753-b2d4-51875e95a976"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "d312deba-5e84-4bd2-883d-2f159ffd1fa5",
+              "Name": "LeftHandPos",
+              "Enabled": true,
+              "Position": "35,10,50",
+              "Rotation": "0.9238794,0.0000002448248,0.3826836,-0.0000005910591",
+              "Scale": "1,1,1",
+              "Tags": ""
+            },
+            {
+              "Id": "e58a1734-88c1-42d5-959e-59b822856b72",
+              "Name": "RightHandPos",
+              "Enabled": true,
+              "Position": "35,-10,50",
+              "Rotation": "0,-0.3826836,0,0.9238794",
+              "Scale": "1,1,1",
+              "Tags": ""
+            }
+          ]
+        },
+        {
+          "Id": "93e312dc-e4e6-45f3-b80b-7b19dfb2e54f",
+          "Name": "Zombie Brain",
+          "Enabled": true,
+          "Position": "0,0,32.2",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "trigger",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Scale": "468.9995,50,207.5001",
+              "Surface": null
+            },
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": false,
+              "IsTrigger": true,
+              "Radius": 330,
+              "Surface": null
+            },
+            {
+              "__type": "Enemy",
+              "__enabled": true,
+              "AggroTime": 5,
+              "AnimationHelper": "1f8ebb04-d71c-4753-b2d4-51875e95a976",
+              "Body": "1f8ebb04-d71c-4753-b2d4-51875e95a976",
+              "characterController": "2601824a-9118-44ab-b07d-ca4709d01a3d",
+              "MovementLerp": 5,
+              "MovementSpeed": 80
+            }
+          ]
+        },
+        {
+          "Id": "ae027bb3-34cf-4266-8907-65d9fa799801",
+          "Name": "Zombie Health",
+          "Enabled": true,
+          "Position": "0,-0.0000000000000005689893,34.1013",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "enemy",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "19.80002,20.7,72.99976",
+              "Surface": null
+            },
+            {
+              "__type": "HealthComponent",
+              "__enabled": true,
+              "ContactDamage": 10,
+              "ContactDamageDelay": 1,
+              "HealDelay": 0,
+              "HealRate": 0,
+              "Health": 50,
+              "MaxHealth": 50,
+              "ParentObject": "2601824a-9118-44ab-b07d-ca4709d01a3d"
+            }
+          ]
+        },
+        {
+          "Id": "4d857f7c-1a03-47b3-8e93-18f78ed90902",
+          "Name": "Zombie Healthbar Panel",
+          "Enabled": true,
+          "Position": "0,-0.000000000000001249001,78.51305",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "WorldPanel",
+              "__enabled": true,
+              "HorizontalAlign": "Center",
+              "LookAtCamera": true,
+              "PanelSize": "800,50",
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "HealthbarPanel",
+              "__enabled": true,
+              "AlwaysShow": false,
+              "TargetHealth": "ae027bb3-34cf-4266-8907-65d9fa799801"
             }
           ]
         }
