@@ -1482,7 +1482,7 @@
       "Name": "Zombie",
       "Enabled": true,
       "Position": "200.6466,-128,127.9975",
-      "Rotation": "-0.0000000001561857,-0.00000005960437,-0.000000000000000009309353,1",
+      "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "enemy",
       "Components": [
@@ -1508,9 +1508,11 @@
           "Tags": "",
           "Components": [
             {
-              "__type": "ModelComponent",
+              "__type": "AnimatedModelComponent",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
               "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
               "Model": "models/citizen/citizen.vmdl",
               "ShouldCastShadows": true,
@@ -1525,6 +1527,34 @@
               "Material": null,
               "ObscuredColor": "0,0,0,0.4",
               "Width": 0.1
+            },
+            {
+              "__type": "CitizenAnimation",
+              "__enabled": true,
+              "Height": 1,
+              "IkLeftHand": "25435111-19ed-4762-a2cf-448cd8d6c98e",
+              "IkRightHand": "86bfe99d-9181-4b99-ae7a-bcb3ee13fac0",
+              "Target": "ec55c275-375c-4c5a-bd84-24f730f66c69"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "25435111-19ed-4762-a2cf-448cd8d6c98e",
+              "Name": "LeftHandPos",
+              "Enabled": true,
+              "Position": "35,10,50",
+              "Rotation": "0.9238794,0.0000002448248,0.3826836,-0.0000005910591",
+              "Scale": "1,1,1",
+              "Tags": ""
+            },
+            {
+              "Id": "86bfe99d-9181-4b99-ae7a-bcb3ee13fac0",
+              "Name": "RightHandPos",
+              "Enabled": true,
+              "Position": "35,-10,50",
+              "Rotation": "0,-0.3826836,0,0.9238794",
+              "Scale": "1,1,1",
+              "Tags": ""
             }
           ]
         },
@@ -1548,6 +1578,7 @@
               "__type": "Enemy",
               "__enabled": true,
               "AggroTime": 5,
+              "AnimationHelper": "ec55c275-375c-4c5a-bd84-24f730f66c69",
               "Body": "ec55c275-375c-4c5a-bd84-24f730f66c69",
               "characterController": "5c2f4ab0-e490-4696-a818-e0311b8d1c8f",
               "MovementLerp": 5,
@@ -1586,7 +1617,7 @@
         },
         {
           "Id": "c08d2b8b-a2e2-4762-a7ba-bb65ae5fba95",
-          "Name": "Object",
+          "Name": "Zombie Healthbar Panel",
           "Enabled": true,
           "Position": "0,-0.000000000000001249001,78.51305",
           "Rotation": "0,0,0,1",

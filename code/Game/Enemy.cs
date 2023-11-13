@@ -10,6 +10,7 @@ public sealed class Enemy : BaseComponent, BaseComponent.ITriggerListener
 
 	[Property] GameObject Body { get; set; }
 	[Property] CharacterController characterController { get; set; }
+	[Property] CitizenAnimation AnimationHelper { get; set; }
 
 	public bool IsAggro
 	{
@@ -30,6 +31,13 @@ public sealed class Enemy : BaseComponent, BaseComponent.ITriggerListener
 		{
 			var targetRot = Rotation.LookAt( wishVelocity, Vector3.Up );
 			Body.Transform.LocalRotation = Rotation.Slerp( Body.Transform.LocalRotation, targetRot, 1f - MathF.Pow( 0.5f, 8f * Time.Delta ) );
+		}
+
+		// Set Animation Parameters
+		if ( AnimationHelper is not null )
+		{
+			AnimationHelper.WithVelocity( characterController.Velocity );
+			AnimationHelper.IsGrounded = characterController.IsOnGround;
 		}
 	}
 
