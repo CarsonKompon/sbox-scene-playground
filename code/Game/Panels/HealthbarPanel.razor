@@ -1,0 +1,29 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+
+    <div class="healthbar-container">
+        <div @ref="FillPanel" class="healthbar-fill" />
+    </div>
+
+</root>
+
+@code
+{
+    Panel FillPanel { get; set; }
+
+    [Property] public HealthComponent TargetHealth { get; set; }
+    [Property] public bool AlwaysShow { get; set; } = false;
+
+    public override void Update()
+    {
+        if(TargetHealth is null || FillPanel is null) return;
+
+        FillPanel.Style.Width = Length.Percent(TargetHealth.Health / TargetHealth.MaxHealth * 100f);
+        Panel.SetClass("show", AlwaysShow || TargetHealth.Health < TargetHealth.MaxHealth);
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(TargetHealth.Health);
+}

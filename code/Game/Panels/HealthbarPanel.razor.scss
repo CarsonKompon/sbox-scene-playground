@@ -1,0 +1,38 @@
+HealthbarPanel
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: black;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    .healthbar-container
+    {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        background-color: rgb(49, 49, 49);
+
+        .healthbar-fill
+        {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            bottom: 2px;
+            right: 8px;
+            background-color: red;
+        }
+    }
+
+    &.show
+    {
+        opacity: 1;
+    }
+
+}
