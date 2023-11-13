@@ -325,7 +325,7 @@
           "Acceleration": 10,
           "GroundAngle": 45,
           "Height": 64,
-          "IgnoreLayers": "trigger,particle,player",
+          "IgnoreLayers": "trigger,enemy,player",
           "Radius": 14.29,
           "StepHeight": 18
         },
@@ -342,7 +342,7 @@
           "Gravity": "0,0,800",
           "GroundControl": 4,
           "HandObject": "a7673e38-ffec-4f07-8720-88e548ef29b8",
-          "Health": "3d530c53-29e6-4bd3-a72d-7ecde638fe05",
+          "Health": "cd426584-833e-46e9-9eb9-83db1d674e1a",
           "JumpForce": 420,
           "MaxForce": 50,
           "RunSpeed": 320,
@@ -355,14 +355,6 @@
           "Height": 1,
           "LookAtObject": "7ef83f06-bc6f-4c45-927b-0ef7df57ec6f",
           "Target": "07cc66a9-d292-4498-bedb-963abe9b9cae"
-        },
-        {
-          "__type": "HealthComponent",
-          "__enabled": true,
-          "HealDelay": 1,
-          "HealRate": 1,
-          "Health": 100,
-          "MaxHealth": 100
         }
       ],
       "Children": [
@@ -1444,6 +1436,35 @@
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": ""
+        },
+        {
+          "Id": "cd426584-833e-46e9-9eb9-83db1d674e1a",
+          "Name": "Player Health",
+          "Enabled": true,
+          "Position": "0,0,32.01917",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "player",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "17.89999,17.70005,79.79961",
+              "Surface": null
+            },
+            {
+              "__type": "HealthComponent",
+              "__enabled": true,
+              "ContactDamage": 0,
+              "ContactDamageDelay": 1,
+              "HealDelay": 1,
+              "HealRate": 1,
+              "Health": 100,
+              "MaxHealth": 100,
+              "ParentObject": "3d530c53-29e6-4bd3-a72d-7ecde638fe05"
+            }
+          ]
         }
       ]
     },
@@ -1471,26 +1492,18 @@
           "Acceleration": 10,
           "GroundAngle": 45,
           "Height": 71.18,
-          "IgnoreLayers": "trigger,enemy",
+          "IgnoreLayers": "trigger,enemy,player",
           "Radius": 11.18,
           "StepHeight": 18
-        },
-        {
-          "__type": "HealthComponent",
-          "__enabled": true,
-          "HealDelay": 0,
-          "HealRate": 0,
-          "Health": 50,
-          "MaxHealth": 50
         }
       ],
       "Children": [
         {
           "Id": "ec55c275-375c-4c5a-bd84-24f730f66c69",
-          "Name": "Body",
+          "Name": "Zombie Body",
           "Enabled": true,
           "Position": "0,0,0",
-          "Rotation": "0,0.0000003576279,0,1",
+          "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "",
           "Components": [
@@ -1517,7 +1530,7 @@
         },
         {
           "Id": "aea88bf3-10c5-44a5-bb7f-f954902f293d",
-          "Name": "Brain",
+          "Name": "Zombie Brain",
           "Enabled": true,
           "Position": "0,0,32.2",
           "Rotation": "0,0,0,1",
@@ -1538,6 +1551,35 @@
               "characterController": "5c2f4ab0-e490-4696-a818-e0311b8d1c8f",
               "MovementLerp": 5,
               "MovementSpeed": 80
+            }
+          ]
+        },
+        {
+          "Id": "fab692a3-4510-49ed-b202-7ea55ba25f1e",
+          "Name": "Zombie Health",
+          "Enabled": true,
+          "Position": "0,-0.0000000000000005689893,34.1013",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "enemy",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "19.80002,20.7,72.99976",
+              "Surface": null
+            },
+            {
+              "__type": "HealthComponent",
+              "__enabled": true,
+              "ContactDamage": 10,
+              "ContactDamageDelay": 1,
+              "HealDelay": 0,
+              "HealRate": 0,
+              "Health": 50,
+              "MaxHealth": 50,
+              "ParentObject": "5c2f4ab0-e490-4696-a818-e0311b8d1c8f"
             }
           ]
         }
