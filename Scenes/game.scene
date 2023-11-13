@@ -1482,7 +1482,7 @@
       "Name": "Zombie",
       "Enabled": true,
       "Position": "200.6466,-128,127.9975",
-      "Rotation": "0.00000005960433,-0.0000000001561475,1,-0.0000006397578",
+      "Rotation": "-0.0000000001561857,-0.00000005960437,-0.000000000000000009309353,1",
       "Scale": "1,1,1",
       "Tags": "enemy",
       "Components": [
@@ -1548,6 +1548,7 @@
               "__type": "Enemy",
               "__enabled": true,
               "AggroTime": 5,
+              "Body": "ec55c275-375c-4c5a-bd84-24f730f66c69",
               "characterController": "5c2f4ab0-e490-4696-a818-e0311b8d1c8f",
               "MovementLerp": 5,
               "MovementSpeed": 80

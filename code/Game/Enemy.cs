@@ -8,6 +8,7 @@ public sealed class Enemy : BaseComponent, BaseComponent.ITriggerListener
 	[Property] public float MovementSpeed { get; set; } = 80f;
 	[Property] public float MovementLerp { get; set; } = 5f;
 
+	[Property] GameObject Body { get; set; }
 	[Property] CharacterController characterController { get; set; }
 
 	public bool IsAggro
@@ -20,11 +21,23 @@ public sealed class Enemy : BaseComponent, BaseComponent.ITriggerListener
 
 	List<GameObject> nearbyTargets = new();
 	TimeUntil aggroTimer = 0;
+	Vector3 wishVelocity = Vector3.Zero;
 
 	public override void Update()
 	{
+		// Rotate towards movement direction
+		if ( wishVelocity.Length > 0.1f )
+		{
+			var targetRot = Rotation.LookAt( wishVelocity, Vector3.Up );
+			Body.Transform.LocalRotation = Rotation.Slerp( Body.Transform.LocalRotation, targetRot, 1f - MathF.Pow( 0.5f, 8f * Time.Delta ) );
+		}
+	}
+
+	public override void FixedUpdate()
+	{
 		if ( characterController is null ) return;
 
+		// Get Wish Velocity (Follow nearest player)
 		bool moving = false;
 		if ( IsAggro )
 		{
@@ -32,15 +45,41 @@ public sealed class Enemy : BaseComponent, BaseComponent.ITriggerListener
 			if ( nearestTarget is not null )
 			{
 				Vector3 targetVelocity = (nearestTarget.Transform.Position - Transform.Position).WithZ( 0 ).Normal * MovementSpeed;
-				characterController.Velocity = characterController.Velocity.LerpTo( targetVelocity, 1f - MathF.Pow( 0.5f, MovementLerp * Time.Delta ) );
+				wishVelocity = wishVelocity.LerpTo( targetVelocity, 1f - MathF.Pow( 0.5f, MovementLerp * Time.Delta ) );
 				moving = true;
 			}
 		}
 		if ( !moving )
 		{
-			characterController.Velocity = characterController.Velocity.LerpTo( Vector3.Zero, 1f - MathF.Pow( 0.5f, MovementLerp * Time.Delta ) );
+			wishVelocity = wishVelocity.LerpTo( Vector3.Zero, 1f - MathF.Pow( 0.5f, MovementLerp * Time.Delta ) );
 		}
+
+		// Apply friction/acceleration
+		if ( characterController.IsOnGround )
+		{
+			characterController.Velocity = characterController.Velocity.WithZ( 0 );
+			characterController.Accelerate( wishVelocity );
+			characterController.ApplyFriction( 1f );
+		}
+		else
+		{
+			characterController.Velocity += Vector3.Down * 800f * Time.Delta * 0.5f;
+			characterController.Accelerate( wishVelocity.ClampLength( 800f ) );
+			characterController.ApplyFriction( 0.5f );
+		}
+
+		// Move the character controller
 		characterController.Move();
+
+		// Apply the second half of gravity
+		if ( !characterController.IsOnGround )
+		{
+			characterController.Velocity += Vector3.Down * 800f * Time.Delta * 0.5f;
+		}
+		else
+		{
+			characterController.Velocity = characterController.Velocity.WithZ( 0f );
+		}
 	}
 
 	void ITriggerListener.OnTriggerEnter( Collider other )
