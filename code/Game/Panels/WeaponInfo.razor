@@ -1,0 +1,43 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+
+@if(QuestPlayer.Local is null) return;
+@if(QuestPlayer.Local.Weapon is null) return;
+
+<root>
+
+   @if(QuestPlayer.Local.Weapon.Reloading)
+   {
+      <i class="large-icon reloading">autorenew</i>
+   }
+   else
+   {
+      <img class="large-icon" src="/ui/ammo-pistol.png" />
+   }
+
+   <div class="ammo-count">
+      @if(QuestPlayer.Local.Weapon.Reloading)
+      {
+         <p>Reloading...</p>
+      }
+      else
+      {
+         <h2>@(QuestPlayer.Local.Weapon.CurrentClip)/@(QuestPlayer.Local.Weapon.MaxAmmo)</h2>
+      }
+   </div>
+
+</root>
+
+@code
+{
+
+
+
+   protected override int BuildHash()
+   {
+      return HashCode.Combine(QuestPlayer.Local, QuestPlayer.Local?.Weapon.CurrentClip ?? 0, QuestPlayer.Local?.Weapon.Reloading ?? false);
+   }
+}

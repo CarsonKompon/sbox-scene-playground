@@ -1,0 +1,56 @@
+WeaponInfo
+{
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    align-items: center;
+    color: white;
+    font-family: Poppins;
+    font-size: 32px;
+    gap: 8px;
+
+    .large-icon
+    {
+        width: 128px;
+        height: 128px;
+
+        color: white;
+        font-size: 100px;
+
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        transform: rotate(0deg);
+
+        &.reloading
+        {
+            animation-name: rotating;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    }
+
+    .ammo-count
+    {
+        font-size: 52px;
+
+        p
+        {
+            font-size: 32px;
+            font-weight: normal;
+        }
+    }
+}
+
+@keyframes rotating
+{
+    from
+    {
+        transform: rotate(0deg);
+    }
+    to
+    {
+        transform: rotate(360deg);
+    }
+}
