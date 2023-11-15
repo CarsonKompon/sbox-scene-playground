@@ -1,0 +1,103 @@
+HomeMainMenu
+{
+    pointer-events: all;
+
+    .left
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        margin: 32px;
+        flex-direction: column;
+
+        .logo
+        {
+            width: 380px;
+            height: 220px;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 64px;
+
+            .roof
+            {
+                width: 100%;
+                height: 160px;
+            }
+
+            .title
+            {
+                width: 100%;
+                height: 50px;
+                color: white;
+                font-size: 92px;
+                text-align: center;
+                justify-content: center;
+                margin-top: -28px;
+
+                font-family: Poppins;
+                font-weight: bold;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.479);
+            }
+
+            .subtitle
+            {
+                width: 69%;
+                height: 50px;
+                color: white;
+                font-size: 18px;
+                margin-top: 32px;
+                top: 32px;
+
+                font-family: Poppins;
+                font-weight: light;
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.479);
+            }
+        }
+
+        .menu-options
+        {
+            flex-direction: column;
+            gap: 6px;
+
+            button
+            {
+                padding: 12px;
+                background-image: linear-gradient(0deg, rgba(black, 0.65), rgba(black, 0.5) 80%, rgba(black, 0));
+                color: white;
+                font-family: Poppins;
+                font-weight: normal;
+                font-size: 28px;
+
+                &:hover
+                {
+                    background-image: linear-gradient(0deg, rgba(white, 0.25), rgba(white, 0.2) 80%, rgba(white, 0));
+                
+                }
+            }
+
+            .divider
+            {
+                width: 100%;
+                height: 1px;
+                background-color: rgba(white, 0.5);
+            }
+        }
+    }
+
+    .player-info
+    {
+        position: absolute;
+        top: 300px;
+        right: 300px;
+        background-color: rgba(black, 0.5);
+        transform-origin: top right;
+
+        .avatar
+        {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+}
