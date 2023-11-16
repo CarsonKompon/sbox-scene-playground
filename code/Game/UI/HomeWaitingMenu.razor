@@ -1,0 +1,123 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.Menu;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+<root>
+
+    @if(Lobby is not null)
+    {
+        <div class="waiting">
+            @if(Lobby.MemberCount == 1)
+            {
+                <p class="waiting-count"><i>person</i>@(Lobby.MemberCount) person waiting for Home to return...</p>
+            }
+            else
+            {
+                <p class="waiting-count"><i>person</i>@(Lobby.MemberCount) people waiting for Home to return...</p>
+            }
+        </div>
+    }
+
+    <div class="chat-entry">
+        <p>Chat:</p>
+        <TextEntry @ref="ChatTextEntry" CaretColor=@(Color.White) onsubmit=@SubmitChat onblur=@CloseChat Placeholder="Enter message..." AllowEmojiReplace=@(true)></TextEntry>
+    </div>
+
+    <div class="main">
+        <div class="logo">
+            <img src="ui/ui_roof.png" class="roof" />
+            <p class="title">Home</p>
+            <p class="subtitle">by Carson Kompon</p>
+        </div>
+
+        <p class="notice">
+            Home was very early in development before Facepunch began work on s&box's retooling.
+            A such, it will take some time before it will be ready for the new out-of-game/scene system.
+            <br />
+            My main focus is still on some other non-s&box-related projects such as Turnip Boy Robs a Bank.
+            <br />
+            Please be patient, and thank you for your support!
+            <br />
+            - Carson
+        </p>
+    </div>
+
+</root>
+
+@code
+{
+    [Property] ColliderBoxComponent MessageSpawnBounds { get; set; }
+    [Property] GameObject MessagePrefab { get; set; }
+
+    private ILobby Lobby { get; set; } = null;
+
+    TextEntry ChatTextEntry { get; set; }
+
+    public override async void OnAwake()
+    {
+        var lobbies = (await Game.Menu.QueryLobbiesAsync())
+            .Where(l => l.MemberCount < l.MaxMembers)
+            .OrderByDescending(l => l.MemberCount);
+        
+        foreach(var lobby in lobbies)
+        {
+            if(await lobby.JoinAsync())
+            {
+                Lobby = lobby;
+                InitLobby();
+                return;
+            }
+        }
+
+        Lobby = await Game.Menu.CreateLobbyAsync(100);
+        InitLobby();
+    }
+
+    void InitLobby()
+    {
+        @* Lobby.OnMemberJoined += OnMemberJoined;
+        Lobby.OnMemberLeft += OnMemberLeft; *@
+        Lobby.OnChatMessage += OnChatMessage;
+    }
+
+    public override void Update()
+    {
+        if(Input.Pressed("chat") && !ChatTextEntry.HasFocus)
+        {
+            ChatTextEntry?.Focus();
+        }
+    }
+
+    void SubmitChat()
+    {
+        Lobby.SendChat(ChatTextEntry.Text);
+        ChatTextEntry.Text = "";
+        CloseChat();
+    }
+
+    void CloseChat()
+    {
+        ChatTextEntry.Text = "";
+    }
+
+    void OnChatMessage(Friend user, string message)
+    {
+        var messagePos = MessageSpawnBounds.Transform.Position + new Vector3(
+            Random.Shared.Float(-MessageSpawnBounds.Scale.x/2, MessageSpawnBounds.Scale.x/2),
+            Random.Shared.Float(-MessageSpawnBounds.Scale.y/2, MessageSpawnBounds.Scale.y/2),
+            Random.Shared.Float(-MessageSpawnBounds.Scale.z/2, MessageSpawnBounds.Scale.z/2)
+        );
+        var messageObject = SceneUtility.Instantiate(MessagePrefab, messagePos);
+        var chatMessage = messageObject.GetComponent<HomeWaitingMessage>();
+        chatMessage.User = user;
+        chatMessage.Message = message;
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Lobby?.MemberCount ?? 0);
+    }
+
+}

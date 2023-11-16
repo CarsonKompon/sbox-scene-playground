@@ -14,11 +14,11 @@
 
         <div class="menu-options">
 
-            <button>Plaza</button>
-            <button>Room</button>
+            <button><i>apartment</i>Plaza</button>
+            <button><i>door_front</i>Room</button>
             <div class="divider" />
-            <button>Customization</button>
-            <button>Options</button>
+            <button><i>person</i>Customization</button>
+            <button><i>settings</i>Options</button>
 
         </div>
     </div>
@@ -26,7 +26,7 @@
     <div class="player-info">
         <img src="@($"avatar:{Game.SteamId}")" class="avatar" />
         <div class="info">
-            <p class="name">@Game.LocalClient.Name</p>
+            <p class="name">@Game.UserName</p>
             <p class="money">$20,401,120</p>
         </div>
     </div>

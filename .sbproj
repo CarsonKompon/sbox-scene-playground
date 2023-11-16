@@ -1,8 +1,8 @@
 {
-  "Title": "Testbed",
+  "Title": "Home (Waiting Room)",
   "Type": "game",
-  "Org": "facepunch",
-  "Ident": "testbed",
+  "Org": "carsonk",
+  "Ident": "home",
   "Tags": null,
   "Schema": 1,
   "HasAssets": true,

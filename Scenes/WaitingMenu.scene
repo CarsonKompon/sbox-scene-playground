@@ -1,0 +1,222 @@
+{
+  "GameObjects": [
+    {
+      "Id": "22e148b0-4fc8-47f5-9ed8-13c24df35c6f",
+      "Name": "SkyBox",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "SkyBox2D",
+          "__enabled": true,
+          "SkyMaterial": "materials/skybox/light_test_sky_night_basic.vmat",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "01e5f4db-20ff-449b-ac7f-09352e540b86",
+      "Name": "Directional Light",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0.4351622,0.4351622,-0.5573454,0.5573453",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "DirectionalLightComponent",
+          "__enabled": true,
+          "LightColor": "0.91373,0.98039,1,1",
+          "Shadows": true,
+          "SkyColor": "0.05882,0.07451,0.08235,1"
+        }
+      ]
+    },
+    {
+      "Id": "ac46b288-f4b0-4883-8280-95c2d4e4c073",
+      "Name": "Map",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "MapComponent",
+          "__enabled": true,
+          "MapName": "carsonk.home_staycation_strip"
+        }
+      ]
+    },
+    {
+      "Id": "c94af146-08da-471a-8a88-20dca675d8b2",
+      "Name": "Camera",
+      "Enabled": true,
+      "Position": "-495.4634,185.081,314.6561",
+      "Rotation": "-0.000000006958186,-0.00000000000000002298764,-0.116739,0.9931629",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__enabled": true,
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "TargetEye": "None",
+          "ZFar": 10000,
+          "ZNear": 10
+        },
+        {
+          "__type": "DepthOfField",
+          "__enabled": true,
+          "BackBlur": true,
+          "BlurSize": 25.59,
+          "FocalDistance": 785.29,
+          "FrontBlur": true
+        },
+        {
+          "__type": "Vignette",
+          "__enabled": true,
+          "Center": "0.5,0.5",
+          "Color": "0,0,0,1",
+          "Intensity": 0.29999992,
+          "Roundness": 1,
+          "Smoothness": 1
+        }
+      ]
+    },
+    {
+      "Id": "9f4c2ea8-fefe-4048-952e-01be47eec586",
+      "Name": "Arcade Cabinets",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Children": [
+        {
+          "Id": "3aaa9537-f4a6-4266-afe7-68ef4a228eec",
+          "Name": "cabinet",
+          "Enabled": true,
+          "Position": "320.9956,-544.0035,0.2711748",
+          "Rotation": "0.00000005960431,-0.0000000000000007697891,0.9999942,0.003278674",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "f7ddfda7-cb48-4258-acc0-441593533797",
+          "Name": "cabinet (1)",
+          "Enabled": true,
+          "Position": "320.6767,-592.6251,0.2711748",
+          "Rotation": "0.00000005960431,-0.0000000000000007697891,0.9999942,0.003278674",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "19f81023-a1cb-439b-a241-89888d61593a",
+          "Name": "cabinet (2)",
+          "Enabled": true,
+          "Position": "320.3566,-641.4474,0.2711748",
+          "Rotation": "0.00000005960431,-0.0000000000000007697891,0.9999942,0.003278674",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "e24b5acc-be34-4b07-bd4c-3fdcd50ef312",
+      "Name": "Screen UI",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "HomeWaitingMenu",
+          "__enabled": true,
+          "MessagePrefab": "prefabs/homemessage.object",
+          "MessageSpawnBounds": "682214bd-5f9c-401b-bc50-6e778d10dc73"
+        }
+      ]
+    },
+    {
+      "Id": "682214bd-5f9c-401b-bc50-6e778d10dc73",
+      "Name": "Message Spawn Bounds",
+      "Enabled": true,
+      "Position": "463.7549,-209.7335,23.77569",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "ColliderBoxComponent",
+          "__enabled": true,
+          "IsTrigger": true,
+          "Scale": "823.801,491.6001,14.00007",
+          "Static": false,
+          "Surface": null
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "TimeScale": 1,
+    "ThreadedAnimation": true,
+    "UseFixedUpdate": true
+  },
+  "Title": "mainmenu",
+  "Description": "",
+  "__references": [
+    "shadb.arcade_cabinet"
+  ]
+}
