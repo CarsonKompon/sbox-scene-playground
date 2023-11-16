@@ -63,12 +63,12 @@
           "Gravity": "0,0,800",
           "GroundControl": 4,
           "Head": "edb447df-b691-4153-8652-070d2533e7c4",
-          "JumpForce": 400,
+          "JumpForce": 300,
           "LocalCamera": "7c163f9b-273d-41e8-91d6-9f096d02854b",
           "MaxForce": 50,
-          "RunSpeed": 290,
-          "Speed": 160,
-          "WalkSpeed": 90
+          "RunSpeed": 360,
+          "Speed": 200,
+          "WalkSpeed": 100
         },
         {
           "__type": "CitizenAnimation",
@@ -174,7 +174,7 @@
             {
               "Id": "975e3006-e7c3-46a5-9f30-c31a196c89f9",
               "Name": "Name Tag UI",
-              "Enabled": true,
+              "Enabled": false,
               "Position": "-0.000001814945,0.1895752,80.7357",
               "Rotation": "-0.00000005960058,0.000000000000005518709,-0.9999317,0.01167414",
               "Scale": "1,1,1",

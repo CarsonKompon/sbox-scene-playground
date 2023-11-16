@@ -105,7 +105,9 @@ public sealed class HomePlayer : BaseComponent
 			AnimationHelper.DuckLevel = IsCrouching ? 1f : 0f;
 		}
 
-		Body.Enabled = !IsFirstPerson;
+		var modelRenderer = Body.GetComponent<AnimatedModelComponent>( false );
+		if ( modelRenderer is not null )
+			modelRenderer.Enabled = !IsFirstPerson;
 	}
 
 	public override void FixedUpdate()
