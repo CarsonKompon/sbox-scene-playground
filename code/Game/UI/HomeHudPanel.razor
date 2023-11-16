@@ -1,0 +1,21 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+@namespace Home.UI
+
+<root>
+
+    <PlayerInfo />
+
+    <Crosshair Player=@LocalPlayer />
+
+</root>
+
+@code
+{
+    
+    [Property] public HomePlayer LocalPlayer { get; set; }
+
+}

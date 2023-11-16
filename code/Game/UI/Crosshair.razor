@@ -1,0 +1,21 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace Home.UI
+
+<root>
+
+</root>
+
+@code
+{
+    public HomePlayer Player;
+    
+    public override void Tick()
+    {
+        SetClass("hidden", !Player.IsFirstPerson);
+    }
+
+}

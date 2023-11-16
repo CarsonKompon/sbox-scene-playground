@@ -254,6 +254,30 @@
           "Surface": null
         }
       ]
+    },
+    {
+      "Id": "98a5e263-6088-4370-b685-b67def7ce9b1",
+      "Name": "Screen UI",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "HomeHudPanel",
+          "__enabled": true,
+          "LocalPlayer": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8"
+        }
+      ]
     }
   ],
   "SceneProperties": {
