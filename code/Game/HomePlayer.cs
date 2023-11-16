@@ -18,6 +18,7 @@ public sealed class HomePlayer : BaseComponent
 	// References
 	[Property] GameObject Body { get; set; }
 	[Property] GameObject Head { get; set; }
+	[Property] CameraComponent LocalCamera { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 
 	public Vector3 WishVelocity { get; private set; } = Vector3.Zero;
@@ -43,15 +44,21 @@ public sealed class HomePlayer : BaseComponent
 		CameraZoom = Math.Clamp( CameraZoom - Input.MouseWheel * 32f, 0f, 256f );
 
 		// Update camera position
-		camera ??= GameObject.GetComponent<CameraComponent>( true, true );
-		if ( camera is not null )
+		if ( LocalCamera is not null )
 		{
-			var camPos = Head.Transform.Position - (EyeAngles.ToRotation().Forward * CameraZoom);
+			var camPos = Head.Transform.Position;
+			if ( !IsFirstPerson )
+			{
+				var camForward = EyeAngles.ToRotation().Forward;
+				var camTrace = Physics.Trace.Ray( camPos, camPos - (camForward * CameraZoom) )
+					.WithoutTags( "trigger" )
+					.Run();
+				if ( camTrace.Hit ) camPos = camTrace.HitPosition + camForward * 1f;
+				else camPos = camTrace.EndPosition;
+			}
 
-			if ( IsFirstPerson ) camPos = Head.Transform.Position + EyeAngles.ToRotation().Forward * 8;
-
-			camera.Transform.Position = camPos;
-			camera.Transform.Rotation = EyeAngles.ToRotation();
+			LocalCamera.Transform.Position = camPos;
+			LocalCamera.Transform.Rotation = EyeAngles.ToRotation();
 		}
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
@@ -87,11 +94,14 @@ public sealed class HomePlayer : BaseComponent
 
 		if ( AnimationHelper is not null )
 		{
+			AnimationHelper.WithWishVelocity( WishVelocity );
 			AnimationHelper.WithVelocity( characterController.Velocity );
+			// TODO: Add VoiceLevel once multiplayer is pog
+			AnimationHelper.AimAngle = EyeAngles.ToRotation();
 			AnimationHelper.IsGrounded = characterController.IsOnGround;
 			AnimationHelper.FootShuffle = rotateDifference;
 			AnimationHelper.WithLook( EyeAngles.Forward, 1, 0.75f, 0.5f );
-			AnimationHelper.MoveStyle = CitizenAnimation.MoveStyles.Auto;
+			AnimationHelper.MoveStyle = Input.Down( "Walk" ) ? CitizenAnimation.MoveStyles.Walk : CitizenAnimation.MoveStyles.Auto;
 			AnimationHelper.DuckLevel = IsCrouching ? 1f : 0f;
 		}
 

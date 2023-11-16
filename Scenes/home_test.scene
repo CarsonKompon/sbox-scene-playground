@@ -22,7 +22,7 @@
       "Id": "12df27a7-aaf4-4da8-bc02-173ecd53c168",
       "Name": "SkyBox",
       "Enabled": true,
-      "Position": "1252.565,134.7641,-1378.779",
+      "Position": "-165.3364,134.765,180.3001",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -39,7 +39,7 @@
       "Id": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
       "Name": "Citizen",
       "Enabled": true,
-      "Position": "1030.004,661.5084,-1586.265",
+      "Position": "-916.683,11.48009,3.360688",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -50,7 +50,7 @@
           "Acceleration": 10,
           "GroundAngle": 45,
           "Height": 72,
-          "IgnoreLayers": "solid,trigger",
+          "IgnoreLayers": "trigger",
           "Radius": 10,
           "StepHeight": 18
         },
@@ -64,6 +64,7 @@
           "GroundControl": 4,
           "Head": "edb447df-b691-4153-8652-070d2533e7c4",
           "JumpForce": 400,
+          "LocalCamera": "7c163f9b-273d-41e8-91d6-9f096d02854b",
           "MaxForce": 50,
           "RunSpeed": 290,
           "Speed": 160,
@@ -77,55 +78,6 @@
         }
       ],
       "Children": [
-        {
-          "Id": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7",
-          "Name": "Body",
-          "Enabled": true,
-          "Position": "0,-0.66093,0",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Components": [
-            {
-              "__type": "AnimatedModelComponent",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "CreateBoneObjects": false,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/citizen/citizen.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
-            }
-          ],
-          "Children": [
-            {
-              "Id": "975e3006-e7c3-46a5-9f30-c31a196c89f9",
-              "Name": "Name Tag UI",
-              "Enabled": true,
-              "Position": "-0.000001814945,0.1895752,80.7357",
-              "Rotation": "-0.00000005960058,0.000000000000005518709,-0.9999317,0.01167414",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Components": [
-                {
-                  "__type": "WorldPanel",
-                  "__enabled": true,
-                  "HorizontalAlign": "Center",
-                  "LookAtCamera": true,
-                  "PanelSize": "1024,256",
-                  "RenderScale": 1,
-                  "VerticalAlign": "Center"
-                },
-                {
-                  "__type": "NameTagPanel",
-                  "__enabled": true,
-                  "Name": "Prickly Pete"
-                }
-              ]
-            }
-          ]
-        },
         {
           "Id": "7c163f9b-273d-41e8-91d6-9f096d02854b",
           "Name": "Camera",
@@ -198,6 +150,78 @@
           ]
         },
         {
+          "Id": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7",
+          "Name": "Body",
+          "Enabled": true,
+          "Position": "0,-0.66093,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "AnimatedModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/citizen/citizen.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "975e3006-e7c3-46a5-9f30-c31a196c89f9",
+              "Name": "Name Tag UI",
+              "Enabled": true,
+              "Position": "-0.000001814945,0.1895752,80.7357",
+              "Rotation": "-0.00000005960058,0.000000000000005518709,-0.9999317,0.01167414",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "WorldPanel",
+                  "__enabled": true,
+                  "HorizontalAlign": "Center",
+                  "LookAtCamera": true,
+                  "PanelSize": "1024,256",
+                  "RenderScale": 1,
+                  "VerticalAlign": "Center"
+                },
+                {
+                  "__type": "NameTagPanel",
+                  "__enabled": true,
+                  "Name": "Prickly Pete"
+                }
+              ]
+            },
+            {
+              "Id": "2d12d154-98e3-4030-8cc6-64afce8b2d8e",
+              "Name": "Face Camera",
+              "Enabled": true,
+              "Position": "49.85724,0.6609936,64",
+              "Rotation": "0,0,1,-0.0000006397578",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "CameraComponent",
+                  "__enabled": true,
+                  "BackgroundColor": "0.33333,0.46275,0.52157,1",
+                  "ClearFlags": "All",
+                  "FieldOfView": 60,
+                  "Orthographic": true,
+                  "OrthographicHeight": 38.70095,
+                  "TargetEye": "None",
+                  "ZFar": 70,
+                  "ZNear": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
           "Id": "edb447df-b691-4153-8652-070d2533e7c4",
           "Name": "EyePos",
           "Enabled": true,
@@ -209,113 +233,24 @@
       ]
     },
     {
-      "Id": "3892656c-65a1-4fa2-9e9a-393d70b91af9",
-      "Name": "Surface",
+      "Id": "a7f4bd83-ebe4-41e7-83c6-52753c0b9e77",
+      "Name": "Staycation Strip",
       "Enabled": true,
-      "Position": "1420.439,0,-1637.736",
+      "Position": "0,0,0",
       "Rotation": "0,0,0,1",
-      "Scale": "20,20,20",
+      "Scale": "1,1,1",
       "Tags": "",
       "Components": [
         {
-          "__type": "ModelComponent",
+          "__type": "MapComponent",
           "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/shine.vmat",
-          "Model": "models/dev/plane.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.05882,0.13725,0.49412,1"
+          "MapName": "carsonk.home_staycation_strip"
         },
         {
-          "__type": "ColliderBoxComponent",
+          "__type": "ColliderMapComponent",
           "__enabled": true,
           "IsTrigger": false,
-          "Scale": "100,100,0.01",
-          "Static": false,
-          "Surface": null
-        }
-      ]
-    },
-    {
-      "Id": "c4c3026b-d677-4392-814e-a9449eda3623",
-      "Name": "Cube",
-      "Enabled": true,
-      "Position": "1425.684,511.7201,-1572.188",
-      "Rotation": "0.00000001454552,-0.0000000000000001862025,0.2440333,0.969767",
-      "Scale": "2.839792,2.839792,2.839792",
-      "Tags": "",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/box.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "ColliderBoxComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Scale": "50,50,50",
-          "Static": false,
-          "Surface": null
-        }
-      ]
-    },
-    {
-      "Id": "c539ebfa-5d54-473e-b7d2-a824976f955b",
-      "Name": "Cube (1)",
-      "Enabled": true,
-      "Position": "1340.327,670.1308,-1595.264",
-      "Rotation": "0.00000002718792,-0.0000000000000006234041,0.4561376,0.8899091",
-      "Scale": "1.805287,1.805287,1.805287",
-      "Tags": "",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/box.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "ColliderBoxComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Scale": "50,50,50",
-          "Static": false,
-          "Surface": null
-        }
-      ]
-    },
-    {
-      "Id": "35b687c3-38fe-4a25-8535-53aa6b729dfd",
-      "Name": "Cube (2)",
-      "Enabled": true,
-      "Position": "1225.927,710.5717,-1612.208",
-      "Rotation": "0.00000004350989,-0.000000000000004110954,0.7299749,0.6834737",
-      "Scale": "1.071352,1.071352,1.071352",
-      "Tags": "",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/box.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "ColliderBoxComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Scale": "50,50,50",
-          "Static": false,
+          "Static": true,
           "Surface": null
         }
       ]
