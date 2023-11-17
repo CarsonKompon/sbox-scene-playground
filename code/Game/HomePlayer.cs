@@ -10,7 +10,7 @@ public sealed class HomePlayer : BaseComponent
 	[Property] public GameObject Head { get; set; }
 	[Property] CameraComponent LocalCamera { get; set; }
 	[Property] public CameraComponent FaceCamera { get; set; }
-	[Property] CitizenAnimation AnimationHelper { get; set; }
+	[Property] public CitizenAnimation AnimationHelper { get; set; }
 
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
 

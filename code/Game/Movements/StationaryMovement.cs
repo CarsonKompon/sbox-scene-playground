@@ -6,7 +6,9 @@ public class StationaryMovement : Movement
 {
 	[Property] public bool IsSitting { get; set; } = false;
 	[Property, Range( 0, 2 )] public int SitAnim { get; set; }
-	[Property, Range( 0, 6 )] public int SitPoseAnim { get; set; }
+	[Property, Range( 0, 3 )] public int SitPoseAnim { get; set; }
+
+	Model citizenModel;
 
 	public override void Update()
 	{
@@ -27,6 +29,25 @@ public class StationaryMovement : Movement
 		{
 			helper.Target.Set( "sit", SitAnim );
 			helper.Target.Set( "sit_pose", SitPoseAnim );
+		}
+	}
+
+	public override void OnDisabled()
+	{
+		CleanUp();
+	}
+
+	public override void OnDestroy()
+	{
+		CleanUp();
+	}
+
+	void CleanUp()
+	{
+		if ( IsSitting )
+		{
+			Player.AnimationHelper.Target.Set( "sit", 0 );
+			Player.AnimationHelper.Target.Set( "sit_pose", 0 );
 		}
 	}
 
