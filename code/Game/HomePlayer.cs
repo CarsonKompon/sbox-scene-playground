@@ -45,6 +45,7 @@ public sealed class HomePlayer : BaseComponent
 		EyeAngles.pitch += Input.MouseDelta.y * 0.1f;
 		EyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
 		EyeAngles.roll = 0;
+		EyeAngles.pitch = Math.Clamp( EyeAngles.pitch, -89.9f, 89.9f );
 
 		// Zoom input
 		CameraZoom = Math.Clamp( CameraZoom - Input.MouseWheel * 32f, 0f, 256f );
