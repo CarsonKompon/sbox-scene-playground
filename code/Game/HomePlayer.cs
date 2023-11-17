@@ -177,7 +177,7 @@ public sealed class HomePlayer : BaseComponent
 			}
 
 			var interactable = interactObject.GetComponent<Interactable>();
-			if ( interactable is not null && !CanGrab && CanInteract && interactPrompt is null )
+			if ( interactable is not null && !CanGrab && CanInteract )
 			{
 				if ( interactPrompt is null )
 				{
