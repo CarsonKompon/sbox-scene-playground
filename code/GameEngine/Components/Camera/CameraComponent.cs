@@ -130,8 +130,8 @@ public class CameraComponent : BaseComponent
 		public string Name;
 	}
 
-	List<EffectHook> afterTransparentHooks = new ();
-	List<EffectHook> beforeOverlayHooks = new ();
+	List<EffectHook> afterTransparentHooks = new();
+	List<EffectHook> beforeOverlayHooks = new();
 
 	internal IDisposable AddHookAfterTransparent( string debugName, int order, Action<SceneCamera> renderEffect )
 	{
@@ -177,7 +177,7 @@ public class CameraComponent : BaseComponent
 		if ( Scene is null )
 			return;
 
-		for ( int i=0; i< hooks.Count; i++ )
+		for ( int i = 0; i < hooks.Count; i++ )
 		{
 			if ( hooks[i] is null || hooks[i].Action is null )
 			{

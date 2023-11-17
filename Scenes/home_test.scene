@@ -60,6 +60,7 @@
           "AirControl": 0.1,
           "AnimationHelper": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
           "Body": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7",
+          "FaceCamera": "2d12d154-98e3-4030-8cc6-64afce8b2d8e",
           "Gravity": "0,0,800",
           "GroundControl": 4,
           "Head": "edb447df-b691-4153-8652-070d2533e7c4",

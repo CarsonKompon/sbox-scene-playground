@@ -1,0 +1,33 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+
+<root>
+    <img Texture=@RenderTexture style="width: 100%; height: 100%" />
+</root>
+
+@code
+{
+    internal bool shouldRenderNextFrame = true;
+
+    public CameraComponent Camera { get; set; }
+
+    public Texture RenderTexture { get; internal set; }
+
+    public override void Tick()
+    {
+        if(RenderTexture is null)
+        {
+            RenderTexture = Texture.Create((int)Box.RectInner.Size.x, (int)Box.RectInner.Size.y, ImageFormat.RGBA8888).Finish();
+        }
+
+        @* Graphics.RenderToTexture(sceneCamera, RenderTexture); *@
+    }
+
+    public override void Delete(bool immediate = false)
+    {
+        RenderTexture?.Dispose();
+        RenderTexture = null;
+        base.Delete(immediate);
+    }
+}

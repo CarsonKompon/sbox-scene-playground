@@ -19,6 +19,7 @@ public sealed class HomePlayer : BaseComponent
 	[Property] GameObject Body { get; set; }
 	[Property] GameObject Head { get; set; }
 	[Property] CameraComponent LocalCamera { get; set; }
+	[Property] public CameraComponent FaceCamera { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 
 	public Vector3 WishVelocity { get; private set; } = Vector3.Zero;
