@@ -1,0 +1,33 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+@namespace Home.UI
+
+<root>
+
+    <div class="prompt">
+
+        @if (!string.IsNullOrEmpty(InputGlyph))
+        {
+            <InputGlyph button=@InputGlyph size="small" />
+        }
+
+        <p>@Message</p>
+
+    </div>
+
+</root>
+
+@code
+{
+    [Property] public string Message { get; set; } = "Interact";
+    [Property] public string InputGlyph { get; set; } = "Interact";
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Message);
+    }
+
+}

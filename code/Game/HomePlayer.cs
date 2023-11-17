@@ -29,6 +29,7 @@ public sealed class HomePlayer : BaseComponent
 
 	public GameObject Grabbing = null;
 	public bool CanGrab = false;
+	public bool CanInteract = true;
 
 	public bool IsFirstPerson => CameraZoom == 0f;
 	public bool IsCrouching { get; private set; } = false;
@@ -36,8 +37,9 @@ public sealed class HomePlayer : BaseComponent
 
 	private float CameraZoom = 0f;
 
-	CameraComponent camera;
 	CharacterController characterController;
+
+	GameObject interactPrompt;
 
 	public override void Update()
 	{
@@ -174,6 +176,30 @@ public sealed class HomePlayer : BaseComponent
 				}
 			}
 
+			var interactable = interactObject.GetComponent<Interactable>();
+			if ( interactable is not null && !CanGrab && CanInteract && interactPrompt is null )
+			{
+				if ( interactPrompt is null )
+				{
+					interactPrompt = interactable.CreateUIPrompt();
+				}
+
+				if ( Input.Pressed( "Interact" ) )
+				{
+					interactable.Interact( this );
+				}
+			}
+			else if ( interactPrompt is not null )
+			{
+				interactPrompt.Destroy();
+				interactPrompt = null;
+			}
+
+		}
+		else if ( interactPrompt is not null )
+		{
+			interactPrompt.Destroy();
+			interactPrompt = null;
 		}
 
 		if ( Grabbing is not null && (!Input.Down( "Action1" ) || Grabbing.Transform.Position.Distance( Head.Transform.Position ) > 250f) )

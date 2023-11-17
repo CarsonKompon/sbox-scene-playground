@@ -1,0 +1,28 @@
+{
+  "RootObject": {
+    "Id": "963758c5-4c27-444e-9c9b-da3d58039910",
+    "Name": "basicinteractprompt",
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Components": [
+      {
+        "__type": "ScreenPanel",
+        "__enabled": true,
+        "AutoScreenScale": true,
+        "Opacity": 1,
+        "Scale": 1,
+        "ZIndex": 101
+      },
+      {
+        "__type": "InteractPrompt",
+        "__enabled": true,
+        "InputGlyph": "Interact",
+        "Message": "Interact"
+      }
+    ]
+  },
+  "__references": []
+}

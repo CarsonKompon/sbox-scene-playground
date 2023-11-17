@@ -93,7 +93,7 @@
               "__enabled": true,
               "BackgroundColor": "0.25292,0.26086,0.29703,1",
               "ClearFlags": "All",
-              "FieldOfView": 80,
+              "FieldOfView": 90,
               "Orthographic": false,
               "OrthographicHeight": 1204,
               "TargetEye": "None",
@@ -1199,7 +1199,8 @@
           "Static": true,
           "Surface": null
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "Id": "98a5e263-6088-4370-b685-b67def7ce9b1",
@@ -1372,6 +1373,53 @@
           "__enabled": true
         }
       ]
+    },
+    {
+      "Id": "b07c2a70-8175-4d88-92e1-f2e1bcc65c06",
+      "Name": "cabinet",
+      "Enabled": true,
+      "Position": "-858.2217,-216.805,0.00008565823",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/arcade/cabinet/cabinet.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        }
+      ],
+      "Children": [
+        {
+          "Id": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
+          "Name": "Arcade Machine",
+          "Enabled": true,
+          "Position": "5.514285,0,35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "interact,trigger",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "44.70012,36.00016,70.20004",
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "Interactable",
+              "__enabled": true,
+              "InteractPrompt": "prefabs/ui/interactpromptnoglyph.object",
+              "InteractPromptText": "COMING SOON"
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -1383,5 +1431,7 @@
   },
   "Title": "player_controller",
   "Description": "",
-  "__references": []
+  "__references": [
+    "shadb.arcade_cabinet"
+  ]
 }
