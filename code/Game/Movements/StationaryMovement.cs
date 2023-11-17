@@ -23,13 +23,17 @@ public class StationaryMovement : Movement
 
 		if ( characterController == null ) return;
 
-		characterController.Transform.Position = GameObject.Transform.Position;
+		characterController.Velocity = Vector3.Zero;
 
 		if ( GameObject.Transform.LocalPosition != Vector3.Zero )
 		{
+			characterController.Transform.Position = GameObject.Transform.Position;
 			GameObject.Transform.LocalPosition = Vector3.Zero;
-			characterController.Velocity = Vector3.Zero;
 		}
+
+		characterController.Move();
+
+		Log.Info( characterController.Transform.Position );
 	}
 
 	public override void UpdateAnimations( CitizenAnimation helper )
