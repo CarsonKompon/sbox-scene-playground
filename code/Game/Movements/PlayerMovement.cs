@@ -26,7 +26,7 @@ public class PlayerMovement : Movement
 		if ( characterController.IsOnGround && Input.Pressed( "Jump" ) )
 		{
 			characterController.Punch( Vector3.Up * JumpForce );
-			Player.OnJump();
+			Player.AnimationHelper?.TriggerJump();
 		}
 	}
 

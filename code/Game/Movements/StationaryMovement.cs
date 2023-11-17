@@ -10,16 +10,26 @@ public class StationaryMovement : Movement
 
 	Model citizenModel;
 
+	public delegate void OnCrouchDelegate( bool isCrouching );
+	public OnCrouchDelegate OnCrouch;
+
 	public override void Update()
 	{
 		Player ??= GetComponentInParent<HomePlayer>( true, true );
 		characterController ??= GetComponentInParent<CharacterController>( true, true );
 
-		if ( characterController == null && GameObject.Transform.LocalPosition == Vector3.Zero ) return;
+		if ( Input.Pressed( "Crouch" ) ) OnCrouch?.Invoke( true );
+		else if ( Input.Released( "Crouch" ) ) OnCrouch?.Invoke( false );
+
+		if ( characterController == null ) return;
 
 		characterController.Transform.Position = GameObject.Transform.Position;
-		GameObject.Transform.LocalPosition = Vector3.Zero;
-		characterController.Velocity = Vector3.Zero;
+
+		if ( GameObject.Transform.LocalPosition != Vector3.Zero )
+		{
+			GameObject.Transform.LocalPosition = Vector3.Zero;
+			characterController.Velocity = Vector3.Zero;
+		}
 	}
 
 	public override void UpdateAnimations( CitizenAnimation helper )

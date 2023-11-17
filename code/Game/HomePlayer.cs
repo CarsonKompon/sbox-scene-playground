@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
 using Sandbox;
 
 namespace Home;
@@ -16,7 +16,7 @@ public sealed class HomePlayer : BaseComponent
 
 	public GameObject Grabbing = null;
 	public bool CanGrab = false;
-	public bool CanInteract = true;
+	public List<string> InteractLocks = new List<string>();
 
 	public bool IsFirstPerson => CameraZoom == 0f;
 	public float Height => AnimationHelper?.Height ?? 1.0f;
@@ -116,7 +116,7 @@ public sealed class HomePlayer : BaseComponent
 			}
 
 			var interactable = interactObject.GetComponent<Interactable>();
-			if ( interactable is not null && !CanGrab && CanInteract )
+			if ( interactable is not null && !CanGrab && InteractLocks.Count == 0 )
 			{
 				if ( interactPrompt is null )
 				{
@@ -176,8 +176,12 @@ public sealed class HomePlayer : BaseComponent
 		}
 	}
 
-	public void OnJump()
+	public void RestoreMovement()
 	{
-		AnimationHelper?.TriggerJump();
+		var playerMovement = GetComponent<PlayerMovement>( false, true );
+		if ( playerMovement is not null )
+		{
+			playerMovement.Enabled = true;
+		}
 	}
 }

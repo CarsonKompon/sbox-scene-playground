@@ -20,16 +20,30 @@ public sealed class TetrosArcadeComponent : BaseComponent
 		if ( player.MovementController is PlayerMovement )
 		{
 			player.MovementController.Enabled = false;
+			player.InteractLocks.Add( "arcade-" + GameObject.Name );
 
 			localSeat?.Destroy();
 			localSeat = SceneUtility.Instantiate( Seat, Seat.Transform.Position );
 			localSeat.SetParent( player.GameObject );
+
+			var movement = localSeat.GetComponent<StationaryMovement>();
+			if ( movement is not null )
+			{
+				movement.OnCrouch += Leave;
+			}
 		}
-		else
-		{
-			localSeat?.Destroy();
-			PlayerMovement playerMovement = player.GetComponent<PlayerMovement>( false, true );
-			playerMovement.Enabled = true;
-		}
+	}
+
+	void Leave( bool isCrouching )
+	{
+		if ( !isCrouching || localSeat is null ) return;
+
+		var player = localSeat.Parent.GetComponent<HomePlayer>();
+		player.InteractLocks.Remove( "arcade-" + GameObject.Name );
+
+		localSeat?.Destroy();
+		localSeat = null;
+
+		player.RestoreMovement();
 	}
 }
