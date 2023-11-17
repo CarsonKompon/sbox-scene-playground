@@ -5,18 +5,6 @@ namespace Home;
 
 public sealed class HomePlayer : BaseComponent
 {
-	// Properties
-	[Property] public Vector3 Gravity { get; set; } = new Vector3( 0, 0, 800 );
-
-	// Movement Properties
-	[Property] public float GroundControl { get; set; } = 4.0f;
-	[Property] public float AirControl { get; set; } = 0.1f;
-	[Property] public float MaxForce { get; set; } = 50f;
-	[Property] public float Speed { get; set; } = 160f;
-	[Property] public float RunSpeed { get; set; } = 290f;
-	[Property] public float WalkSpeed { get; set; } = 90f;
-	[Property] public float JumpForce { get; set; } = 400f;
-
 	// References
 	[Property] public GameObject Body { get; set; }
 	[Property] public GameObject Head { get; set; }
@@ -24,7 +12,6 @@ public sealed class HomePlayer : BaseComponent
 	[Property] public CameraComponent FaceCamera { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 
-	public Vector3 WishVelocity { get; private set; } = Vector3.Zero;
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
 
 	public GameObject Grabbing = null;
@@ -32,8 +19,20 @@ public sealed class HomePlayer : BaseComponent
 	public bool CanInteract = true;
 
 	public bool IsFirstPerson => CameraZoom == 0f;
-	public bool IsCrouching { get; private set; } = false;
-	TimeUntil crouchTimer = 0f;
+	public float Height => AnimationHelper?.Height ?? 1.0f;
+
+	public Movement MovementController => GetComponent<Movement>( true );
+	public bool IsCrouching
+	{
+		get
+		{
+			if ( MovementController is PlayerMovement playerMovement )
+			{
+				return playerMovement.IsCrouching;
+			}
+			return false;
+		}
+	}
 
 	private float CameraZoom = 0f;
 
@@ -77,17 +76,10 @@ public sealed class HomePlayer : BaseComponent
 			}
 		}
 
-		// Jumping
-		if ( characterController.IsOnGround && Input.Pressed( "Jump" ) )
-		{
-			characterController.Punch( Vector3.Up * JumpForce );
-			AnimationHelper?.TriggerJump();
-		}
-
 		// Animation
 		if ( AnimationHelper is not null )
 		{
-			AnimationHelper.WithWishVelocity( WishVelocity );
+			AnimationHelper.WithWishVelocity( MovementController?.WishVelocity ?? 0 );
 			AnimationHelper.WithVelocity( characterController.Velocity );
 			// TODO: Add VoiceLevel once multiplayer is pog
 			AnimationHelper.AimAngle = EyeAngles.ToRotation();
@@ -102,60 +94,6 @@ public sealed class HomePlayer : BaseComponent
 		var modelRenderer = Body.GetComponent<AnimatedModelComponent>( false );
 		if ( modelRenderer is not null )
 			modelRenderer.Enabled = !IsFirstPerson;
-	}
-
-	public override void FixedUpdate()
-	{
-		BuildWishVelocity();
-
-		if ( characterController is null ) return;
-
-		// Crouching
-		if ( IsCrouching )
-		{
-			var duckTrace = Physics.Trace.Ray( Transform.Position, Transform.Position + Vector3.Up * (72f * AnimationHelper.Height) )
-				.WithoutTags( "trigger" )
-				.Run();
-			if ( duckTrace.Hit ) crouchTimer = 0.25f;
-			if ( !Input.Down( "Crouch" ) && crouchTimer )
-			{
-				characterController.Height = 72f * AnimationHelper.Height;
-				IsCrouching = false;
-			}
-		}
-		else if ( Input.Down( "Crouch" ) )
-		{
-			characterController.Height = 72f * AnimationHelper.Height * 0.5f;
-			crouchTimer = 0f;
-			IsCrouching = true;
-		}
-
-		// Apply Friction/Acceleration
-		if ( characterController.IsOnGround )
-		{
-			characterController.Velocity = characterController.Velocity.WithZ( 0 );
-			characterController.Accelerate( WishVelocity );
-			characterController.ApplyFriction( GroundControl );
-		}
-		else
-		{
-			characterController.Velocity -= Gravity * Time.Delta * 0.5f;
-			characterController.Accelerate( WishVelocity.ClampLength( MaxForce ) );
-			characterController.ApplyFriction( AirControl );
-		}
-
-		// Move the character controller
-		characterController.Move();
-
-		// Apply the second half of gravity
-		if ( !characterController.IsOnGround )
-		{
-			characterController.Velocity -= Gravity * Time.Delta * 0.5f;
-		}
-		else
-		{
-			characterController.Velocity = characterController.Velocity.WithZ( 0 );
-		}
 	}
 
 	void CheckForInteracts()
@@ -237,22 +175,8 @@ public sealed class HomePlayer : BaseComponent
 		}
 	}
 
-	void BuildWishVelocity()
+	public void OnJump()
 	{
-		WishVelocity = 0;
-
-		var rot = EyeAngles.ToRotation();
-		if ( Input.Down( "Forward" ) ) WishVelocity += rot.Forward;
-		if ( Input.Down( "Backward" ) ) WishVelocity += rot.Backward;
-		if ( Input.Down( "Left" ) ) WishVelocity += rot.Left;
-		if ( Input.Down( "Right" ) ) WishVelocity += rot.Right;
-
-		WishVelocity = WishVelocity.WithZ( 0 );
-
-		if ( !WishVelocity.IsNearZeroLength ) WishVelocity = WishVelocity.Normal;
-
-		if ( Input.Down( "Run" ) ) WishVelocity *= RunSpeed;
-		else if ( Input.Down( "Walk" ) ) WishVelocity *= WalkSpeed;
-		else WishVelocity *= Speed;
+		AnimationHelper?.TriggerJump();
 	}
 }

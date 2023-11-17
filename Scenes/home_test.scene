@@ -57,25 +57,25 @@
         {
           "__type": "HomePlayer",
           "__enabled": true,
-          "AirControl": 0.1,
-          "AnimationHelper": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
+          "AnimationHelper": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7",
           "Body": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7",
           "FaceCamera": "2d12d154-98e3-4030-8cc6-64afce8b2d8e",
-          "Gravity": "0,0,800",
-          "GroundControl": 4,
           "Head": "edb447df-b691-4153-8652-070d2533e7c4",
-          "JumpForce": 400,
-          "LocalCamera": "7c163f9b-273d-41e8-91d6-9f096d02854b",
-          "MaxForce": 50,
-          "RunSpeed": 290,
-          "Speed": 160,
-          "WalkSpeed": 90
+          "LocalCamera": "7c163f9b-273d-41e8-91d6-9f096d02854b"
         },
         {
-          "__type": "CitizenAnimation",
+          "__type": "PlayerMovement",
           "__enabled": true,
-          "Height": 1,
-          "Target": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7"
+          "AirControl": 0.1,
+          "characterController": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
+          "Gravity": "0,0,800",
+          "GroundControl": 4,
+          "JumpForce": 300,
+          "MaxForce": 50,
+          "Player": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
+          "RunSpeed": 320,
+          "Speed": 260,
+          "WalkSpeed": 100
         }
       ],
       "Children": [
@@ -169,6 +169,12 @@
               "Model": "models/citizen/citizen.vmdl",
               "ShouldCastShadows": true,
               "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "CitizenAnimation",
+              "__enabled": true,
+              "Height": 1,
+              "Target": "7daff6f8-35a7-4fa6-9d2f-3c4e693af8d7"
             }
           ],
           "Children": [
