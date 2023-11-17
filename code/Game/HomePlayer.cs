@@ -21,7 +21,7 @@ public sealed class HomePlayer : BaseComponent
 	public bool IsFirstPerson => CameraZoom == 0f;
 	public float Height => AnimationHelper?.Height ?? 1.0f;
 
-	public Movement MovementController => GetComponent<Movement>( true );
+	public Movement MovementController => GetComponent<Movement>( true, true );
 	public bool IsCrouching
 	{
 		get
@@ -88,6 +88,7 @@ public sealed class HomePlayer : BaseComponent
 			AnimationHelper.WithLook( EyeAngles.Forward, 1, 0.75f, 0.5f );
 			AnimationHelper.MoveStyle = Input.Down( "Walk" ) ? CitizenAnimation.MoveStyles.Walk : CitizenAnimation.MoveStyles.Auto;
 			AnimationHelper.DuckLevel = IsCrouching ? 1f : 0f;
+			MovementController?.UpdateAnimations( AnimationHelper );
 		}
 
 		// Hide playermodel if in first person

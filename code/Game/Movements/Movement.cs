@@ -11,4 +11,9 @@ public class Movement : BaseComponent
 
 	public Vector3 WishVelocity { get; protected set; } = Vector3.Zero;
 
+	public virtual void UpdateAnimations( CitizenAnimation helper )
+	{
+
+	}
+
 }

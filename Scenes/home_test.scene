@@ -1381,47 +1381,79 @@
       ]
     },
     {
-      "Id": "b07c2a70-8175-4d88-92e1-f2e1bcc65c06",
-      "Name": "cabinet",
+      "Id": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
+      "Name": "Arcade Machine",
       "Enabled": true,
-      "Position": "-858.2217,-216.805,0.00008565823",
+      "Position": "-852.7074,-216.805,35.66676",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
-      "Tags": "",
+      "Tags": "interact,trigger",
       "Components": [
         {
-          "__type": "ModelComponent",
+          "__type": "ColliderBoxComponent",
           "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/arcade/cabinet/cabinet.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
+          "IsTrigger": true,
+          "Scale": "44.70012,36.00016,70.20004",
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Interactable",
+          "__enabled": true,
+          "InteractPrompt": "prefabs/ui/interactpromptnoglyph.object",
+          "InteractPromptText": "COMING SOON"
+        },
+        {
+          "__type": "TetrosArcadeComponent",
+          "__enabled": true,
+          "Interactable": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
+          "Seat": "3a4edad6-d6e6-4d01-99dc-3efc07c9f6f7"
         }
       ],
       "Children": [
         {
-          "Id": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
-          "Name": "Arcade Machine",
+          "Id": "b07c2a70-8175-4d88-92e1-f2e1bcc65c06",
+          "Name": "Cabinet",
           "Enabled": true,
-          "Position": "5.514285,0,35.66668",
+          "Position": "-5.514282,0,-35.66668",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
-          "Tags": "interact,trigger",
+          "Tags": "",
           "Components": [
             {
-              "__type": "ColliderBoxComponent",
+              "__type": "ModelComponent",
               "__enabled": true,
-              "IsTrigger": true,
-              "Scale": "44.70012,36.00016,70.20004",
-              "Static": false,
-              "Surface": null
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
             },
             {
-              "__type": "Interactable",
+              "__type": "ModelCollider",
               "__enabled": true,
-              "InteractPrompt": "prefabs/ui/interactpromptnoglyph.object",
-              "InteractPromptText": "COMING SOON"
+              "IsTrigger": false,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "Static": false,
+              "Surface": null
+            }
+          ]
+        },
+        {
+          "Id": "3a4edad6-d6e6-4d01-99dc-3efc07c9f6f7",
+          "Name": "Seat",
+          "Enabled": true,
+          "Position": "42.49878,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "StationaryMovement",
+              "__enabled": true,
+              "IsSitting": false,
+              "SitAnim": 0,
+              "SitPoseAnim": 0
             }
           ]
         }
