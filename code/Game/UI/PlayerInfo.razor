@@ -10,7 +10,7 @@
     <div class="avatar-container">
         @* TODO: Add the avatar hud *@
         @* <AvatarHud @ref="AvatarHud" /> *@
-        <CameraPanel @ref=@Player.Camera />
+        @* <CameraPanel @Camera=@Player.FaceCamera /> *@
     </div>
     <panel class="canvas">
         <label class="money" text="$9,999,999" />
@@ -24,4 +24,9 @@
 @code
 {
     public HomePlayer Player { get; set; }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Time.Now);
+    }
 }

@@ -1,6 +1,8 @@
 using System.Runtime.InteropServices;
 using Sandbox;
 
+namespace Home;
+
 public sealed class HomePlayer : BaseComponent
 {
 	// Properties
@@ -16,14 +18,17 @@ public sealed class HomePlayer : BaseComponent
 	[Property] public float JumpForce { get; set; } = 400f;
 
 	// References
-	[Property] GameObject Body { get; set; }
-	[Property] GameObject Head { get; set; }
+	[Property] public GameObject Body { get; set; }
+	[Property] public GameObject Head { get; set; }
 	[Property] CameraComponent LocalCamera { get; set; }
 	[Property] public CameraComponent FaceCamera { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 
 	public Vector3 WishVelocity { get; private set; } = Vector3.Zero;
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
+
+	public GameObject Grabbing = null;
+	public bool CanGrab = false;
 
 	public bool IsFirstPerson => CameraZoom == 0f;
 	public bool IsCrouching { get; private set; } = false;
@@ -45,22 +50,10 @@ public sealed class HomePlayer : BaseComponent
 		CameraZoom = Math.Clamp( CameraZoom - Input.MouseWheel * 32f, 0f, 256f );
 
 		// Update camera position
-		if ( LocalCamera is not null )
-		{
-			var camPos = Head.Transform.Position;
-			if ( !IsFirstPerson )
-			{
-				var camForward = EyeAngles.ToRotation().Forward;
-				var camTrace = Physics.Trace.Ray( camPos, camPos - (camForward * CameraZoom) )
-					.WithoutTags( "trigger" )
-					.Run();
-				if ( camTrace.Hit ) camPos = camTrace.HitPosition + camForward * 1f;
-				else camPos = camTrace.EndPosition;
-			}
+		UpdateCamera();
 
-			LocalCamera.Transform.Position = camPos;
-			LocalCamera.Transform.Rotation = EyeAngles.ToRotation();
-		}
+		// See if we can grab/interact with something
+		CheckForInteracts();
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
 		if ( characterController is null ) return;
@@ -72,11 +65,6 @@ public sealed class HomePlayer : BaseComponent
 		{
 			var targetAngle = new Angles( 0, EyeAngles.yaw, 0 ).ToRotation();
 			var vel = characterController.Velocity.WithZ( 0 );
-
-			// if ( vel.Length > Speed )
-			// {
-			// 	targetAngle = Rotation.LookAt( vel, Vector3.Up );
-			// }
 
 			rotateDifference = Body.Transform.Rotation.Distance( targetAngle );
 
@@ -93,6 +81,7 @@ public sealed class HomePlayer : BaseComponent
 			AnimationHelper?.TriggerJump();
 		}
 
+		// Animation
 		if ( AnimationHelper is not null )
 		{
 			AnimationHelper.WithWishVelocity( WishVelocity );
@@ -106,6 +95,7 @@ public sealed class HomePlayer : BaseComponent
 			AnimationHelper.DuckLevel = IsCrouching ? 1f : 0f;
 		}
 
+		// Hide playermodel if in first person
 		var modelRenderer = Body.GetComponent<AnimatedModelComponent>( false );
 		if ( modelRenderer is not null )
 			modelRenderer.Enabled = !IsFirstPerson;
@@ -162,6 +152,61 @@ public sealed class HomePlayer : BaseComponent
 		else
 		{
 			characterController.Velocity = characterController.Velocity.WithZ( 0 );
+		}
+	}
+
+	void CheckForInteracts()
+	{
+		var interactTrace = Physics.Trace.Ray( Head.Transform.Position, Head.Transform.Position + EyeAngles.Forward * 100f )
+			.WithTag( "interact" )
+			.Run();
+		CanGrab = false;
+		if ( interactTrace.Hit && interactTrace.Body.GameObject is GameObject interactObject )
+		{
+			var grabbable = interactObject.GetComponent<Grabbable>();
+			if ( grabbable is not null )
+			{
+				CanGrab = true;
+				if ( Input.Pressed( "Action1" ) )
+				{
+					grabbable.StartGrabbing( this );
+				}
+			}
+
+		}
+
+		if ( Grabbing is not null && (!Input.Down( "Action1" ) || Grabbing.Transform.Position.Distance( Head.Transform.Position ) > 250f) )
+		{
+			Grabbing.GetComponent<Grabbable>()?.StopGrabbing( this );
+		}
+	}
+
+	void UpdateCamera()
+	{
+		// Lerp head position
+		var localHeadPos = Head.Transform.LocalPosition;
+		Head.Transform.LocalPosition = localHeadPos.WithZ( MathX.Lerp( localHeadPos.z, 64 * (IsCrouching ? 0.5f : 1f), 10f * Time.Delta ) );
+
+		// Update camera position
+		if ( LocalCamera is not null )
+		{
+			var camPos = Head.Transform.Position;
+			if ( !IsFirstPerson )
+			{
+				var camForward = EyeAngles.ToRotation().Forward;
+				var camTrace = Physics.Trace.Ray( camPos, camPos - (camForward * CameraZoom) )
+					.WithoutTags( "trigger" )
+					.Run();
+				if ( camTrace.Hit ) camPos = camTrace.HitPosition + camForward * 1f;
+				else camPos = camTrace.EndPosition;
+			}
+
+			Rotation rotation = EyeAngles.ToRotation();
+
+			LocalCamera.Transform.Position = camPos;
+			LocalCamera.Transform.Rotation = rotation;
+
+			Head.Transform.Rotation = rotation;
 		}
 	}
 

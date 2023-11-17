@@ -7,6 +7,15 @@
 
 <root>
 
+    @if(Player?.CanGrab ?? false)
+    {
+        <i>pan_tool</i>
+    }
+    else
+    {
+        <div class="dot" />
+    }
+
 </root>
 
 @code
@@ -15,7 +24,12 @@
     
     public override void Tick()
     {
-        SetClass("hidden", !Player.IsFirstPerson);
+        SetClass("hidden", !Player?.IsFirstPerson ?? false);
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Player?.CanGrab ?? false);
     }
 
 }

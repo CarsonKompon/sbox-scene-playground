@@ -6,11 +6,11 @@ using System.Linq;
 
 public sealed partial class AnimatedModelComponent
 {
-	Dictionary<int, GameObject> boneToGameObject = new ();
+	Dictionary<int, GameObject> boneToGameObject = new();
 
 	void BuildBoneHeirarchy( GameObject root, BoneCollection.Bone thisBone = null )
 	{
-		if ( Model is null ) 
+		if ( Model is null )
 			return;
 
 		if ( thisBone is null )
@@ -19,7 +19,7 @@ public sealed partial class AnimatedModelComponent
 
 			if ( !CreateBoneObjects )
 				return;
-			
+
 			foreach ( var b in Model.Bones.AllBones.Where( x => x.Parent is null ) )
 			{
 				BuildBoneHeirarchy( root, b );
