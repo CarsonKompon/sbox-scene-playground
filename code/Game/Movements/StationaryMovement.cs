@@ -4,46 +4,56 @@ namespace Home;
 
 public class StationaryMovement : Movement
 {
-	[Property] public bool IsSitting { get; set; } = false;
-	[Property, Range( 0, 2 )] public int SitAnim { get; set; }
-	[Property, Range( 0, 3 )] public int SitPoseAnim { get; set; }
+	[Property] public SIT_TYPE SitAnim { get; set; }
+	[Property] public SIT_POSE SitPoseAnim { get; set; }
+	[Property] public GameObject TargetObject { get; set; }
 
-	Model citizenModel;
+	public enum SIT_TYPE
+	{
+		STANDING,
+		SITTING_CHAIR,
+		SITTING_GROUND
+	}
 
-	public delegate void OnCrouchDelegate( bool isCrouching );
-	public OnCrouchDelegate OnCrouch;
+	public enum SIT_POSE
+	{
+		NORMAL,
+		LEANING,
+		SCRUNCHED,
+		CROSSED
+	}
 
 	public override void Update()
 	{
+		base.Update();
+
 		Player ??= GetComponentInParent<HomePlayer>( true, true );
 		characterController ??= GetComponentInParent<CharacterController>( true, true );
 
-		if ( Input.Pressed( "Crouch" ) ) OnCrouch?.Invoke( true );
-		else if ( Input.Released( "Crouch" ) ) OnCrouch?.Invoke( false );
-
 		if ( characterController == null ) return;
 
+		characterController.Transform.Position = TargetObject.Transform.Position;
+
 		characterController.Velocity = Vector3.Zero;
-
-		if ( GameObject.Transform.LocalPosition != Vector3.Zero )
-		{
-			characterController.Transform.Position = GameObject.Transform.Position;
-			GameObject.Transform.LocalPosition = Vector3.Zero;
-		}
-
 		characterController.Move();
 
-		Log.Info( characterController.Transform.Position );
 	}
 
 	public override void UpdateAnimations( CitizenAnimation helper )
 	{
 		helper.WithWishVelocity( WishVelocity );
-		if ( IsSitting )
+		if ( SitAnim != SIT_TYPE.STANDING )
 		{
-			helper.Target.Set( "sit", SitAnim );
-			helper.Target.Set( "sit_pose", SitPoseAnim );
+			helper.Target.Set( "sit", (int)SitAnim );
+			helper.Target.Set( "sit_pose", (int)SitPoseAnim );
 		}
+	}
+
+	public void SetTarget( GameObject target, SIT_TYPE sitType = SIT_TYPE.STANDING, SIT_POSE sitPose = SIT_POSE.NORMAL )
+	{
+		TargetObject = target;
+		SitAnim = sitType;
+		SitPoseAnim = sitPose;
 	}
 
 	public override void OnDisabled()
@@ -58,7 +68,7 @@ public class StationaryMovement : Movement
 
 	void CleanUp()
 	{
-		if ( IsSitting )
+		if ( SitAnim != SIT_TYPE.STANDING )
 		{
 			Player.AnimationHelper.Target.Set( "sit", 0 );
 			Player.AnimationHelper.Target.Set( "sit_pose", 0 );

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Sandbox;
+using Home.Data;
 
 namespace Home;
 
-public sealed class HomePlayer : BaseComponent
+public sealed partial class HomePlayer : BaseComponent
 {
 	// References
 	[Property] public GameObject Body { get; set; }
@@ -11,6 +12,8 @@ public sealed class HomePlayer : BaseComponent
 	[Property] CameraComponent LocalCamera { get; set; }
 	[Property] public CameraComponent FaceCamera { get; set; }
 	[Property] public CitizenAnimation AnimationHelper { get; set; }
+
+	PlayerData Data = null;
 
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
 
@@ -40,8 +43,17 @@ public sealed class HomePlayer : BaseComponent
 
 	GameObject interactPrompt;
 
+	public override void OnAwake()
+	{
+		// Load player data
+		GetPlayerData();
+	}
+
 	public override void Update()
 	{
+		// Check for network updates (TODO: Make sure to only run this locally)
+		CheckForDbUpdates();
+
 		// Eye input
 		EyeAngles.pitch += Input.MouseDelta.y * 0.1f;
 		EyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
@@ -176,12 +188,22 @@ public sealed class HomePlayer : BaseComponent
 		}
 	}
 
+	public void SetMovement<T>()
+	{
+		foreach ( var component in GetComponents<Movement>( true, true ) )
+		{
+			component.Enabled = false;
+		}
+
+		var newMovement = GetComponent<T>( false, true );
+		if ( newMovement is Movement movement )
+		{
+			movement.Enabled = true;
+		}
+	}
+
 	public void RestoreMovement()
 	{
-		var playerMovement = GetComponent<PlayerMovement>( false, true );
-		if ( playerMovement is not null )
-		{
-			playerMovement.Enabled = true;
-		}
+		SetMovement<PlayerMovement>();
 	}
 }
