@@ -24,5 +24,26 @@ namespace Home.Data
             SteamId = steamId;
             Name = new Friend( steamId ).Name;
         }
+
+        public void Write( ref ByteStream stream )
+        {
+            stream.Write( SteamId );
+            stream.Write( Money );
+
+            stream.Write( Playtime.StartedPlaying );
+            stream.Write( Playtime.LastSeen );
+            stream.Write( Playtime.MinutesPlayed );
+        }
+
+        public void Read( ByteStream stream )
+        {
+            SteamId = stream.Read<long>();
+            Money = stream.Read<long>();
+
+            if ( Playtime is null ) Playtime = new PlayerPlaytime();
+            Playtime.StartedPlaying = stream.Read<long>();
+            Playtime.LastSeen = stream.Read<long>();
+            Playtime.MinutesPlayed = stream.Read<long>();
+        }
     }
 }

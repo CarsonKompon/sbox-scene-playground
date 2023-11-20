@@ -234,11 +234,15 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	public void Write( ref ByteStream stream )
 	{
 		stream.Write( EyeAngles );
+
+		Data.Write( ref stream );
 	}
 
 	public void Read( ByteStream stream )
 	{
 		EyeAngles = stream.Read<Angles>();
+
+		Data.Read( stream );
 	}
 }
 
