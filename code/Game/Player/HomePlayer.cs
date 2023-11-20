@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Sandbox;
 using Home.Data;
+using System.Text.Json;
 
 namespace Home;
 
@@ -15,9 +16,20 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	[Property] public CameraComponent FaceCamera { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 
-	public static HomePlayer Local => GameManager.ActiveScene.FindAllComponents<HomePlayer>().Where( x => x.GameObject.IsMine ).First();
+	public static HomePlayer Local
+	{
+		get
+		{
+			var player = GameManager.ActiveScene.GetComponents<HomePlayer>( true, true ).Where( x => x.GameObject.Enabled && x.Data?.SteamId == Game.SteamId ).FirstOrDefault();
+			if ( (player?.Data?.SteamId ?? 0) == Game.SteamId )
+			{
+				return player;
+			}
+			return null;
+		}
+	}
 
-	public PlayerData Data = null;
+	public PlayerData Data { get; set; } = null;
 
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
 
@@ -64,7 +76,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 
 	public override void Update()
 	{
-
+		if ( !GameObject.Enabled ) return;
 
 		if ( IsController )
 		{
@@ -235,14 +247,22 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	{
 		stream.Write( EyeAngles );
 
-		Data.Write( ref stream );
+		var hasData = Data is not null;
+		stream.Write( hasData );
+		if ( hasData )
+		{
+			Data.Write( ref stream );
+		}
 	}
 
 	public void Read( ByteStream stream )
 	{
 		EyeAngles = stream.Read<Angles>();
 
-		Data.Read( stream );
+		if ( stream.Read<bool>() )
+		{
+			Data?.Read( stream );
+		}
 	}
 }
 

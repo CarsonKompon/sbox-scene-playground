@@ -2,10 +2,12 @@ PlayerInfo
 {
     position: absolute;
     min-width: 400px;
-    height: 20%;
-    left: 48px;
-    bottom: 48px;
+    height: 128px;
+    left: 32px;
+    bottom: 30px;
     z-index: -100;
+    align-items: center;
+    gap: 12px;
 
     transition: all 0.2s ease;
 
@@ -35,14 +37,23 @@ PlayerInfo
         }
     }
 
+    .avatar
+    {
+        // position: absolute;
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        box-shadow: 3px 3px 10px rgba(black, 0.6);
+    }
+
     .canvas
     {
-        position: absolute;
+        // position: absolute;
         flex-direction: column;
         width: 512px;
         height: 135px;
-        left: 200px;
-        bottom: -2px;
+        // left: 200px;
+        // bottom: -2px;
         text-shadow: 4px 4px 4px rgba(black, 0.5);
     
         .money
@@ -69,8 +80,10 @@ PlayerInfo
         position: absolute;
         width: 300px;
         height: 120px;
-        bottom: 105px;
-        left: -10px;
+        // bottom: 105px;
+        // left: -10px;
+        bottom: 112px;
+        left: -42px;
     }
 
     &.hidden

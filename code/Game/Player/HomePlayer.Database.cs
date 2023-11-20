@@ -37,11 +37,19 @@ partial class HomePlayer
 
     async void UpdatePlaytime()
     {
-        Data.Playtime = await HomeDb.UpdatePlaytime( Data, 1 );
+        var playtime = await HomeDb.UpdatePlaytime( Data, 1 );
+        if ( playtime is not null )
+        {
+            //Data.Playtime = playtime;
+        }
     }
 
     async void UpdateLastSeen()
     {
-        Data.Playtime = await HomeDb.UpdatePlaytime( Data, 0 );
+        var playtime = await HomeDb.UpdatePlaytime( Data, 0 );
+        if ( playtime is not null )
+        {
+           // Data.Playtime = playtime;
+        }
     }
 }

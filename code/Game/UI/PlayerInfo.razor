@@ -6,18 +6,26 @@
 @namespace Home.UI
 
 <root>
-    <panel class="bottom-line" />
-    <div class="avatar-container">
+    
+    <img class="roof" src="UI/ui_roof.png" />
+
+    @* <div class="avatar-container"> *@
         @* TODO: Add the avatar hud *@
         @* <AvatarHud @ref="AvatarHud" /> *@
         @* <CameraPanel @Camera=@Player.FaceCamera /> *@
-    </div>
+    @* </div> *@
+    
+    @if(LocalPlayer?.Data?.SteamId != null)
+    {
+        <img class="avatar" src="@($"avatar:{LocalPlayer?.Data?.SteamId ?? 1}")" class="avatar" />
+    }
+
     <panel class="canvas">
         <label class="money" text="@(HomeUtils.FormatMoney(LocalPlayer?.Data?.Money ?? 0))" />
-        <label class="location" text="Limbo" />
+        <label class="location" text="Testing Scene" />
     </panel>
 
-    <img class="roof" src="UI/ui_roof.png" />
+    @* <panel class="bottom-line" /> *@
 
 </root>
 

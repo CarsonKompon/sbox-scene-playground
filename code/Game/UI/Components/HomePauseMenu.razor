@@ -30,11 +30,23 @@
     </div>
 
     <div class="player-info">
-        <img src="@($"avatar:{LocalPlayer?.Data?.SteamId ?? 0}")" class="avatar" />
-        <div class="info">
-            <p class="name">@(LocalPlayer?.Data?.Name ?? "")</p>
-            <p class="money">@(HomeUtils.FormatMoney(LocalPlayer?.Data?.Money ?? 0))</p>
-        </div>
+		<div class="top">
+			@if(LocalPlayer?.Data?.SteamId != null)
+			{
+				<img src="@($"avatar:{LocalPlayer?.Data?.SteamId ?? 1}")" class="avatar" />
+			}
+			<div class="info">
+				<p class="name">@(LocalPlayer?.Data?.Name ?? "")</p>
+				<p class="money">@(HomeUtils.FormatMoney(LocalPlayer?.Data?.Money ?? 0))</p>
+			</div>
+		</div>
+		<div class="divider" />
+		<div class="bottom">
+			<div class="stats">
+				<p class="stat">Started Playing: @(HomeUtils.UnixTimeStampToDateTime(LocalPlayer?.Data?.Playtime?.StartedPlaying ?? 0).ToString("MM-dd-yyyy"))</p>
+				<p class="stat">Hours Played: @((LocalPlayer?.Data?.Playtime?.MinutesPlayed ?? 0))</p>
+			</div>
+		</div>
     </div>
 
 </root>

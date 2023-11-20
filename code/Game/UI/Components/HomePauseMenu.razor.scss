@@ -102,34 +102,66 @@ HomePauseMenu
         position: absolute;
         bottom: 64px;
         right: 64px;
+		max-width: 400px;
         background-color: rgba(black, 0.5);
         transform-origin: top right;
+		flex-direction: column;
 		padding: 24px 32px;
 		color: white;
 		font-family: Poppins;
 
-        .avatar
-        {
-            width: 80px;
-            height: 80px;
-        }
+		.top
+		{
 
-		.info
+			.avatar
+			{
+				width: 80px;
+				height: 80px;
+				flex-shrink: 0;
+			}
+
+			.info
+			{
+				flex-direction: column;
+				gap: 4px;
+				margin-left: 16px;
+
+				.name
+				{
+					font-size: 24px;
+					font-weight: bold;
+				}
+
+				.id
+				{
+					font-size: 16px;
+					font-weight: normal;
+				}
+			}
+		}
+
+		.divider
+		{
+			width: 100%;
+			height: 1px;
+			background-color: rgba(white, 0.5);
+			margin: 16px 0px;
+		}
+
+		.bottom
 		{
 			flex-direction: column;
 			gap: 4px;
-			margin-left: 16px;
 
-			.name
+			.stats
 			{
-				font-size: 24px;
-				font-weight: bold;
-			}
+				flex-direction: column;
+				gap: 2px;
 
-			.id
-			{
-				font-size: 16px;
-				font-weight: normal;
+				.stat
+				{
+					
+				}
 			}
 		}
     }
