@@ -2008,6 +2008,95 @@
           ]
         }
       ]
+    },
+    {
+      "Id": "1b41fee2-20c5-4bf7-99b4-f94f7d07df37",
+      "Name": "MediaPlayer TV",
+      "Enabled": true,
+      "Position": "-265.5013,-496.9673,0.00009529254",
+      "Rotation": "0,0,0.707107,0.7071065",
+      "Scale": "2.996078,2.996078,2.996078",
+      "Tags": "media",
+      "Components": [
+        {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
+        }
+      ],
+      "Children": [
+        {
+          "Id": "63c5f5ec-7461-4b5e-9e17-e134dc5af66c",
+          "Name": "TV",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/items/electronics/tv_medium_onstand.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/items/electronics/tv_medium_onstand.vmdl",
+              "Static": true,
+              "Surface": null
+            }
+          ]
+        },
+        {
+          "Id": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
+          "Name": "Interact",
+          "Enabled": true,
+          "Position": "0,0,29.07605",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "interact",
+          "Components": [
+            {
+              "__type": "ColliderBoxComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Scale": "17.59999,100.8,66.79993",
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "Interactable",
+              "__enabled": true,
+              "CanInteract": true,
+              "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
+              "InteractPromptText": "Open Media Player"
+            },
+            {
+              "__type": "VideoPlayerComponent",
+              "__enabled": true,
+              "Loop": true,
+              "TextureTarget": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
+              "VideoPath": "https://cdn.discordapp.com/attachments/1159407633497870347/1175077119081062410/2023-11-17_07-14-35.mp4?ex=6569ead9\u0026is=655775d9\u0026hm=d6fb1e6e5a900cda041a18c95f4ea86c3f7b3d09edc0b29cd48ee4f3b79ce809\u0026"
+            },
+            {
+              "__type": "VideoModelComponent",
+              "__enabled": true,
+              "MaterialName": "Screen",
+              "MaxUpdatesPerSecond": 1,
+              "Model": "63c5f5ec-7461-4b5e-9e17-e134dc5af66c"
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -2021,6 +2110,7 @@
   "Description": "",
   "__references": [
     "luke.bowl",
+    "luke.tv_flatscreen_stand",
     "shadb.arcade_cabinet"
   ]
 }
