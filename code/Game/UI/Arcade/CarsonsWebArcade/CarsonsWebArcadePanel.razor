@@ -1,0 +1,42 @@
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+@namespace Home.Arcade
+
+<root>
+    <CarsonsWebArcadeMenu @ref="ArcadeMenu" />
+
+    @* <div class="controls">
+        <div class="control">
+            <InputGlyph button="Crouch" size="small" />
+            <p>Exit</p>
+        </div>
+    </div> *@
+</root>
+
+@code
+{
+	CarsonsWebArcadeMenu ArcadeMenu;
+
+    bool linkedClose = false;
+
+    // Close delegate
+    public delegate void CloseDelegate();
+    public CloseDelegate OnClose;
+
+    public override void Update()
+    {
+        if(ArcadeMenu is not null && !linkedClose)
+        {
+            ArcadeMenu.OnClose += Close;
+            linkedClose = true;
+        }
+    }
+
+    void Close()
+    {
+        OnClose?.Invoke();
+    }
+}

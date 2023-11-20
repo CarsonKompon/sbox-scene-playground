@@ -128,7 +128,7 @@ public sealed partial class HomePlayer : BaseComponent
 			}
 
 			var interactable = interactObject.GetComponent<Interactable>();
-			if ( interactable is not null && !CanGrab && InteractLocks.Count == 0 )
+			if ( interactable is not null && !CanGrab && InteractLocks.Count == 0 && interactable.CanInteract )
 			{
 				if ( interactPrompt is null )
 				{

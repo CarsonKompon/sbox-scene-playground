@@ -73,9 +73,17 @@
           "JumpForce": 300,
           "MaxForce": 50,
           "Player": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
-          "RunSpeed": 320,
-          "Speed": 260,
+          "RunSpeed": 360,
+          "Speed": 220,
           "WalkSpeed": 100
+        },
+        {
+          "__type": "StationaryMovement",
+          "__enabled": false,
+          "characterController": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
+          "Player": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
+          "SitAnim": "STANDING",
+          "SitPoseAnim": "NORMAL"
         }
       ],
       "Children": [
@@ -1205,7 +1213,8 @@
           "Static": true,
           "Surface": null
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "Id": "98a5e263-6088-4370-b685-b67def7ce9b1",
@@ -1399,12 +1408,14 @@
         {
           "__type": "Interactable",
           "__enabled": true,
-          "InteractPrompt": "prefabs/ui/interactpromptnoglyph.object",
-          "InteractPromptText": "COMING SOON"
+          "CanInteract": true,
+          "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
+          "InteractPromptText": "Carson\u0027s Web Arcade"
         },
         {
-          "__type": "TetrosArcadeComponent",
+          "__type": "CarsonsWebArcadeComponent",
           "__enabled": true,
+          "ArcadeUI": "prefabs/ui/arcade/carsonswebarcade.object",
           "Interactable": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
           "Seat": "3a4edad6-d6e6-4d01-99dc-3efc07c9f6f7"
         }
@@ -1445,16 +1456,7 @@
           "Position": "42.49878,0,-35.66668",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
-          "Tags": "",
-          "Components": [
-            {
-              "__type": "StationaryMovement",
-              "__enabled": true,
-              "IsSitting": false,
-              "SitAnim": 0,
-              "SitPoseAnim": 0
-            }
-          ]
+          "Tags": ""
         }
       ]
     }
@@ -1466,7 +1468,7 @@
     "ThreadedAnimation": true,
     "UseFixedUpdate": true
   },
-  "Title": "player_controller",
+  "Title": "home_test",
   "Description": "",
   "__references": [
     "shadb.arcade_cabinet"

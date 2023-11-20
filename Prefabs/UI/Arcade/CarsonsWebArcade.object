@@ -1,0 +1,26 @@
+{
+  "RootObject": {
+    "Id": "b499453d-4336-4eb0-be13-b542e5f49f79",
+    "Name": "Screen UI",
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Components": [
+      {
+        "__type": "ScreenPanel",
+        "__enabled": true,
+        "AutoScreenScale": true,
+        "Opacity": 1,
+        "Scale": 1,
+        "ZIndex": 125
+      },
+      {
+        "__type": "CarsonsWebArcadePanel",
+        "__enabled": true
+      }
+    ]
+  },
+  "__references": []
+}

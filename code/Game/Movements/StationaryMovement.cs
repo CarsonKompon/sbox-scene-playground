@@ -32,7 +32,10 @@ public class StationaryMovement : Movement
 
 		if ( characterController == null ) return;
 
-		characterController.Transform.Position = TargetObject.Transform.Position;
+		if ( TargetObject is not null )
+		{
+			characterController.Transform.Position = TargetObject.Transform.Position;
+		}
 
 		characterController.Velocity = Vector3.Zero;
 		characterController.Move();
