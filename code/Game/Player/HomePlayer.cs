@@ -20,7 +20,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	{
 		get
 		{
-			var player = GameManager.ActiveScene.GetComponents<HomePlayer>( true, true ).Where( x => x.GameObject.Enabled && x.Data?.SteamId == Game.SteamId ).FirstOrDefault();
+			var player = GameManager.ActiveScene.GetComponents<HomePlayer>( true, true ).Where( x => x.GameObject.Enabled && x.GameObject.IsMine && x.Data?.SteamId == Game.SteamId ).FirstOrDefault();
 			if ( (player?.Data?.SteamId ?? 0) == Game.SteamId )
 			{
 				return player;
