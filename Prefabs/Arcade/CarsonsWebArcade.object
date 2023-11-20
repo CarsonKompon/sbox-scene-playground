@@ -1,0 +1,88 @@
+{
+  "RootObject": {
+    "Id": "fa61446f-365d-4404-a3b7-71ec333f3ead",
+    "Name": "Carsonswebarcade",
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Children": [
+      {
+        "Id": "564d452d-3d66-4c78-babd-435caa925c71",
+        "Name": "Arcade Machine",
+        "Enabled": true,
+        "Position": "0,0,35.88903",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "interact,trigger",
+        "Components": [
+          {
+            "__type": "ColliderBoxComponent",
+            "__enabled": true,
+            "IsTrigger": true,
+            "Scale": "44.70012,36.00016,70.20004",
+            "Static": false,
+            "Surface": null
+          },
+          {
+            "__type": "Interactable",
+            "__enabled": true,
+            "CanInteract": true,
+            "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
+            "InteractPromptText": "Carson\u0027s Web Arcade"
+          },
+          {
+            "__type": "CarsonsWebArcadeComponent",
+            "__enabled": true,
+            "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
+            "Interactable": "564d452d-3d66-4c78-babd-435caa925c71",
+            "Seat": "04135785-3e88-4136-b9b5-4f11b2bf8318"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "ca60a943-f4bd-463e-90a7-f56f5acd51ac",
+            "Name": "Cabinet",
+            "Enabled": true,
+            "Position": "-5.514282,0,-35.66668",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Components": [
+              {
+                "__type": "ModelComponent",
+                "__enabled": true,
+                "BodyGroups": 18446744073709551615,
+                "MaterialOverride": null,
+                "Model": "models/arcade/cabinet/cabinet.vmdl",
+                "ShouldCastShadows": true,
+                "Tint": "1,1,1,1"
+              },
+              {
+                "__type": "ModelCollider",
+                "__enabled": true,
+                "IsTrigger": false,
+                "Model": "models/arcade/cabinet/cabinet.vmdl",
+                "Static": false,
+                "Surface": null
+              }
+            ]
+          },
+          {
+            "Id": "04135785-3e88-4136-b9b5-4f11b2bf8318",
+            "Name": "Seat",
+            "Enabled": true,
+            "Position": "42.49878,0,-35.66668",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": ""
+          }
+        ]
+      }
+    ]
+  },
+  "__references": [
+    "shadb.arcade_cabinet"
+  ]
+}

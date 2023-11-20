@@ -15,7 +15,8 @@ public sealed class CarsonsWebArcadeComponent : BaseComponent
 
 	public override void OnAwake()
 	{
-		Interactable.OnInteract += OnInteract;
+		if ( Interactable is not null )
+			Interactable.OnInteract += OnInteract;
 	}
 
 	void OnInteract( HomePlayer player )

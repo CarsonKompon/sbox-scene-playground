@@ -1244,7 +1244,7 @@
       "Id": "c59e72e1-3372-48e2-8283-f5cdec6ada25",
       "Name": "Sphere",
       "Enabled": true,
-      "Position": "-705.467,-10.73211,37.54321",
+      "Position": "147.0423,-785.3984,28.43796",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1256,7 +1256,7 @@
           "MaterialOverride": null,
           "Model": "models/dev/sphere.vmdl",
           "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
+          "Tint": "1,0.12871,0.12871,1"
         },
         {
           "__type": "PhysicsComponent",
@@ -1278,49 +1278,12 @@
       ]
     },
     {
-      "Id": "80433a00-0699-46c5-9bbc-d199af4d646d",
-      "Name": "Sphere (3)",
-      "Enabled": true,
-      "Position": "-673.9664,-28.61413,56.5505",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.5999999,0.5999999,0.5999999",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "9eeccdee-5626-407f-b5e4-9bd3c0eaa4e7",
+      "Id": "6e2e7547-76a1-4a7a-b85d-08dc331c10de",
       "Name": "Sphere (1)",
       "Enabled": true,
-      "Position": "-742.9078,-0.2667599,45.91557",
+      "Position": "212.0244,-750.7645,28.43805",
       "Rotation": "0,0,0,1",
-      "Scale": "0.3,0.3,0.3",
+      "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
       "Components": [
         {
@@ -1330,7 +1293,7 @@
           "MaterialOverride": null,
           "Model": "models/dev/sphere.vmdl",
           "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
+          "Tint": "1,0.12871,0.12871,1"
         },
         {
           "__type": "PhysicsComponent",
@@ -1352,12 +1315,12 @@
       ]
     },
     {
-      "Id": "2f4a183e-01d9-4940-891a-3f44eda76aaa",
+      "Id": "6d1e4ab5-8205-48f0-a001-8ca4482d6e8e",
       "Name": "Sphere (2)",
       "Enabled": true,
-      "Position": "-715.3074,13.71247,62.20401",
+      "Position": "127.0249,-701.1255,28.43808",
       "Rotation": "0,0,0,1",
-      "Scale": "0.3,0.3,0.3",
+      "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
       "Components": [
         {
@@ -1367,7 +1330,1265 @@
           "MaterialOverride": null,
           "Model": "models/dev/sphere.vmdl",
           "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
+          "Tint": "1,0.12871,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "3dddfaba-bfb1-4998-96c4-b7a78efc00ab",
+      "Name": "Sphere (3)",
+      "Enabled": true,
+      "Position": "155.2921,-734.3967,28.43807",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.12871,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "6a308aa0-1214-459a-b5c4-180992310d3c",
+      "Name": "Sphere (4)",
+      "Enabled": true,
+      "Position": "129.3698,-634.2026,28.43811",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.12871,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "d881dae0-6e8c-4015-b405-108d15e2cdd9",
+      "Name": "Sphere (5)",
+      "Enabled": true,
+      "Position": "204.3933,-663.405,28.43819",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.12871,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "22e9b01f-a09a-4a27-8e1f-c5aafa135fc8",
+      "Name": "Sphere (6)",
+      "Enabled": true,
+      "Position": "241.9459,-701.5382,28.43816",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.3901,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "580a0e54-e3e3-4652-b8ad-8389939eb662",
+      "Name": "Sphere (7)",
+      "Enabled": true,
+      "Position": "203.9906,-709.1014,28.43821",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.3901,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "fb23276d-fbc8-44f3-830f-0a04729cacfd",
+      "Name": "Sphere (8)",
+      "Enabled": true,
+      "Position": "105.6193,-760.2369,28.43829",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.3901,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "42d4bbdd-24d5-47b2-97d9-c6467db8400b",
+      "Name": "Sphere (9)",
+      "Enabled": true,
+      "Position": "191.1119,-614.9072,28.43822",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.3901,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "e8192f64-53ed-46fb-8841-c3a20d755e62",
+      "Name": "Sphere (11)",
+      "Enabled": true,
+      "Position": "165.7066,-652.31,28.43817",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.98257,1,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "4a114032-9f5f-42ad-892c-8a8e170c7db9",
+      "Name": "Sphere (12)",
+      "Enabled": true,
+      "Position": "242.6587,-655.9219,28.43825",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.98257,1,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "5f230767-8ff2-4029-940c-b20b00251532",
+      "Name": "Sphere (13)",
+      "Enabled": true,
+      "Position": "196.809,-706.8732,64.53531",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.98257,1,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "26ced2e5-fb74-4336-b927-9a853b4908e3",
+      "Name": "Sphere (14)",
+      "Enabled": true,
+      "Position": "145.4149,-725.4248,64.53535",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.98257,1,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "67f95e74-167c-4513-b725-9545dc6a3e28",
+      "Name": "Sphere (15)",
+      "Enabled": true,
+      "Position": "91.45187,-702.6714,64.53537",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.98257,1,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "03838f03-2e36-467b-8b03-a6d52bc43e1e",
+      "Name": "Sphere (16)",
+      "Enabled": true,
+      "Position": "110.4252,-620.7868,64.53537",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.98257,1,0.12871,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "c422df2f-da25-45df-a1ad-bd2bb457d06e",
+      "Name": "Sphere (17)",
+      "Enabled": true,
+      "Position": "172.7709,-622.1771,93.2085",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,1,0.35525,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "ed7ec5a0-09b3-4e87-a0c7-9275b2458016",
+      "Name": "Sphere (18)",
+      "Enabled": true,
+      "Position": "172.7709,-676.6627,93.2085",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,1,0.35525,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "2c2247b6-cee4-49c3-92b1-f77ed4a4c54c",
+      "Name": "Sphere (19)",
+      "Enabled": true,
+      "Position": "101.5386,-676.6627,93.2085",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,1,0.35525,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "fd3c2e17-38ba-46d0-aa62-b0330532b163",
+      "Name": "Sphere (20)",
+      "Enabled": true,
+      "Position": "189.4711,-753.0819,93.20847",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,1,0.35525,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "bfd069f4-3478-41d1-8348-4f2f99ffc7bc",
+      "Name": "Sphere (21)",
+      "Enabled": true,
+      "Position": "101.1892,-746.6323,93.20853",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,1,0.35525,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "c33f2f72-b3bb-4661-b763-8b890be58945",
+      "Name": "Sphere (22)",
+      "Enabled": true,
+      "Position": "231.111,-681.0316,93.20843",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,1,0.35525,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "91a5f2d0-906c-41f3-b367-5866c152ec5e",
+      "Name": "Sphere (23)",
+      "Enabled": true,
+      "Position": "197.4697,-713.1763,152.8908",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,0.84317,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "1bc068eb-a9d8-4caf-9907-7cc35b72193e",
+      "Name": "Sphere (24)",
+      "Enabled": true,
+      "Position": "163.077,-682.5942,152.8908",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,0.84317,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "246bb8ac-93e2-49c8-9fd8-ed21c7bf86eb",
+      "Name": "Sphere (25)",
+      "Enabled": true,
+      "Position": "163.077,-682.5942,53.37735",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,0.84317,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "3418c30d-1cb8-46cf-83f5-40b1d8d5e735",
+      "Name": "Sphere (26)",
+      "Enabled": true,
+      "Position": "114.9712,-657.1645,53.37735",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,0.84317,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "19df1c34-ac8c-4746-af7d-8549da7c47de",
+      "Name": "Sphere (27)",
+      "Enabled": true,
+      "Position": "217.5418,-639.084,53.37724",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,0.84317,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "253001e6-36b1-4090-892d-a85ba03d613d",
+      "Name": "Sphere (28)",
+      "Enabled": true,
+      "Position": "127.0376,-598.6095,53.37729",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.12871,0.84317,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "4a3cf78a-a386-4305-8f56-c61728122965",
+      "Name": "Sphere (29)",
+      "Enabled": true,
+      "Position": "118.4407,-716.5892,53.3772",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "5f3c2550-38f1-497c-a8dc-e0a502880518",
+      "Name": "Sphere (30)",
+      "Enabled": true,
+      "Position": "223.9589,-708.7205,53.37723",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "4ec4bbdf-162e-4cd0-9801-2f3fc383579a",
+      "Name": "Sphere (31)",
+      "Enabled": true,
+      "Position": "223.9589,-708.7205,122.3052",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "46ec56c2-6149-4843-811b-62e78d00373f",
+      "Name": "Sphere (32)",
+      "Enabled": true,
+      "Position": "206.0823,-605.8685,122.3053",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "c69e69ea-02df-443b-a519-cf28e89094b2",
+      "Name": "Sphere (33)",
+      "Enabled": true,
+      "Position": "157.6744,-679.8187,122.3053",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "766ee21d-87a9-4584-9896-97b2893e2ea9",
+      "Name": "Sphere (34)",
+      "Enabled": true,
+      "Position": "119.8177,-606.9789,122.3053",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "464164c6-b464-47a7-9ba0-bfbf8ef28053",
+      "Name": "Sphere (35)",
+      "Enabled": true,
+      "Position": "119.8177,-676.9399,119.2167",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "ece51512-27e0-46bc-8311-0db5059cd081",
+      "Name": "Sphere (36)",
+      "Enabled": true,
+      "Position": "119.8177,-785.9193,119.2167",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.4598,0.12871,1,1"
+        },
+        {
+          "__type": "PhysicsComponent",
+          "__enabled": true,
+          "Gravity": true
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Grabbable",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "395ea30c-3472-4106-a3bb-cb339b60b9ce",
+      "Name": "Sphere (10)",
+      "Enabled": true,
+      "Position": "90.15943,-687.1671,28.43823",
+      "Rotation": "0,0,0,1",
+      "Scale": "0.38,0.38,0.38",
+      "Tags": "interact",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,0.3901,0.12871,1"
         },
         {
           "__type": "PhysicsComponent",
@@ -1459,6 +2680,127 @@
           "Tags": ""
         }
       ]
+    },
+    {
+      "Id": "196db954-7fe7-4dda-b73b-7e081422b108",
+      "Name": "Carsonswebarcade",
+      "Enabled": true,
+      "Position": "-844.0386,-272.542,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "78c377ef-7a75-40b7-bdbe-d8ee49f07451",
+      "Name": "Carsonswebarcade (1)",
+      "Enabled": true,
+      "Position": "-1.556004,535.7002,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "c776dba4-497d-4a1d-a2eb-596a1f3b7dce",
+      "Name": "Carsonswebarcade (2)",
+      "Enabled": true,
+      "Position": "-1.556004,581.3264,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "bd80935a-3a7c-4753-9b45-7668a658d616",
+      "Name": "Carsonswebarcade (3)",
+      "Enabled": true,
+      "Position": "-1.556004,626.7687,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "3154c922-b2a5-43c5-9e81-4e01d057a9f5",
+      "Name": "Carsonswebarcade (4)",
+      "Enabled": true,
+      "Position": "-1.556004,674.439,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "da5bc0e4-3dcf-45e7-b20c-b8a72bb11ce2",
+      "Name": "Carsonswebarcade (5)",
+      "Enabled": true,
+      "Position": "-1.556004,723.5286,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "edef0965-cb8f-40c2-b86d-a42e7d61c16d",
+      "Name": "Carsonswebarcade (6)",
+      "Enabled": true,
+      "Position": "-1.556004,772.741,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "e8bf5aa8-9e3b-4a2e-8ef1-247677e929f4",
+      "Name": "Carsonswebarcade (7)",
+      "Enabled": true,
+      "Position": "-1.556004,822.9307,-0.00002826452",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+    },
+    {
+      "Id": "133c5c7f-b52f-4950-95ad-80387a475e55",
+      "Name": "bowl",
+      "Enabled": true,
+      "Position": "160.5357,-694.28,-60.23308",
+      "Rotation": "0,0,0,1",
+      "Scale": "25.83293,25.83293,25.83293",
+      "Tags": "solid",
+      "Components": [
+        {
+          "__type": "ModelComponent",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": null,
+          "Model": "models/items/knick_knacks/bowl.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        }
+      ],
+      "Children": [
+        {
+          "Id": "3d31e298-1294-4bb9-a850-a31aa5e3211f",
+          "Name": "bowl collider",
+          "Enabled": true,
+          "Position": "0,0,0.4438348",
+          "Rotation": "0,0,0,1",
+          "Scale": "0.8564792,0.8564792,0.8564792",
+          "Tags": "solid",
+          "Components": [
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/items/knick_knacks/bowl.vmdl",
+              "Static": false,
+              "Surface": null
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -1471,6 +2813,7 @@
   "Title": "home_test",
   "Description": "",
   "__references": [
+    "luke.bowl",
     "shadb.arcade_cabinet"
   ]
 }
