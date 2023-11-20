@@ -7,6 +7,10 @@ public partial class GameObject
 {
 	public class SerializeOptions
 	{
+		/// <summary>
+		/// If we're serializing for network, we won't include any networked objects
+		/// </summary>
+		public bool SceneForNetwork { get; set; }
 	}
 
 	//
@@ -14,10 +18,15 @@ public partial class GameObject
 	// into a JsonObject. I haven't benchmarked this, but I assume it's okay.
 	//
 
-	public JsonObject Serialize( SerializeOptions options = null )
+	public virtual JsonObject Serialize( SerializeOptions options = null )
 	{
 		if ( Flags.HasFlag( GameObjectFlags.NotSaved ) )
 			return null;
+
+		if ( options is not null )
+		{
+			if ( options.SceneForNetwork && IsNetworked ) return null;
+		}
 
 		bool isPartOfPrefab = IsPrefabInstance;
 
@@ -95,7 +104,7 @@ public partial class GameObject
 		return json;
 	}
 
-	public void Deserialize( JsonObject node )
+	public virtual void Deserialize( JsonObject node )
 	{
 		Id = node["Id"].Deserialize<Guid>();
 		Name = node["Name"].ToString() ?? Name;
