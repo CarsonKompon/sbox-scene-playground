@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using Sandbox;
 
 namespace Home;
@@ -7,29 +8,52 @@ namespace Home;
 [Icon( "pan_tool", "red", "white" )]
 public sealed class Grabbable : BaseComponent, INetworkBaby
 {
-	public HomePlayer Holder = null;
-	public bool IsGrabbed = false;
+	public Guid Holder = Guid.Empty;
+	public bool IsGrabbed => Holder != Guid.Empty;
 
 	PhysicsComponent rigidBody;
 
-	public override void OnAwake()
-	{
-		rigidBody = GetComponent<PhysicsComponent>( false, true );
-	}
-
 	public override void Update()
 	{
-		if ( Holder is null ) return;
+		if ( IsGrabbed && Holder == HomePlayer.Local.GameObject.Id )
+		{
+			var player = HomePlayer.Local;
+			if ( !Input.Down( "Action1" ) || Transform.Position.Distance( player.Head.Transform.Position ) > 250f )
+			{
+				StopGrabbing( player );
+			}
+		}
+	}
 
-		// TODO: Make this check IsMine and have the grab send a network id so we can get the holder
+	public override void FixedUpdate()
+	{
+		if ( GameObject.IsProxy ) return;
+
+		GameObject playerObj = Scene.GetAllObjects( true ).Where( x => x.Id == Holder ).FirstOrDefault();
+
+
 		if ( IsGrabbed )
 		{
+			Log.Info( $"IsMine: {GameObject.IsMine}, IsProxy: {GameObject.IsProxy}, IsNetworked: {GameObject.IsNetworked}" );
+			Log.Info( playerObj );
+		}
+
+
+		if ( IsGrabbed && playerObj is not null )
+		{
+			var player = playerObj.GetComponent<HomePlayer>();
+			if ( player is null ) return;
+
+			Log.Info( Holder );
+
 			// Move towards a position in front of the holder's head
-			var targetPos = Holder.Head.Transform.Position + Holder.Head.Transform.Rotation.Forward * 100f;
-			var targetRot = Holder.Head.Transform.Rotation;
+			var targetPos = player.Head.Transform.Position + player.Head.Transform.Rotation.Forward * 100f;
+			var targetRot = player.Head.Transform.Rotation;
 
 			var delta = targetPos - Transform.Position;
 			var distance = delta.Length;
+
+			rigidBody ??= GetComponent<PhysicsComponent>( false, true );
 
 			if ( distance > 10f )
 			{
@@ -52,18 +76,18 @@ public sealed class Grabbable : BaseComponent, INetworkBaby
 					rigidBody.Velocity = Vector3.Zero;
 				}
 			}
+		}
 
-			Transform.Position = Transform.Position.LerpTo( targetPos, Time.Delta * 10f );
+		if ( rigidBody is not null )
+		{
+			rigidBody.Gravity = Holder == Guid.Empty;
 		}
 	}
 
-	// TODO: Make this take in a network id or something so it can keep track of who is holding
 	[Broadcast]
-	public void NetSetGrab( int grabId )
+	public void SetGrabbing( Guid grabber )
 	{
-		bool grabbing = grabId == 1;
-		IsGrabbed = grabbing;
-
+		bool grabbing = (grabber != Guid.Empty);
 		if ( grabbing )
 		{
 			GameObject.Tags.Add( "player" );
@@ -71,39 +95,38 @@ public sealed class Grabbable : BaseComponent, INetworkBaby
 		else
 		{
 			GameObject.Tags.Remove( "player" );
-			Holder = null;
 		}
 
-		if ( rigidBody is not null )
-		{
-			rigidBody.Gravity = !grabbing;
-		}
+		Holder = grabber;
 	}
 
 	public void StartGrabbing( HomePlayer player )
 	{
-		if ( player.Grabbing is not null ) return;
+		if ( player.Grabbing != Guid.Empty ) return;
+		if ( IsGrabbed ) return;
 
-		NetSetGrab( 1 );
-		Holder = player;
-		player.Grabbing = GameObject;
+		SetGrabbing( player.GameObject.Id );
+		player.Grabbing = GameObject.Id;
 	}
 
 	public void StopGrabbing( HomePlayer player )
 	{
-		if ( player.Grabbing != GameObject ) return;
+		if ( !IsGrabbed ) return;
 
-		NetSetGrab( 0 );
-		player.Grabbing = null;
+		if ( player.GameObject.Id == Holder || player.Grabbing == GameObject.Id )
+		{
+			SetGrabbing( Guid.Empty );
+			player.Grabbing = Guid.Empty;
+		}
 	}
 
 	public void Write( ref ByteStream stream )
 	{
-		stream.Write( IsGrabbed );
+		stream.Write( Holder );
 	}
 
 	public void Read( ByteStream stream )
 	{
-		IsGrabbed = stream.Read<bool>();
+		Holder = stream.Read<Guid>();
 	}
 }

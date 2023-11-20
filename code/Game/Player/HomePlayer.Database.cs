@@ -24,6 +24,8 @@ partial class HomePlayer
         }
 
         UpdateLastSeen();
+
+        Log.Info( JsonSerializer.Serialize( Data ) );
     }
 
     void CheckForDbUpdates()

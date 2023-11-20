@@ -33,7 +33,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
 
-	public GameObject Grabbing = null;
+	public Guid Grabbing = Guid.Empty;
 	public bool CanGrab = false;
 	public List<string> InteractLocks = new List<string>();
 
@@ -159,7 +159,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 		if ( interactTrace.Hit && interactTrace.Body.GameObject is GameObject interactObject )
 		{
 			var grabbable = interactObject.GetComponent<Grabbable>();
-			if ( grabbable is not null )
+			if ( grabbable is not null && !grabbable.IsGrabbed )
 			{
 				CanGrab = true;
 				if ( Input.Pressed( "Action1" ) )
@@ -193,11 +193,6 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 		{
 			interactPrompt.Destroy();
 			interactPrompt = null;
-		}
-
-		if ( Grabbing is not null && (!Input.Down( "Action1" ) || Grabbing.Transform.Position.Distance( Head.Transform.Position ) > 250f) )
-		{
-			Grabbing.GetComponent<Grabbable>()?.StopGrabbing( this );
 		}
 	}
 

@@ -1340,16 +1340,20 @@
           "__enabled": true
         },
         {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
           "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "b470f4a0-2fa3-4cb0-ae80-1ae1a2c46b8b",
+      "Id": "3b5c6ff6-b34d-4451-b771-c73dab5fd044",
       "Name": "Sphere (1)",
       "Enabled": true,
-      "Position": "207.073,-763.3121,28.43797",
+      "Position": "198.6176,-725.012,28.438",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1381,16 +1385,20 @@
           "__enabled": true
         },
         {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
           "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "1783d6c3-abf5-4ee8-b631-69da37382963",
+      "Id": "bd3928ed-e779-44f3-a1b4-6234038f435b",
       "Name": "Sphere (2)",
       "Enabled": true,
-      "Position": "104.3826,-713.4011,28.43794",
+      "Position": "164.2137,-690.2378,28.438",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1422,16 +1430,20 @@
           "__enabled": true
         },
         {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
           "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "d44357a9-7392-462d-a191-5f6494050f7a",
+      "Id": "8080f4d3-65aa-404f-bd61-20c27e545fc2",
       "Name": "Sphere (3)",
       "Enabled": true,
-      "Position": "171.2082,-727.2604,28.4379",
+      "Position": "122.9917,-730.4644,28.43794",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1463,16 +1475,20 @@
           "__enabled": true
         },
         {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
           "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "da35a78b-c73d-4c04-869b-1d2ac3d5821d",
+      "Id": "53cfd7c2-bd5b-493a-8836-2a6b135acc62",
       "Name": "Sphere (4)",
       "Enabled": true,
-      "Position": "135.3611,-741.9395,28.43789",
+      "Position": "204.3803,-676.7534,28.43793",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1504,16 +1520,20 @@
           "__enabled": true
         },
         {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
           "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "ce72682b-2d3c-4bd7-a8b2-31d683860cbb",
+      "Id": "3f805648-8dab-4e23-9a59-16a833f0ea65",
       "Name": "Sphere (5)",
       "Enabled": true,
-      "Position": "187.5563,-673.6658,28.43771",
+      "Position": "126.6691,-669.2781,28.43796",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1545,16 +1565,20 @@
           "__enabled": true
         },
         {
+          "__type": "NetworkObject",
+          "__enabled": true
+        },
+        {
           "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "13d844cf-a035-413f-8b4b-e41eeb865d9d",
+      "Id": "a244f7a5-8d23-40c9-a833-fe298bb3b2ad",
       "Name": "Sphere (6)",
       "Enabled": true,
-      "Position": "225.512,-718.5604,28.43784",
+      "Position": "59.06564,-734.3394,28.43796",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1583,6 +1607,10 @@
         },
         {
           "__type": "Grabbable",
+          "__enabled": true
+        },
+        {
+          "__type": "NetworkObject",
           "__enabled": true
         },
         {
@@ -1592,10 +1620,10 @@
       ]
     },
     {
-      "Id": "cda449e3-f6b8-4831-bac2-b7c95e29c6ec",
+      "Id": "cfa7203c-7e49-42c8-a29c-72c28955f2e8",
       "Name": "Sphere (7)",
       "Enabled": true,
-      "Position": "144.1125,-687.2051,28.43776",
+      "Position": "240.2746,-706.3622,28.43796",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1624,6 +1652,10 @@
         },
         {
           "__type": "Grabbable",
+          "__enabled": true
+        },
+        {
+          "__type": "NetworkObject",
           "__enabled": true
         },
         {
