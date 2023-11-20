@@ -194,7 +194,7 @@
           "__type": "CharacterController",
           "__enabled": true,
           "Acceleration": 10,
-          "GroundAngle": 45,
+          "GroundAngle": 45.1,
           "Height": 72,
           "IgnoreLayers": "trigger,player",
           "Radius": 10,

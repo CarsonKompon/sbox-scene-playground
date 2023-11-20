@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Sandbox;
 using Home.Data;
 using System.Text.Json;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Home;
 
@@ -32,6 +33,9 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	public PlayerData Data { get; set; } = null;
 
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
+	Angles CamAngles = new Angles( 0, 0, 0 );
+	bool isFreeCam = false;
+	RealTimeUntil freeCamTime = 0f;
 
 	public Guid Grabbing = Guid.Empty;
 	public bool CanGrab = false;
@@ -83,11 +87,42 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 			// Check for network updates (TODO: Make sure to only run this locally)
 			CheckForDbUpdates();
 
+			bool updateEyes = true;
+			if ( !IsFirstPerson )
+			{
+				if ( !isFreeCam && Input.Down( "Action2" ) )
+				{
+					isFreeCam = true;
+					CamAngles = EyeAngles;
+				}
+				else if ( isFreeCam && !Input.Down( "Action2" ) )
+				{
+					isFreeCam = false;
+					freeCamTime = 1f;
+				}
+
+				if ( isFreeCam )
+				{
+					updateEyes = false;
+					CamAngles.pitch += Input.MouseDelta.y * 0.1f;
+					CamAngles.yaw -= Input.MouseDelta.x * 0.1f;
+					CamAngles.roll = 0;
+					CamAngles.pitch = Math.Clamp( CamAngles.pitch, -89.9f, 89.9f );
+				}
+			}
+
 			// Eye input
-			EyeAngles.pitch += Input.MouseDelta.y * 0.1f;
-			EyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
-			EyeAngles.roll = 0;
-			EyeAngles.pitch = Math.Clamp( EyeAngles.pitch, -89.9f, 89.9f );
+			if ( updateEyes )
+			{
+				EyeAngles.pitch += Input.MouseDelta.y * 0.1f;
+				EyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
+				EyeAngles.roll = 0;
+				EyeAngles.pitch = Math.Clamp( EyeAngles.pitch, -89.9f, 89.9f );
+				if ( freeCamTime > 0f )
+					CamAngles = CamAngles.LerpTo( EyeAngles, 25f * Time.Delta );
+				else
+					CamAngles = EyeAngles;
+			}
 
 			// Zoom input
 			CameraZoom = Math.Clamp( CameraZoom - Input.MouseWheel * 32f, 0f, 256f );
@@ -204,7 +239,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 			var camPos = Head.Transform.Position;
 			if ( !IsFirstPerson )
 			{
-				var camForward = EyeAngles.ToRotation().Forward;
+				var camForward = CamAngles.ToRotation().Forward;
 				var camTrace = Physics.Trace.Ray( camPos, camPos - (camForward * CameraZoom) )
 					.WithoutTags( "trigger" )
 					.Run();
@@ -212,10 +247,13 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 				else camPos = camTrace.EndPosition;
 			}
 
-			Rotation rotation = EyeAngles.ToRotation();
+			Rotation rotation = CamAngles.ToRotation();
 
 			LocalCamera.Transform.Position = camPos;
 			LocalCamera.Transform.Rotation = rotation;
+
+			var targetFov = 80 - (Input.Down( "Zoom" ) ? 40 : 0);
+			LocalCamera.FieldOfView = MathX.Lerp( LocalCamera.FieldOfView, targetFov, 10f * Time.Delta );
 		}
 	}
 
