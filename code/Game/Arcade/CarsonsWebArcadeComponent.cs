@@ -41,7 +41,7 @@ public sealed class CarsonsWebArcadeComponent : BaseComponent
 				// stationaryMovement.OnCrouch += Leave;
 			}
 
-			Interactable.CanInteract = false;
+			Interactable.SetCantInteract();
 			User = player;
 		}
 	}
@@ -59,7 +59,7 @@ public sealed class CarsonsWebArcadeComponent : BaseComponent
 			uiInstance = null;
 		}
 
-		Interactable.CanInteract = true;
+		Interactable.SetCanInteract();
 
 		User.InteractLocks.Remove( "arcade-" + GameObject.Name );
 		User.RestoreMovement();

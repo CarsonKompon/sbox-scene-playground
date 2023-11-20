@@ -31,20 +31,10 @@ public sealed class Grabbable : BaseComponent, INetworkBaby
 
 		GameObject playerObj = Scene.GetAllObjects( true ).Where( x => x.Id == Holder ).FirstOrDefault();
 
-
-		if ( IsGrabbed )
-		{
-			Log.Info( $"IsMine: {GameObject.IsMine}, IsProxy: {GameObject.IsProxy}, IsNetworked: {GameObject.IsNetworked}" );
-			Log.Info( playerObj );
-		}
-
-
 		if ( IsGrabbed && playerObj is not null )
 		{
 			var player = playerObj.GetComponent<HomePlayer>();
 			if ( player is null ) return;
-
-			Log.Info( Holder );
 
 			// Move towards a position in front of the holder's head
 			var targetPos = player.Head.Transform.Position + player.Head.Transform.Rotation.Forward * 100f;

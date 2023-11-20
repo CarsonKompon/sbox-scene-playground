@@ -11,7 +11,7 @@ public sealed class Interactable : BaseComponent, INetworkBaby
 {
 	[Property] public GameObject InteractPrompt { get; set; }
 	[Property] public string InteractPromptText { get; set; } = "Interact";
-	[Property] public bool CanInteract { get; set; } = true;
+	[Property] public bool CanInteract { get; private set; } = true;
 
 	string originalPromptText = "";
 
@@ -40,6 +40,19 @@ public sealed class Interactable : BaseComponent, INetworkBaby
 		return obj;
 	}
 
+	[Broadcast]
+	public void SetCanInteract()
+	{
+		CanInteract = true;
+	}
+
+	[Broadcast]
+	public void SetCantInteract()
+	{
+		CanInteract = false;
+	}
+
+	[Broadcast]
 	public void ChangeText( string text )
 	{
 		originalPromptText = InteractPromptText;
@@ -54,6 +67,7 @@ public sealed class Interactable : BaseComponent, INetworkBaby
 		}
 	}
 
+	[Broadcast]
 	public void RestoreText()
 	{
 		if ( string.IsNullOrEmpty( originalPromptText ) ) return;
