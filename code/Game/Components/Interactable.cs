@@ -4,6 +4,9 @@ using Sandbox;
 
 namespace Home;
 
+[Title( "Interactable" )]
+[Category( "Home" )]
+[Icon( "touch_app", "red", "white" )]
 public sealed class Interactable : BaseComponent
 {
 	[Property] public GameObject InteractPrompt { get; set; }

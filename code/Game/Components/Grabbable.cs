@@ -2,6 +2,9 @@ using Sandbox;
 
 namespace Home;
 
+[Title( "Grabbable" )]
+[Category( "Home" )]
+[Icon( "pan_tool", "red", "white" )]
 public sealed class Grabbable : BaseComponent
 {
 	public HomePlayer Holder = null;

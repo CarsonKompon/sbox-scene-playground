@@ -2,6 +2,9 @@ using Sandbox;
 
 namespace Home;
 
+[Title( "Stationary Movement" )]
+[Category( "Home - Movements" )]
+[Icon( "where_to_vote", "red", "white" )]
 public class StationaryMovement : Movement
 {
 	[Property] public SIT_TYPE SitAnim { get; set; }

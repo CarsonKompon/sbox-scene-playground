@@ -5,7 +5,8 @@ using Sandbox;
 namespace Home.Arcade;
 
 [Title( "Carson's Web Arcade Machine" )]
-[Category( "Arcade" )]
+[Category( "Home - Arcade" )]
+[Icon( "videogame_asset", "red", "white" )]
 public sealed class CarsonsWebArcadeComponent : BaseComponent
 {
 	[Property] public Interactable Interactable { get; set; }

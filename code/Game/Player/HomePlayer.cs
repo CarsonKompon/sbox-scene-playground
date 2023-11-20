@@ -4,6 +4,9 @@ using Home.Data;
 
 namespace Home;
 
+[Title( "Home Player" )]
+[Category( "Home" )]
+[Icon( "house", "red", "white" )]
 public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 {
 	// References

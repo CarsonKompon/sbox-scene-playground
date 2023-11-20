@@ -3,6 +3,9 @@ using Sandbox;
 
 namespace Home;
 
+[Title( "Player Movement" )]
+[Category( "Home - Movements" )]
+[Icon( "directions_run", "red", "white" )]
 public class PlayerMovement : Movement
 {
 
