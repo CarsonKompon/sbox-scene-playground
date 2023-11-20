@@ -1415,7 +1415,7 @@
         {
           "__type": "CarsonsWebArcadeComponent",
           "__enabled": true,
-          "ArcadeUI": "prefabs/ui/arcade/carsonswebarcade.object",
+          "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
           "Interactable": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
           "Seat": "3a4edad6-d6e6-4d01-99dc-3efc07c9f6f7"
         }

@@ -1,11 +1,11 @@
 WebArcadeButton
 {
     width: 500px;
-    height: 405px;
+    height: 305px;
     flex-direction: column;
     flex-shrink: 0;
     transform: skewX(-10deg);
-    gap: 2px;
+    gap: 1px;
 
     .cover
     {
