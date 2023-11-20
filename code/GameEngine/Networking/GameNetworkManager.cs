@@ -16,7 +16,7 @@ public sealed class GameNetworkManager : BaseComponent
 			nameTag.Name = Game.UserName;
 		}
 
-		NetworkObject.Instantiate( myPlayerObject );
+		myPlayerObject.NetworkSpawn();
 	}
 
 	public override void Update()
