@@ -7,11 +7,11 @@
 
 <root>
 
-    @if(Player?.Grabbing is not null)
+    @if(LocalPlayer?.Grabbing is not null)
     {
         
     }
-    else if(Player?.CanGrab ?? false)
+    else if(LocalPlayer?.CanGrab ?? false)
     {
         <i>pan_tool</i>
     }
@@ -24,16 +24,26 @@
 
 @code
 {
-    public HomePlayer Player;
+    HomePlayer LocalPlayer
+	{
+		get
+		{
+			if ( _localPlayer == null )
+				_localPlayer = HomePlayer.Local;
+
+			return _localPlayer;
+		}
+	}
+	HomePlayer _localPlayer;
     
     public override void Tick()
     {
-        SetClass("hidden", !Player?.IsFirstPerson ?? false);
+        SetClass("hidden", !LocalPlayer?.IsFirstPerson ?? false);
     }
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(Player?.CanGrab ?? false, Player?.Grabbing ?? null);
+        return HashCode.Combine(LocalPlayer?.CanGrab ?? false, LocalPlayer?.Grabbing ?? null);
     }
 
 }

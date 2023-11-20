@@ -124,6 +124,64 @@
       ]
     },
     {
+      "Id": "7079c278-05fb-4485-b5ee-1ee551805fbd",
+      "Name": "UI",
+      "Enabled": true,
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Children": [
+        {
+          "Id": "98a5e263-6088-4370-b685-b67def7ce9b1",
+          "Name": "Home HUD",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ScreenPanel",
+              "__enabled": true,
+              "AutoScreenScale": true,
+              "Opacity": 1,
+              "Scale": 1,
+              "ZIndex": 100
+            },
+            {
+              "__type": "HomeHudPanel",
+              "__enabled": true,
+              "PauseMenu": "c5234e3e-5e1d-4e77-8da4-d355238677f3"
+            }
+          ]
+        },
+        {
+          "Id": "c5234e3e-5e1d-4e77-8da4-d355238677f3",
+          "Name": "Pause Menu",
+          "Enabled": true,
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ScreenPanel",
+              "__enabled": true,
+              "AutoScreenScale": true,
+              "Opacity": 1,
+              "Scale": 1,
+              "ZIndex": 500
+            },
+            {
+              "__type": "HomePauseMenu",
+              "__enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Id": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
       "Name": "Player",
       "Enabled": false,
@@ -206,31 +264,6 @@
             }
           ],
           "Children": [
-            {
-              "Id": "975e3006-e7c3-46a5-9f30-c31a196c89f9",
-              "Name": "Name Tag UI",
-              "Enabled": true,
-              "Position": "-0.000001814945,0.1895752,80.7357",
-              "Rotation": "-0.00000005960058,0.000000000000005518709,-0.9999317,0.01167414",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Components": [
-                {
-                  "__type": "WorldPanel",
-                  "__enabled": true,
-                  "HorizontalAlign": "Center",
-                  "LookAtCamera": true,
-                  "PanelSize": "1024,256",
-                  "RenderScale": 1,
-                  "VerticalAlign": "Center"
-                },
-                {
-                  "__type": "HomeNametagPanel",
-                  "__enabled": true,
-                  "Name": ""
-                }
-              ]
-            },
             {
               "Id": "2d12d154-98e3-4030-8cc6-64afce8b2d8e",
               "Name": "Face Camera",
@@ -601,8 +634,8 @@
                                           "Id": "e8e34464-d9de-47bd-958f-78ca8200ed92",
                                           "Name": "arm_lower_L_twist0",
                                           "Enabled": true,
-                                          "Position": "0.000008047423,0.000009192926,-0.00006496105",
-                                          "Rotation": "0.0000002011657,0.0000003352761,0.0000001564622,1",
+                                          "Position": "0,0,0",
+                                          "Rotation": "0,0,0,1",
                                           "Scale": "0.9999999,0.9999999,0.9999999",
                                           "Tags": ""
                                         },
@@ -611,7 +644,7 @@
                                           "Name": "arm_lower_L_twist1",
                                           "Enabled": true,
                                           "Position": "3.853343,0.00001209974,-0.00006997581",
-                                          "Rotation": "0.0000001490116,0.0000003278255,0.0000001378357,1",
+                                          "Rotation": "0,0,0,1",
                                           "Scale": "1,1,1",
                                           "Tags": ""
                                         },
@@ -619,7 +652,7 @@
                                           "Id": "cc3210d0-f0c9-4dbb-820a-e9a7eaa447fe",
                                           "Name": "arm_elbow_helper_L",
                                           "Enabled": true,
-                                          "Position": "-0.000002832805,0.00001146831,-0.00006027466",
+                                          "Position": "0,0,0",
                                           "Rotation": "0.0000003278255,-0.00000005960464,-0.7577646,0.6525283",
                                           "Scale": "1,1,1",
                                           "Tags": ""
@@ -630,8 +663,8 @@
                                       "Id": "408c46b6-ad91-4966-b491-59170501d2c4",
                                       "Name": "arm_upper_L_twist0",
                                       "Enabled": true,
-                                      "Position": "0.00001510155,0.000005137287,-0.00002842252",
-                                      "Rotation": "-0.00000001490116,0.00000002235174,0.0000001080334,1",
+                                      "Position": "0,0,0",
+                                      "Rotation": "0,0,0,1",
                                       "Scale": "0.9999999,0.9999999,0.9999999",
                                       "Tags": ""
                                     },
@@ -640,7 +673,7 @@
                                       "Name": "arm_upper_L_twist1",
                                       "Enabled": true,
                                       "Position": "5.022609,0.00002780555,-0.00002574919",
-                                      "Rotation": "0.00000004470348,0.0000002980232,0.0000001005828,0.9999999",
+                                      "Rotation": "0,0,0,1",
                                       "Scale": "1,1,1",
                                       "Tags": ""
                                     }
@@ -866,7 +899,7 @@
                                           "Name": "arm_lower_R_twist1",
                                           "Enabled": true,
                                           "Position": "3.853318,0.00001120567,-0.00005435943",
-                                          "Rotation": "0.0000001341105,-0.000000230968,0.0000001229346,1",
+                                          "Rotation": "0,0,0,1",
                                           "Scale": "1,1,1",
                                           "Tags": ""
                                         },
@@ -874,8 +907,8 @@
                                           "Id": "5c62567e-7cd6-4993-868e-cd5c0caeb8f9",
                                           "Name": "arm_lower_R_twist0",
                                           "Enabled": true,
-                                          "Position": "-0.00002364056,-0.0000003260133,-0.00003997922",
-                                          "Rotation": "-0.00000001490116,-0.00000006705523,-0.00000003352761,1",
+                                          "Position": "0,0,0",
+                                          "Rotation": "0,0,0,1",
                                           "Scale": "1,1,1",
                                           "Tags": "",
                                           "Children": [
@@ -883,7 +916,7 @@
                                               "Id": "5bb905e9-2d4e-4982-bd34-a49954f6202c",
                                               "Name": "arm_elbow_helper_R",
                                               "Enabled": true,
-                                              "Position": "0.0000003228688,0.00005400099,-0.00005817533",
+                                              "Position": "0,0,0",
                                               "Rotation": "-0.0000007376075,0.0000002682209,0.7577677,-0.6525244",
                                               "Scale": "0.9999999,0.9999999,0.9999999",
                                               "Tags": ""
@@ -896,8 +929,8 @@
                                       "Id": "88b20bf6-d05f-4779-bfae-4ad0819ef991",
                                       "Name": "arm_upper_R_twist0",
                                       "Enabled": true,
-                                      "Position": "-0.000009606277,-0.000009356987,-0.00005387484",
-                                      "Rotation": "-0.0000001192093,-0.0000003576279,0.0000001452863,1",
+                                      "Position": "0,0,0",
+                                      "Rotation": "0,0,0,1",
                                       "Scale": "1,1,1",
                                       "Tags": ""
                                     },
@@ -906,7 +939,7 @@
                                       "Name": "arm_upper_R_twist1",
                                       "Enabled": true,
                                       "Position": "5.022587,0.00002843141,-0.00004935263",
-                                      "Rotation": "0.00000001490116,-0.0000002905726,0.0000001639128,0.9999999",
+                                      "Rotation": "0,0,0,1",
                                       "Scale": "1,1,1",
                                       "Tags": ""
                                     }
@@ -972,7 +1005,7 @@
                           "Name": "leg_lower_R_twist1",
                           "Enabled": true,
                           "Position": "6.257761,0.00001965463,-0.000004175958",
-                          "Rotation": "0,0,0.0000001192093,1",
+                          "Rotation": "0,0,0,1",
                           "Scale": "1,1,1",
                           "Tags": ""
                         },
@@ -980,7 +1013,7 @@
                           "Id": "773b3347-f6b0-4e17-90be-1a583200b3aa",
                           "Name": "leg_lower_R_twist0",
                           "Enabled": true,
-                          "Position": "-0.000005718175,-0.0000002091553,-0.00001049044",
+                          "Position": "0,0,0",
                           "Rotation": "0,0,0,1",
                           "Scale": "1,1,1",
                           "Tags": ""
@@ -989,7 +1022,7 @@
                           "Id": "c9bd538d-dd7b-4c35-b93a-08c9852fa215",
                           "Name": "leg_knee_helper_R",
                           "Enabled": true,
-                          "Position": "0.000001906116,0.00000006976661,-0.000009536735",
+                          "Position": "0,0,0",
                           "Rotation": "0.0000009241048,-0.000001251698,0.7135268,0.7006278",
                           "Scale": "1,1,1",
                           "Tags": ""
@@ -1001,7 +1034,7 @@
                       "Name": "leg_upper_R_twist1",
                       "Enabled": true,
                       "Position": "7.235195,0.00002587512,-0.0000137726",
-                      "Rotation": "0,0,0.0000001192093,1",
+                      "Rotation": "0,0,0,1",
                       "Scale": "1,1,1",
                       "Tags": ""
                     },
@@ -1009,7 +1042,7 @@
                       "Id": "b6559d8e-7d37-4df4-b429-2a910b5de267",
                       "Name": "leg_upper_R_twist0",
                       "Enabled": true,
-                      "Position": "0.000007629468,0.00000000004365575,-0.0000171661",
+                      "Position": "0,0,0",
                       "Rotation": "-0.00000005960464,0,0.000003039837,1",
                       "Scale": "1,1,1",
                       "Tags": ""
@@ -1018,7 +1051,7 @@
                       "Id": "ddad22fa-3138-4f70-9c13-a2526f4f8873",
                       "Name": "leg_glute_helper_R",
                       "Enabled": true,
-                      "Position": "0.00001907356,0.00000000008503775,-0.00001764289",
+                      "Position": "0,0,0",
                       "Rotation": "-0.000001056968,-0.0000006258488,-0.7071052,0.7071084",
                       "Scale": "0.9999998,0.9999998,0.9999998",
                       "Tags": ""
@@ -1068,7 +1101,7 @@
                           "Name": "leg_lower_L_twist1",
                           "Enabled": true,
                           "Position": "6.25776,-0.00002402068,-0.00001000743",
-                          "Rotation": "-0.00000001490116,0.00000004470348,0.00000002980232,1",
+                          "Rotation": "0,0,0,1",
                           "Scale": "1,1,1",
                           "Tags": ""
                         },
@@ -1076,8 +1109,8 @@
                           "Id": "7e813a74-d9df-4d07-b0a4-0a5090dec75b",
                           "Name": "leg_lower_L_twist0",
                           "Enabled": true,
-                          "Position": "-0.000007624256,-0.0000002788773,-0.000009536773",
-                          "Rotation": "0.0000002086163,0.00000008940697,-0.00000005960464,1",
+                          "Position": "0,0,0",
+                          "Rotation": "0,0,0,1",
                           "Scale": "0.9999999,0.9999999,0.9999999",
                           "Tags": ""
                         },
@@ -1085,7 +1118,7 @@
                           "Id": "a9a2a608-c109-4dd6-bb8b-caa713414e00",
                           "Name": "leg_knee_helper_L",
                           "Enabled": true,
-                          "Position": "-0.00001524855,-0.0000005578239,-0.000009536804",
+                          "Position": "0,0,0",
                           "Rotation": "-0.000003013527,-0.00000166893,0.7135276,0.700627",
                           "Scale": "1,1,1",
                           "Tags": ""
@@ -1097,7 +1130,7 @@
                       "Name": "leg_upper_L_twist1",
                       "Enabled": true,
                       "Position": "7.235189,0.0000258751,-0.000008415271",
-                      "Rotation": "0,-0.0000002384186,0,1",
+                      "Rotation": "0,0,0,1",
                       "Scale": "1,1,1",
                       "Tags": ""
                     },
@@ -1105,8 +1138,8 @@
                       "Id": "f2d0f6fa-1480-4284-afcc-315e34bc4789",
                       "Name": "leg_upper_L_twist0",
                       "Enabled": true,
-                      "Position": "0.00000762944,0.00000000003637979,-0.000009536707",
-                      "Rotation": "0.00000008940697,-0.00000002980232,-0.00000008940697,1",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
                       "Scale": "0.9999999,0.9999999,0.9999999",
                       "Tags": ""
                     },
@@ -1114,7 +1147,7 @@
                       "Id": "6c80a306-7f03-4c50-ae7e-072c1e72d19f",
                       "Name": "leg_glute_helper_L",
                       "Enabled": true,
-                      "Position": "0.00001907353,0.00000000007730705,-0.000009536652",
+                      "Position": "0,0,0",
                       "Rotation": "-0.000001011624,-0.0000006854534,-0.7071055,0.707108",
                       "Scale": "0.9999998,0.9999998,0.9999998",
                       "Tags": ""
@@ -1128,7 +1161,7 @@
               "Name": "root_IK",
               "Enabled": true,
               "Position": "1.266602,0.000007629395,0",
-              "Rotation": "-0.0000000000000000000002117582,-0.00000001490116,0.00000007450578,1",
+              "Rotation": "0,0,0,1",
               "Scale": "1,1,1",
               "Tags": "",
               "Children": [
@@ -1155,7 +1188,7 @@
                   "Name": "aim_matrix_02a",
                   "Enabled": true,
                   "Position": "4.638916,-0.0000006912522,9.8425",
-                  "Rotation": "0.00000007549791,0.00000007549787,-0.00000007450578,1",
+                  "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": "",
                   "Children": [
@@ -1164,7 +1197,7 @@
                       "Name": "aim_matrix_02b",
                       "Enabled": true,
                       "Position": "3.937012,-0.0000009536745,-0.000001430208",
-                      "Rotation": "-0.000000000000007105427,0.0000000000000000000003150394,0.000000000000004172823,1",
+                      "Rotation": "0,0,0,1",
                       "Scale": "1,1,1",
                       "Tags": ""
                     }
@@ -1175,7 +1208,7 @@
                   "Name": "aim_matrix_01",
                   "Enabled": true,
                   "Position": "4.638916,-0.0000006912522,11.811",
-                  "Rotation": "0.00000007549791,0.00000007549787,-0.00000007450578,1",
+                  "Rotation": "0,0,0,1",
                   "Scale": "1,1,1",
                   "Tags": ""
                 },
@@ -1208,7 +1241,34 @@
           "Position": "0,0,64",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
-          "Tags": ""
+          "Tags": "",
+          "Children": [
+            {
+              "Id": "975e3006-e7c3-46a5-9f30-c31a196c89f9",
+              "Name": "Name Tag UI",
+              "Enabled": true,
+              "Position": "0,-0.4713545,16.7357",
+              "Rotation": "-0.00000005960058,0.000000000000005518709,-0.9999317,0.01167414",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Components": [
+                {
+                  "__type": "WorldPanel",
+                  "__enabled": true,
+                  "HorizontalAlign": "Center",
+                  "LookAtCamera": true,
+                  "PanelSize": "1024,256",
+                  "RenderScale": 1,
+                  "VerticalAlign": "Center"
+                },
+                {
+                  "__type": "HomeNametagPanel",
+                  "__enabled": true,
+                  "Name": ""
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1241,30 +1301,6 @@
           "IsTrigger": false,
           "Static": true,
           "Surface": null
-        }
-      ]
-    },
-    {
-      "Id": "98a5e263-6088-4370-b685-b67def7ce9b1",
-      "Name": "Screen UI",
-      "Enabled": true,
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Components": [
-        {
-          "__type": "ScreenPanel",
-          "__enabled": true,
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ZIndex": 100
-        },
-        {
-          "__type": "HomeHudPanel",
-          "__enabled": true,
-          "LocalPlayer": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8"
         }
       ]
     },
@@ -1302,14 +1338,18 @@
         {
           "__type": "Grabbable",
           "__enabled": true
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
         }
       ]
     },
     {
-      "Id": "6e2e7547-76a1-4a7a-b85d-08dc331c10de",
+      "Id": "b470f4a0-2fa3-4cb0-ae80-1ae1a2c46b8b",
       "Name": "Sphere (1)",
       "Enabled": true,
-      "Position": "212.0244,-750.7645,28.43805",
+      "Position": "207.073,-763.3121,28.43797",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1341,16 +1381,16 @@
           "__enabled": true
         },
         {
-          "__type": "NetworkObject",
+          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "6d1e4ab5-8205-48f0-a001-8ca4482d6e8e",
+      "Id": "1783d6c3-abf5-4ee8-b631-69da37382963",
       "Name": "Sphere (2)",
       "Enabled": true,
-      "Position": "127.0249,-701.1255,28.43808",
+      "Position": "104.3826,-713.4011,28.43794",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1382,16 +1422,16 @@
           "__enabled": true
         },
         {
-          "__type": "NetworkObject",
+          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "3dddfaba-bfb1-4998-96c4-b7a78efc00ab",
+      "Id": "d44357a9-7392-462d-a191-5f6494050f7a",
       "Name": "Sphere (3)",
       "Enabled": true,
-      "Position": "155.2921,-734.3967,28.43807",
+      "Position": "171.2082,-727.2604,28.4379",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1421,14 +1461,18 @@
         {
           "__type": "Grabbable",
           "__enabled": true
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
         }
       ]
     },
     {
-      "Id": "6a308aa0-1214-459a-b5c4-180992310d3c",
+      "Id": "da35a78b-c73d-4c04-869b-1d2ac3d5821d",
       "Name": "Sphere (4)",
       "Enabled": true,
-      "Position": "129.3698,-634.2026,28.43811",
+      "Position": "135.3611,-741.9395,28.43789",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1458,14 +1502,18 @@
         {
           "__type": "Grabbable",
           "__enabled": true
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
         }
       ]
     },
     {
-      "Id": "d881dae0-6e8c-4015-b405-108d15e2cdd9",
+      "Id": "ce72682b-2d3c-4bd7-a8b2-31d683860cbb",
       "Name": "Sphere (5)",
       "Enabled": true,
-      "Position": "204.3933,-663.405,28.43819",
+      "Position": "187.5563,-673.6658,28.43771",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1495,14 +1543,18 @@
         {
           "__type": "Grabbable",
           "__enabled": true
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
         }
       ]
     },
     {
-      "Id": "22e9b01f-a09a-4a27-8e1f-c5aafa135fc8",
+      "Id": "13d844cf-a035-413f-8b4b-e41eeb865d9d",
       "Name": "Sphere (6)",
       "Enabled": true,
-      "Position": "241.9459,-701.5382,28.43816",
+      "Position": "225.512,-718.5604,28.43784",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1514,7 +1566,7 @@
           "MaterialOverride": null,
           "Model": "models/dev/sphere.vmdl",
           "ShouldCastShadows": true,
-          "Tint": "1,0.3901,0.12871,1"
+          "Tint": "1,0.12871,0.12871,1"
         },
         {
           "__type": "PhysicsComponent",
@@ -1534,16 +1586,16 @@
           "__enabled": true
         },
         {
-          "__type": "NetworkObject",
+          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
     },
     {
-      "Id": "580a0e54-e3e3-4652-b8ad-8389939eb662",
+      "Id": "cda449e3-f6b8-4831-bac2-b7c95e29c6ec",
       "Name": "Sphere (7)",
       "Enabled": true,
-      "Position": "203.9906,-709.1014,28.43821",
+      "Position": "144.1125,-687.2051,28.43776",
       "Rotation": "0,0,0,1",
       "Scale": "0.38,0.38,0.38",
       "Tags": "interact",
@@ -1555,7 +1607,7 @@
           "MaterialOverride": null,
           "Model": "models/dev/sphere.vmdl",
           "ShouldCastShadows": true,
-          "Tint": "1,0.3901,0.12871,1"
+          "Tint": "1,0.12871,0.12871,1"
         },
         {
           "__type": "PhysicsComponent",
@@ -1575,1196 +1627,7 @@
           "__enabled": true
         },
         {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "fb23276d-fbc8-44f3-830f-0a04729cacfd",
-      "Name": "Sphere (8)",
-      "Enabled": true,
-      "Position": "105.6193,-760.2369,28.43829",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,0.3901,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "42d4bbdd-24d5-47b2-97d9-c6467db8400b",
-      "Name": "Sphere (9)",
-      "Enabled": true,
-      "Position": "191.1119,-614.9072,28.43822",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,0.3901,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "e8192f64-53ed-46fb-8841-c3a20d755e62",
-      "Name": "Sphere (11)",
-      "Enabled": true,
-      "Position": "165.7066,-652.31,28.43817",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.98257,1,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "4a114032-9f5f-42ad-892c-8a8e170c7db9",
-      "Name": "Sphere (12)",
-      "Enabled": true,
-      "Position": "242.6587,-655.9219,28.43825",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.98257,1,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "5f230767-8ff2-4029-940c-b20b00251532",
-      "Name": "Sphere (13)",
-      "Enabled": true,
-      "Position": "196.809,-706.8732,64.53531",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.98257,1,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "26ced2e5-fb74-4336-b927-9a853b4908e3",
-      "Name": "Sphere (14)",
-      "Enabled": true,
-      "Position": "145.4149,-725.4248,64.53535",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.98257,1,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "67f95e74-167c-4513-b725-9545dc6a3e28",
-      "Name": "Sphere (15)",
-      "Enabled": true,
-      "Position": "91.45187,-702.6714,64.53537",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.98257,1,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "03838f03-2e36-467b-8b03-a6d52bc43e1e",
-      "Name": "Sphere (16)",
-      "Enabled": true,
-      "Position": "110.4252,-620.7868,64.53537",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.98257,1,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "c422df2f-da25-45df-a1ad-bd2bb457d06e",
-      "Name": "Sphere (17)",
-      "Enabled": true,
-      "Position": "172.7709,-622.1771,93.2085",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,1,0.35525,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "ed7ec5a0-09b3-4e87-a0c7-9275b2458016",
-      "Name": "Sphere (18)",
-      "Enabled": true,
-      "Position": "172.7709,-676.6627,93.2085",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,1,0.35525,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "2c2247b6-cee4-49c3-92b1-f77ed4a4c54c",
-      "Name": "Sphere (19)",
-      "Enabled": true,
-      "Position": "101.5386,-676.6627,93.2085",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,1,0.35525,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "fd3c2e17-38ba-46d0-aa62-b0330532b163",
-      "Name": "Sphere (20)",
-      "Enabled": true,
-      "Position": "189.4711,-753.0819,93.20847",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,1,0.35525,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "bfd069f4-3478-41d1-8348-4f2f99ffc7bc",
-      "Name": "Sphere (21)",
-      "Enabled": true,
-      "Position": "101.1892,-746.6323,93.20853",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,1,0.35525,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "c33f2f72-b3bb-4661-b763-8b890be58945",
-      "Name": "Sphere (22)",
-      "Enabled": true,
-      "Position": "231.111,-681.0316,93.20843",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,1,0.35525,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "91a5f2d0-906c-41f3-b367-5866c152ec5e",
-      "Name": "Sphere (23)",
-      "Enabled": true,
-      "Position": "197.4697,-713.1763,152.8908",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,0.84317,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "1bc068eb-a9d8-4caf-9907-7cc35b72193e",
-      "Name": "Sphere (24)",
-      "Enabled": true,
-      "Position": "163.077,-682.5942,152.8908",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,0.84317,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "246bb8ac-93e2-49c8-9fd8-ed21c7bf86eb",
-      "Name": "Sphere (25)",
-      "Enabled": true,
-      "Position": "163.077,-682.5942,53.37735",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,0.84317,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "3418c30d-1cb8-46cf-83f5-40b1d8d5e735",
-      "Name": "Sphere (26)",
-      "Enabled": true,
-      "Position": "114.9712,-657.1645,53.37735",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,0.84317,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "19df1c34-ac8c-4746-af7d-8549da7c47de",
-      "Name": "Sphere (27)",
-      "Enabled": true,
-      "Position": "217.5418,-639.084,53.37724",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,0.84317,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "253001e6-36b1-4090-892d-a85ba03d613d",
-      "Name": "Sphere (28)",
-      "Enabled": true,
-      "Position": "127.0376,-598.6095,53.37729",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.12871,0.84317,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "4a3cf78a-a386-4305-8f56-c61728122965",
-      "Name": "Sphere (29)",
-      "Enabled": true,
-      "Position": "118.4407,-716.5892,53.3772",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "5f3c2550-38f1-497c-a8dc-e0a502880518",
-      "Name": "Sphere (30)",
-      "Enabled": true,
-      "Position": "223.9589,-708.7205,53.37723",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "4ec4bbdf-162e-4cd0-9801-2f3fc383579a",
-      "Name": "Sphere (31)",
-      "Enabled": true,
-      "Position": "223.9589,-708.7205,122.3052",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "46ec56c2-6149-4843-811b-62e78d00373f",
-      "Name": "Sphere (32)",
-      "Enabled": true,
-      "Position": "206.0823,-605.8685,122.3053",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "c69e69ea-02df-443b-a519-cf28e89094b2",
-      "Name": "Sphere (33)",
-      "Enabled": true,
-      "Position": "157.6744,-679.8187,122.3053",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "766ee21d-87a9-4584-9896-97b2893e2ea9",
-      "Name": "Sphere (34)",
-      "Enabled": true,
-      "Position": "119.8177,-606.9789,122.3053",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "464164c6-b464-47a7-9ba0-bfbf8ef28053",
-      "Name": "Sphere (35)",
-      "Enabled": true,
-      "Position": "119.8177,-676.9399,119.2167",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "ece51512-27e0-46bc-8311-0db5059cd081",
-      "Name": "Sphere (36)",
-      "Enabled": true,
-      "Position": "119.8177,-785.9193,119.2167",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.4598,0.12871,1,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
-          "__enabled": true
-        }
-      ]
-    },
-    {
-      "Id": "395ea30c-3472-4106-a3bb-cb339b60b9ce",
-      "Name": "Sphere (10)",
-      "Enabled": true,
-      "Position": "90.15943,-687.1671,28.43823",
-      "Rotation": "0,0,0,1",
-      "Scale": "0.38,0.38,0.38",
-      "Tags": "interact",
-      "Components": [
-        {
-          "__type": "ModelComponent",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,0.3901,0.12871,1"
-        },
-        {
-          "__type": "PhysicsComponent",
-          "__enabled": true,
-          "Gravity": true
-        },
-        {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
-        },
-        {
-          "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "NetworkObject",
+          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
@@ -2792,6 +1655,17 @@
           "CanInteract": true,
           "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
           "InteractPromptText": "Carson\u0027s Web Arcade"
+        },
+        {
+          "__type": "CarsonsWebArcadeComponent",
+          "__enabled": true,
+          "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
+          "Interactable": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
+          "Seat": "3a4edad6-d6e6-4d01-99dc-3efc07c9f6f7"
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
         }
       ],
       "Children": [
@@ -2835,84 +1709,232 @@
       ]
     },
     {
-      "Id": "196db954-7fe7-4dda-b73b-7e081422b108",
-      "Name": "Carsonswebarcade",
+      "Id": "cc1794b6-0ead-4030-a6b9-5e511c74b3e1",
+      "Name": "Arcade Machine (1)",
       "Enabled": true,
-      "Position": "-844.0386,-272.542,-0.00002826452",
+      "Position": "-852.7074,-270.4749,35.66676",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+      "Tags": "interact,trigger",
+      "Components": [
+        {
+          "__type": "ColliderBoxComponent",
+          "__enabled": true,
+          "IsTrigger": true,
+          "Scale": "44.70012,36.00016,70.20004",
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Interactable",
+          "__enabled": true,
+          "CanInteract": true,
+          "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
+          "InteractPromptText": "Carson\u0027s Web Arcade"
+        },
+        {
+          "__type": "CarsonsWebArcadeComponent",
+          "__enabled": true,
+          "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
+          "Interactable": "cc1794b6-0ead-4030-a6b9-5e511c74b3e1",
+          "Seat": "ae638c81-9b17-4599-9931-a12afc1cb4c0"
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
+        }
+      ],
+      "Children": [
+        {
+          "Id": "e9e186f5-0d64-4182-85e4-6687ba6ebc12",
+          "Name": "Cabinet",
+          "Enabled": true,
+          "Position": "-5.514282,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "Static": false,
+              "Surface": null
+            }
+          ]
+        },
+        {
+          "Id": "ae638c81-9b17-4599-9931-a12afc1cb4c0",
+          "Name": "Seat",
+          "Enabled": true,
+          "Position": "42.49878,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": ""
+        }
+      ]
     },
     {
-      "Id": "78c377ef-7a75-40b7-bdbe-d8ee49f07451",
-      "Name": "Carsonswebarcade (1)",
+      "Id": "2c91018d-c178-4110-bc4a-e7f627ed2c6e",
+      "Name": "Arcade Machine (2)",
       "Enabled": true,
-      "Position": "-1.556004,535.7002,-0.00002826452",
+      "Position": "-852.7074,221.0571,35.66676",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+      "Tags": "interact,trigger",
+      "Components": [
+        {
+          "__type": "ColliderBoxComponent",
+          "__enabled": true,
+          "IsTrigger": true,
+          "Scale": "44.70012,36.00016,70.20004",
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Interactable",
+          "__enabled": true,
+          "CanInteract": true,
+          "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
+          "InteractPromptText": "Carson\u0027s Web Arcade"
+        },
+        {
+          "__type": "CarsonsWebArcadeComponent",
+          "__enabled": true,
+          "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
+          "Interactable": "2c91018d-c178-4110-bc4a-e7f627ed2c6e",
+          "Seat": "668b3712-98cf-4691-ad74-0990991709d9"
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
+        }
+      ],
+      "Children": [
+        {
+          "Id": "a00edbbf-9606-4129-95fd-3df91a1ce0c5",
+          "Name": "Cabinet",
+          "Enabled": true,
+          "Position": "-5.514282,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "Static": false,
+              "Surface": null
+            }
+          ]
+        },
+        {
+          "Id": "668b3712-98cf-4691-ad74-0990991709d9",
+          "Name": "Seat",
+          "Enabled": true,
+          "Position": "42.49878,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": ""
+        }
+      ]
     },
     {
-      "Id": "c776dba4-497d-4a1d-a2eb-596a1f3b7dce",
-      "Name": "Carsonswebarcade (2)",
+      "Id": "2e4c5e83-f2c9-409b-abcc-89965a069bdc",
+      "Name": "Arcade Machine (3)",
       "Enabled": true,
-      "Position": "-1.556004,581.3264,-0.00002826452",
+      "Position": "-852.7074,271.495,35.66676",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
-    },
-    {
-      "Id": "bd80935a-3a7c-4753-9b45-7668a658d616",
-      "Name": "Carsonswebarcade (3)",
-      "Enabled": true,
-      "Position": "-1.556004,626.7687,-0.00002826452",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
-    },
-    {
-      "Id": "3154c922-b2a5-43c5-9e81-4e01d057a9f5",
-      "Name": "Carsonswebarcade (4)",
-      "Enabled": true,
-      "Position": "-1.556004,674.439,-0.00002826452",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
-    },
-    {
-      "Id": "da5bc0e4-3dcf-45e7-b20c-b8a72bb11ce2",
-      "Name": "Carsonswebarcade (5)",
-      "Enabled": true,
-      "Position": "-1.556004,723.5286,-0.00002826452",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
-    },
-    {
-      "Id": "edef0965-cb8f-40c2-b86d-a42e7d61c16d",
-      "Name": "Carsonswebarcade (6)",
-      "Enabled": true,
-      "Position": "-1.556004,772.741,-0.00002826452",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
-    },
-    {
-      "Id": "e8bf5aa8-9e3b-4a2e-8ef1-247677e929f4",
-      "Name": "Carsonswebarcade (7)",
-      "Enabled": true,
-      "Position": "-1.556004,822.9307,-0.00002826452",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "__Prefab": "prefabs/arcade/carsonswebarcade.object"
+      "Tags": "interact,trigger",
+      "Components": [
+        {
+          "__type": "ColliderBoxComponent",
+          "__enabled": true,
+          "IsTrigger": true,
+          "Scale": "44.70012,36.00016,70.20004",
+          "Static": false,
+          "Surface": null
+        },
+        {
+          "__type": "Interactable",
+          "__enabled": true,
+          "CanInteract": true,
+          "InteractPrompt": "prefabs/ui/basicinteractprompt.object",
+          "InteractPromptText": "Carson\u0027s Web Arcade"
+        },
+        {
+          "__type": "CarsonsWebArcadeComponent",
+          "__enabled": true,
+          "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
+          "Interactable": "2e4c5e83-f2c9-409b-abcc-89965a069bdc",
+          "Seat": "8b414ae9-396d-4d7c-a590-3c292919dfe1"
+        },
+        {
+          "__type": "WorldNetworkObject",
+          "__enabled": true
+        }
+      ],
+      "Children": [
+        {
+          "Id": "9f6d25f6-ebab-4be1-8436-c279188dd5aa",
+          "Name": "Cabinet",
+          "Enabled": true,
+          "Position": "-5.514282,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Components": [
+            {
+              "__type": "ModelComponent",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": null,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": "models/arcade/cabinet/cabinet.vmdl",
+              "Static": false,
+              "Surface": null
+            }
+          ]
+        },
+        {
+          "Id": "8b414ae9-396d-4d7c-a590-3c292919dfe1",
+          "Name": "Seat",
+          "Enabled": true,
+          "Position": "42.49878,0,-35.66668",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": ""
+        }
+      ]
     },
     {
       "Id": "133c5c7f-b52f-4950-95ad-80387a475e55",

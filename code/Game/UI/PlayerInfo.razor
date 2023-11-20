@@ -13,8 +13,8 @@
         @* <CameraPanel @Camera=@Player.FaceCamera /> *@
     </div>
     <panel class="canvas">
-        <label class="money" text="$9,999,999" />
-        <label class="location" text="TODO: Make this work" />
+        <label class="money" text="@(HomeUtils.FormatMoney(LocalPlayer?.Data?.Money ?? 0))" />
+        <label class="location" text="Limbo" />
     </panel>
 
     <img class="roof" src="UI/ui_roof.png" />
@@ -23,7 +23,17 @@
 
 @code
 {
-    public HomePlayer Player { get; set; }
+    HomePlayer LocalPlayer
+	{
+		get
+		{
+			if ( _localPlayer == null )
+				_localPlayer = HomePlayer.Local;
+
+			return _localPlayer;
+		}
+	}
+	HomePlayer _localPlayer;
 
     protected override int BuildHash()
     {

@@ -5,10 +5,10 @@ namespace Home;
 [Title( "Grabbable" )]
 [Category( "Home" )]
 [Icon( "pan_tool", "red", "white" )]
-public sealed class Grabbable : BaseComponent
+public sealed class Grabbable : BaseComponent, INetworkBaby
 {
 	public HomePlayer Holder = null;
-	public bool IsGrabbed => Holder is not null;
+	public bool IsGrabbed = false;
 
 	PhysicsComponent rigidBody;
 
@@ -19,7 +19,9 @@ public sealed class Grabbable : BaseComponent
 
 	public override void Update()
 	{
-		if ( IsGrabbed )
+		if ( IsGrabbed && Holder is null ) return;
+
+		if ( IsGrabbed && GameObject.IsMine )
 		{
 			// Move towards a position in front of the holder's head
 			var targetPos = Holder.Head.Transform.Position + Holder.Head.Transform.Rotation.Forward * 100f;
@@ -59,6 +61,7 @@ public sealed class Grabbable : BaseComponent
 		if ( player.Grabbing is not null ) return;
 
 		Holder = player;
+		IsGrabbed = true;
 		player.Grabbing = GameObject;
 		GameObject.Tags.Add( "player" );
 
@@ -75,6 +78,7 @@ public sealed class Grabbable : BaseComponent
 		Log.Info( "let go!" );
 
 		Holder = null;
+		IsGrabbed = false;
 		player.Grabbing = null;
 		GameObject.Tags.Remove( "player" );
 
@@ -82,5 +86,15 @@ public sealed class Grabbable : BaseComponent
 		{
 			rigidBody.Gravity = true;
 		}
+	}
+
+	public void Write( ref ByteStream stream )
+	{
+		stream.Write( IsGrabbed );
+	}
+
+	public void Read( ByteStream stream )
+	{
+		IsGrabbed = stream.Read<bool>();
 	}
 }

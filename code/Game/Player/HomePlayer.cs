@@ -15,7 +15,9 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	[Property] public CameraComponent FaceCamera { get; set; }
 	[Property] CitizenAnimation AnimationHelper { get; set; }
 
-	PlayerData Data = null;
+	public static HomePlayer Local => GameManager.ActiveScene.FindAllComponents<HomePlayer>().Where( x => x.GameObject.IsMine ).First();
+
+	public PlayerData Data = null;
 
 	public Angles EyeAngles = new Angles( 0, 0, 0 );
 
@@ -84,6 +86,11 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 			// See if we can grab/interact with something
 			CheckForInteracts();
 		}
+
+		// Update head transform
+		var localHeadPos = Head.Transform.LocalPosition;
+		Head.Transform.LocalPosition = localHeadPos.WithZ( MathX.Lerp( localHeadPos.z, 64 * (IsCrouching ? 0.5f : 1f), 10f * Time.Delta ) );
+		Head.Transform.Rotation = EyeAngles.ToRotation();
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
 		if ( characterController is null ) return;
@@ -159,6 +166,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 
 				if ( Input.Pressed( "Interact" ) )
 				{
+					Log.Info( "Interacting!" );
 					interactable.Interact( this );
 				}
 			}
@@ -183,10 +191,6 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 
 	void UpdateCamera()
 	{
-		// Lerp head position
-		var localHeadPos = Head.Transform.LocalPosition;
-		Head.Transform.LocalPosition = localHeadPos.WithZ( MathX.Lerp( localHeadPos.z, 64 * (IsCrouching ? 0.5f : 1f), 10f * Time.Delta ) );
-
 		// Update camera position
 		if ( LocalCamera is not null )
 		{
@@ -205,8 +209,6 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 
 			LocalCamera.Transform.Position = camPos;
 			LocalCamera.Transform.Rotation = rotation;
-
-			Head.Transform.Rotation = rotation;
 		}
 	}
 

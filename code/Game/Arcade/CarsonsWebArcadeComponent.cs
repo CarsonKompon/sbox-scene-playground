@@ -16,7 +16,7 @@ public sealed class CarsonsWebArcadeComponent : BaseComponent
 
 	GameObject uiInstance = null;
 
-	public override void OnAwake()
+	public override void OnStart()
 	{
 		if ( Interactable is not null )
 			Interactable.OnInteract += OnInteract;
@@ -66,4 +66,5 @@ public sealed class CarsonsWebArcadeComponent : BaseComponent
 
 		User = null;
 	}
+
 }

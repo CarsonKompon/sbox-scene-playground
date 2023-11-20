@@ -7,7 +7,7 @@ namespace Home;
 [Title( "Interactable" )]
 [Category( "Home" )]
 [Icon( "touch_app", "red", "white" )]
-public sealed class Interactable : BaseComponent
+public sealed class Interactable : BaseComponent, INetworkBaby
 {
 	[Property] public GameObject InteractPrompt { get; set; }
 	[Property] public string InteractPromptText { get; set; } = "Interact";
@@ -74,5 +74,17 @@ public sealed class Interactable : BaseComponent
 		if ( !CanInteract ) return;
 
 		OnInteract?.Invoke( player );
+	}
+
+	public void Write( ref ByteStream stream )
+	{
+		stream.Write( CanInteract );
+		stream.Write( InteractPromptText );
+	}
+
+	public void Read( ByteStream stream )
+	{
+		CanInteract = stream.Read<bool>();
+		InteractPromptText = stream.Read<string>();
 	}
 }

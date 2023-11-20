@@ -10,15 +10,20 @@
 
 <root>
 
-    <PlayerInfo Player=@LocalPlayer />
+    <PlayerInfo />
 
-    <Crosshair Player=@LocalPlayer />
+    <Crosshair />
 
 </root>
 
 @code
 {
     
-    [Property] public HomePlayer LocalPlayer { get; set; }
+    [Property] public HomePauseMenu PauseMenu { get; set; }
+
+    public override void Update()
+    {
+        SetClass("hidden", PauseMenu?.IsOpen ?? false);
+    }
 
 }
