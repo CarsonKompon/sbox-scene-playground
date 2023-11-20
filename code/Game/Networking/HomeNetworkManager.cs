@@ -1,3 +1,4 @@
+using Home.UI;
 using Sandbox;
 using Sandbox.Network;
 
@@ -24,6 +25,12 @@ public sealed class HomeNetworkManager : BaseComponent
         if ( homePlayer is not null )
         {
             homePlayer.Initialize( Game.SteamId );
+        }
+
+        var nametag = myPlayerObject.GetComponent<HomeNametagPanel>( false, true );
+        if ( nametag is not null )
+        {
+            nametag.Name = Game.UserName;
         }
 
         NetworkObject.Instantiate( myPlayerObject );

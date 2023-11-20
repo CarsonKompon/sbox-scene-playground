@@ -1,6 +1,8 @@
 using Home;
-using Home.Arcade;
+using Home.UI.Arcade;
 using Sandbox;
+
+namespace Home.Arcade;
 
 [Title( "Carson's Web Arcade Machine" )]
 [Category( "Arcade" )]
