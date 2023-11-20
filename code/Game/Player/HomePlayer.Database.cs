@@ -8,11 +8,12 @@ partial class HomePlayer
 {
     RealTimeSince playtimeCheck = 0;
 
-    async void GetPlayerData()
+    public async void Initialize( long steamId )
     {
+        if ( !IsController ) return;
+
         if ( Data is null )
         {
-            var steamId = Game.SteamId; // TODO: Make sure this is the local steamid
             Data = await HomeDb.FetchPlayerData( steamId );
             if ( Data is null )
             {
@@ -22,8 +23,6 @@ partial class HomePlayer
         }
 
         UpdateLastSeen();
-
-        Log.Info( JsonSerializer.Serialize( Data ) );
     }
 
     void CheckForDbUpdates()

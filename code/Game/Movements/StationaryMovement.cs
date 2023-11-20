@@ -8,20 +8,7 @@ public class StationaryMovement : Movement
 	[Property] public SIT_POSE SitPoseAnim { get; set; }
 	[Property] public GameObject TargetObject { get; set; }
 
-	public enum SIT_TYPE
-	{
-		STANDING,
-		SITTING_CHAIR,
-		SITTING_GROUND
-	}
-
-	public enum SIT_POSE
-	{
-		NORMAL,
-		LEANING,
-		SCRUNCHED,
-		CROSSED
-	}
+	CitizenAnimation animHelper;
 
 	public override void Update()
 	{
@@ -44,6 +31,8 @@ public class StationaryMovement : Movement
 
 	public override void UpdateAnimations( CitizenAnimation helper )
 	{
+		animHelper ??= helper;
+
 		helper.WithWishVelocity( WishVelocity );
 		if ( SitAnim != SIT_TYPE.STANDING )
 		{
@@ -71,10 +60,10 @@ public class StationaryMovement : Movement
 
 	void CleanUp()
 	{
-		if ( SitAnim != SIT_TYPE.STANDING )
+		if ( SitAnim != SIT_TYPE.STANDING && animHelper is not null )
 		{
-			Player.AnimationHelper.Target.Set( "sit", 0 );
-			Player.AnimationHelper.Target.Set( "sit_pose", 0 );
+			animHelper.Target.Set( "sit", 0 );
+			animHelper.Target.Set( "sit_pose", 0 );
 		}
 	}
 

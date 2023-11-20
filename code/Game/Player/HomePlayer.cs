@@ -4,14 +4,13 @@ using Home.Data;
 
 namespace Home;
 
-public sealed partial class HomePlayer : BaseComponent
+public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 {
 	// References
 	[Property] public GameObject Body { get; set; }
 	[Property] public GameObject Head { get; set; }
-	[Property] CameraComponent LocalCamera { get; set; }
 	[Property] public CameraComponent FaceCamera { get; set; }
-	[Property] public CitizenAnimation AnimationHelper { get; set; }
+	[Property] CitizenAnimation AnimationHelper { get; set; }
 
 	PlayerData Data = null;
 
@@ -37,37 +36,51 @@ public sealed partial class HomePlayer : BaseComponent
 		}
 	}
 
+	CameraComponent LocalCamera
+	{
+		get
+		{
+			if ( _localCamera is null )
+			{
+				_localCamera = Scene.GetComponent<CameraComponent>( true, true );
+			}
+			return _localCamera;
+		}
+	}
+	CameraComponent _localCamera = null;
+
+	public bool IsController => GameObject.IsNetworked == false || GameObject.IsMine;
+
 	private float CameraZoom = 0f;
 
 	CharacterController characterController;
 
 	GameObject interactPrompt;
 
-	public override void OnAwake()
-	{
-		// Load player data
-		GetPlayerData();
-	}
-
 	public override void Update()
 	{
-		// Check for network updates (TODO: Make sure to only run this locally)
-		CheckForDbUpdates();
 
-		// Eye input
-		EyeAngles.pitch += Input.MouseDelta.y * 0.1f;
-		EyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
-		EyeAngles.roll = 0;
-		EyeAngles.pitch = Math.Clamp( EyeAngles.pitch, -89.9f, 89.9f );
 
-		// Zoom input
-		CameraZoom = Math.Clamp( CameraZoom - Input.MouseWheel * 32f, 0f, 256f );
+		if ( IsController )
+		{
+			// Check for network updates (TODO: Make sure to only run this locally)
+			CheckForDbUpdates();
 
-		// Update camera position
-		UpdateCamera();
+			// Eye input
+			EyeAngles.pitch += Input.MouseDelta.y * 0.1f;
+			EyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
+			EyeAngles.roll = 0;
+			EyeAngles.pitch = Math.Clamp( EyeAngles.pitch, -89.9f, 89.9f );
 
-		// See if we can grab/interact with something
-		CheckForInteracts();
+			// Zoom input
+			CameraZoom = Math.Clamp( CameraZoom - Input.MouseWheel * 32f, 0f, 256f );
+
+			// Update camera position
+			UpdateCamera();
+
+			// See if we can grab/interact with something
+			CheckForInteracts();
+		}
 
 		characterController ??= GameObject.GetComponent<CharacterController>();
 		if ( characterController is null ) return;
@@ -106,7 +119,13 @@ public sealed partial class HomePlayer : BaseComponent
 		// Hide playermodel if in first person
 		var modelRenderer = Body.GetComponent<AnimatedModelComponent>( false );
 		if ( modelRenderer is not null )
-			modelRenderer.Enabled = !IsFirstPerson;
+			modelRenderer.Enabled = IsController ? (!IsFirstPerson) : true;
+	}
+
+	[Broadcast]
+	public void OnJump()
+	{
+		AnimationHelper?.TriggerJump();
 	}
 
 	void CheckForInteracts()
@@ -206,4 +225,29 @@ public sealed partial class HomePlayer : BaseComponent
 	{
 		SetMovement<PlayerMovement>();
 	}
+
+	public void Write( ref ByteStream stream )
+	{
+		stream.Write( EyeAngles );
+	}
+
+	public void Read( ByteStream stream )
+	{
+		EyeAngles = stream.Read<Angles>();
+	}
+}
+
+public enum SIT_TYPE
+{
+	STANDING,
+	SITTING_CHAIR,
+	SITTING_GROUND
+}
+
+public enum SIT_POSE
+{
+	NORMAL,
+	LEANING,
+	SCRUNCHED,
+	CROSSED
 }

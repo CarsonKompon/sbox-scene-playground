@@ -2,7 +2,7 @@ using Sandbox;
 
 namespace Home;
 
-public class Movement : BaseComponent
+public class Movement : BaseComponent, INetworkBaby
 {
 
 	// References
@@ -23,8 +23,20 @@ public class Movement : BaseComponent
 
 	public override void Update()
 	{
+		if ( !GameObject.IsMine ) return;
+
 		if ( Input.Pressed( "Crouch" ) ) OnCrouch?.Invoke( Player, true );
 		else if ( Input.Released( "Crouch" ) ) OnCrouch?.Invoke( Player, false );
+	}
+
+	public virtual void Write( ref ByteStream stream )
+	{
+		stream.Write( WishVelocity );
+	}
+
+	public virtual void Read( ByteStream stream )
+	{
+		WishVelocity = stream.Read<Vector3>();
 	}
 
 }

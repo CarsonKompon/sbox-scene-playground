@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Sandbox;
 
 namespace Home;
@@ -22,38 +23,43 @@ public class PlayerMovement : Movement
 
 	public override void Update()
 	{
+		if ( !GameObject.IsMine ) return;
+
 		// Jumping
 		if ( characterController.IsOnGround && Input.Pressed( "Jump" ) )
 		{
 			characterController.Punch( Vector3.Up * JumpForce );
-			Player.AnimationHelper?.TriggerJump();
+			Player.OnJump();
 		}
 	}
 
 	public override void FixedUpdate()
 	{
-		BuildWishVelocity();
-
 		if ( characterController is null ) return;
 
-		// Crouching
-		if ( IsCrouching )
+		if ( GameObject.IsMine )
 		{
-			var duckTrace = Physics.Trace.Ray( Transform.Position, Transform.Position + Vector3.Up * (72f * Player.Height) )
-				.WithoutTags( "trigger" )
-				.Run();
-			if ( duckTrace.Hit ) crouchTimer = 0.25f;
-			if ( !Input.Down( "Crouch" ) && crouchTimer )
+			BuildWishVelocity();
+
+			// Crouching
+			if ( IsCrouching )
 			{
-				characterController.Height = 72f * Player.Height;
-				IsCrouching = false;
+				var duckTrace = Physics.Trace.Ray( Transform.Position, Transform.Position + Vector3.Up * (72f * Player.Height) )
+					.WithoutTags( "trigger" )
+					.Run();
+				if ( duckTrace.Hit ) crouchTimer = 0.25f;
+				if ( !Input.Down( "Crouch" ) && crouchTimer )
+				{
+					characterController.Height = 72f * Player.Height;
+					IsCrouching = false;
+				}
 			}
-		}
-		else if ( Input.Down( "Crouch" ) )
-		{
-			characterController.Height = 72f * Player.Height * 0.5f;
-			crouchTimer = 0f;
-			IsCrouching = true;
+			else if ( Input.Down( "Crouch" ) )
+			{
+				characterController.Height = 72f * Player.Height * 0.5f;
+				crouchTimer = 0f;
+				IsCrouching = true;
+			}
 		}
 
 		// Apply Friction/Acceleration
@@ -101,5 +107,17 @@ public class PlayerMovement : Movement
 		if ( Input.Down( "Run" ) ) WishVelocity *= RunSpeed;
 		else if ( Input.Down( "Walk" ) ) WishVelocity *= WalkSpeed;
 		else WishVelocity *= Speed;
+	}
+
+	public override void Write( ref ByteStream stream )
+	{
+		stream.Write( WishVelocity );
+		stream.Write( IsCrouching );
+	}
+
+	public override void Read( ByteStream stream )
+	{
+		WishVelocity = stream.Read<Vector3>();
+		IsCrouching = stream.Read<bool>();
 	}
 }
