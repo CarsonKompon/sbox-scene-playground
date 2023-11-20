@@ -3,11 +3,11 @@ PlayerInfo
     position: absolute;
     min-width: 400px;
     height: 128px;
-    left: 32px;
-    bottom: 30px;
+    left: 42px;
+    bottom: 16px;
     z-index: -100;
     align-items: center;
-    gap: 12px;
+    gap: 18px;
 
     transition: all 0.2s ease;
 
@@ -44,6 +44,7 @@ PlayerInfo
         height: 128px;
         border-radius: 50%;
         box-shadow: 3px 3px 10px rgba(black, 0.6);
+        flex-shrink: 0;
     }
 
     .canvas
@@ -82,8 +83,8 @@ PlayerInfo
         height: 120px;
         // bottom: 105px;
         // left: -10px;
-        bottom: 112px;
-        left: -42px;
+        bottom: 114px;
+        left: -48px;
     }
 
     &.hidden
