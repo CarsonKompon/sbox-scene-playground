@@ -12,6 +12,7 @@ public class VideoPlayerComponent : BaseComponent
     public DynamicTextureComponent TextureTarget { get; set; }
     [Property, ResourceType( "mp4" )]
     public string VideoPath { get; set; }
+    [Property] public bool PlayOnStart { get; set; } = true;
     [Property]
     public bool Loop
     {
@@ -26,27 +27,27 @@ public class VideoPlayerComponent : BaseComponent
         }
     }
     private bool _loop = false;
-    protected bool IsInitializing { get; set; }
+    protected bool IsInitializing { get; set; } = true;
     public virtual bool VideoLoaded { get; protected set; }
     public virtual bool AudioLoaded { get; protected set; }
     protected VideoPlayer VideoPlayer;
+    protected SoundHandle SoundHandle;
     protected TimeSince VideoLastUpdated { get; set; }
+
+    // OnVideoStart delegate
+    public delegate void OnVideoStartDelegate( VideoPlayer videoPlayer, SoundHandle soundHandle );
+    public OnVideoStartDelegate OnVideoStart { get; set; }
 
     public override void OnStart()
     {
         base.OnStart();
 
-        IsInitializing = true;
-
-        PlayFile( VideoPath );
-        WaitUntilReady();
+        if ( PlayOnStart )
+            Play( VideoPath );
     }
 
     protected virtual void OnTextureData( ReadOnlySpan<byte> span, Vector2 size )
     {
-        if ( !VideoLoaded )
-            Log.Info( $"Video is now loaded: {size.x}x{size.y}" );
-
         TextureTarget.UpdateTextureData( span, size );
         VideoLoaded = true;
         VideoLastUpdated = 0;
@@ -61,7 +62,8 @@ public class VideoPlayerComponent : BaseComponent
         {
             await GameTask.DelaySeconds( Time.Delta );
         }
-        Log.Info( "Finished initializing" );
+
+        OnVideoStart?.Invoke( VideoPlayer, SoundHandle );
         IsInitializing = false;
     }
 
@@ -85,16 +87,20 @@ public class VideoPlayerComponent : BaseComponent
         VideoPlayer = null;
     }
 
-    protected virtual void PlayFile( string filePath )
+    public virtual void Play( string filePath )
     {
+        IsInitializing = true;
+
         VideoPlayer = new VideoPlayer();
         VideoPlayer.OnAudioReady += () =>
         {
-            Log.Info( "Audio loaded." );
+            SoundHandle = VideoPlayer.PlayAudio();
             AudioLoaded = true;
         };
         VideoPlayer.Repeat = Loop;
         VideoPlayer.OnTextureData += OnTextureData;
         VideoPlayer.Play( FileSystem.Mounted, filePath );
+
+        WaitUntilReady();
     }
 }

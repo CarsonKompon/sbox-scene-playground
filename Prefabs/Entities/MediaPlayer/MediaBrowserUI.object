@@ -1,0 +1,26 @@
+{
+  "RootObject": {
+    "Id": "276e6524-ad25-47bd-b8eb-4ac07b005a74",
+    "Name": "Screen UI",
+    "Enabled": true,
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Components": [
+      {
+        "__type": "ScreenPanel",
+        "__enabled": true,
+        "AutoScreenScale": true,
+        "Opacity": 1,
+        "Scale": 1,
+        "ZIndex": 125
+      },
+      {
+        "__type": "MediaBrowser",
+        "__enabled": true
+      }
+    ]
+  },
+  "__references": []
+}

@@ -2025,6 +2025,13 @@
         {
           "__type": "WorldNetworkObject",
           "__enabled": true
+        },
+        {
+          "__type": "MediaPlayer",
+          "__enabled": true,
+          "Interactable": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
+          "MediaPlayerUI": "prefabs/entities/mediaplayer/mediabrowserui.object",
+          "VideoPlayer": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a"
         }
       ],
       "Children": [
@@ -2084,11 +2091,12 @@
               "__type": "VideoPlayerComponent",
               "__enabled": true,
               "Loop": true,
+              "PlayOnStart": true,
               "TextureTarget": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
               "VideoPath": "https://cdn.discordapp.com/attachments/1159407633497870347/1175077119081062410/2023-11-17_07-14-35.mp4?ex=6569ead9\u0026is=655775d9\u0026hm=d6fb1e6e5a900cda041a18c95f4ea86c3f7b3d09edc0b29cd48ee4f3b79ce809\u0026"
             },
             {
-              "__type": "VideoModelComponent",
+              "__type": "ModelScreenComponent",
               "__enabled": true,
               "MaterialName": "Screen",
               "MaxUpdatesPerSecond": 1,

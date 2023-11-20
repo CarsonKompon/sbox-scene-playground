@@ -1,0 +1,172 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@using MediaHelpers;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+@namespace Home.Entities
+
+<root>
+    @if(MediaPlayer is null) return;
+    @if(MediaPlayer.IsPlaying || MediaPlayer.Queue.Count > 0)
+    {
+        <div class="left">
+
+            @if(MediaPlayer.IsPlaying)
+            {
+                <div class="volume">
+                    <i>volume_up</i>
+                    <SliderControl min="0.0" max="1.0" step="0.01" default="0.5" Value:bind="@MediaPlayer.Volume" ></SliderControl>
+                </div>
+
+                <label class="header">Currently Playing:</label>
+                <MediaBrowserEntry Video=@MediaPlayer.CurrentlyPlaying />
+
+                <div class="controls">
+                    <i class="play" onclick=@TogglePause >@GetPlayIcon()</i>
+                    <SliderControl min="0.0" max="@MediaPlayer.CurrentLength" step="0.01" Value:bind="@CurrentTime" ></SliderControl>
+                </div>
+            }
+
+            @if(MediaPlayer.Queue.Count > 0)
+            {
+                <label class="header">Current Queue:</label>
+                <div class="queue">
+                    @foreach(var media in MediaPlayer.Queue)
+                    {
+                        <MediaBrowserEntry Video=@media Browser=@this />
+                    }
+                </div>
+            }
+
+        </div>
+    }
+
+    <div class="right">
+
+        <div class="input">
+            <TextEntry onsubmit=@CheckSite Value:bind=@MediaUrl Tooltip="Media URL" Placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></TextEntry>
+            <button @ref="ButtonSubmit" class="btn" onclick=@PlayMedia >Submit</button>
+        </div>
+
+        <div class="websites">
+            <div class="header">Supported Websites:</div>
+            <div class="website" onclick=@OpenYoutube >Youtube</div>
+            @* <div class="website" onclick=@OpenKick>Kick</div> *@
+        </div>
+
+        <div class="search">
+            <WebPanel @ref="WebPanel"></WebPanel>
+        </div>
+
+    </div>
+
+    <img src="/ui/ui_no.png" class="close" onclick=@GameObject.Destroy />
+
+</root>
+
+@code
+{
+    [Property] public MediaPlayer MediaPlayer {get; set;}
+
+    public Button ButtonSubmit {get; set;}
+    public WebPanel WebPanel {get; set;}
+    public string MediaUrl = "";
+    private string PreviousUrl = "";
+
+    public float CurrentTime
+    {
+        get
+        {
+            if(MediaPlayer == null) return 0.0f;
+            if(!MediaPlayer.IsPlaying) return 0.0f;
+            return MediaPlayer.CurrentTime;
+        }
+        set
+        {
+            if(MediaPlayer == null) return;
+            MediaPlayer.Seek(value);
+        }
+    }
+
+    public override void OnAwake()
+    {
+        WebPanel.Surface.Url = "https://www.youtube.com";
+        PreviousUrl = WebPanel.Surface.Url;
+    }
+
+    public override void Update()
+    {
+        if(MediaPlayer is null)
+        {
+            return;
+        }
+
+        if(WebPanel.Surface.Url != PreviousUrl)
+        {
+            MediaUrl = WebPanel.Surface.Url;
+            PreviousUrl = WebPanel.Surface.Url;
+        }
+
+        UpdateButton();
+    }
+
+    public void OpenYoutube()
+    {
+        MediaUrl = "https://www.youtube.com/";
+        CheckSite();
+    }
+
+    public void OpenKick()
+    {
+        MediaUrl = "https://kick.com/";
+        CheckSite();
+    }
+
+    public void PlayMedia()
+    {
+        if(!ButtonSubmit.HasClass("can-press")) return;
+        MediaPlayer.AddToQueue(MediaUrl);
+        GameObject.Destroy();
+    }
+
+    public void CheckSite()
+    {
+        if(!MediaUrl.StartsWith("https://") && !MediaUrl.StartsWith("http://")) MediaUrl = "https://" + MediaUrl;
+        WebPanel.Surface.Url = MediaUrl;
+        PreviousUrl = MediaUrl;
+    }
+
+    public bool IsButtonValid()
+    {
+        return true;
+        @* if(MediaUrl == null || MediaUrl == "") return false;
+        if(MediaHelper.IsYoutubeUrl(MediaUrl)) return true;
+        if(MediaUrl.EndsWith(".mp4")) return true;
+        if(MediaUrl.EndsWith(".webm")) return true;
+        return false; *@
+    }
+
+    public void UpdateButton()
+    {
+        ButtonSubmit.SetClass("can-press", IsButtonValid());   
+    }
+
+    string GetPlayIcon()
+    {
+        if(MediaPlayer == null) return "";
+        if(MediaPlayer.IsPaused) return "play_arrow";
+        return "pause";
+    }
+
+    void TogglePause()
+    {
+        MediaPlayer.TogglePause();
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(WebPanel?.Surface.Url, IsButtonValid());
+    }
+}

@@ -2,7 +2,7 @@ using Sandbox;
 
 namespace Home;
 
-public class VideoModelComponent : DynamicTextureComponent
+public class ModelScreenComponent : DynamicTextureComponent
 {
     [Property] public ModelComponent Model { get; set; }
     [Property] public string MaterialName { get; set; } = "Screen";
