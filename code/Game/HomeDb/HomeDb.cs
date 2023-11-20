@@ -61,6 +61,26 @@ public static class HomeDb
         }
     }
 
+    public static async void GiveMoney( PlayerData data, long amount )
+    {
+        Dictionary<string, string> headers = new Dictionary<string, string>();
+        //headers.Add( "sboxhash", await GetToken() ); // TODO: Use s&box auth
+        headers.Add( "hash", "anything" );
+        headers.Add( "money", amount.ToString() );
+        try
+        {
+            var response = await Http.RequestAsync( $"{API_URL}/players/{data.SteamId}/money", "POST", null, headers );
+            if ( response.IsSuccessStatusCode )
+            {
+                data.Money += amount;
+            }
+        }
+        catch ( Exception e )
+        {
+            Log.Warning( e.ToString() );
+        }
+    }
+
     public static async Task<string> GetToken()
     {
         if ( TimeSinceTokenRefresh > 1.2f || string.IsNullOrEmpty( SandboxToken ) )

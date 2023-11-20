@@ -7,6 +7,7 @@ using Home.Data;
 partial class HomePlayer
 {
     RealTimeSince playtimeCheck = 0;
+    int playtimeMinutesAccumulated = 0;
 
     public async void Initialize( long steamId )
     {
@@ -37,6 +38,12 @@ partial class HomePlayer
 
     async void UpdatePlaytime()
     {
+        playtimeMinutesAccumulated++;
+        if ( playtimeMinutesAccumulated % 5 == 0 )
+        {
+            HomeDb.GiveMoney( Data, 200 );
+        }
+
         var playtime = await HomeDb.UpdatePlaytime( Data, 1 );
         if ( playtime is not null )
         {
@@ -49,7 +56,7 @@ partial class HomePlayer
         var playtime = await HomeDb.UpdatePlaytime( Data, 0 );
         if ( playtime is not null )
         {
-           // Data.Playtime = playtime;
+            // Data.Playtime = playtime;
         }
     }
 }
