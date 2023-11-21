@@ -161,7 +161,6 @@
       "Id": "4d326de5-b0c5-447f-8cc9-c6b3d0bd93a8",
       "Name": "Player",
       "Position": "-916.683,11.48009,3.360688",
-      "Networked": true,
       "Components": [
         {
           "__type": "CharacterController",
@@ -1703,7 +1702,7 @@
           "__type": "MediaPlayer",
           "__enabled": true,
           "Interactable": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
-          "MediaPlayerUI": "prefabs/entities/mediaplayer/mediabrowserui.object",
+          "MediaPlayerUI": "9b63fdff-44ca-44b0-9e9c-272a2e1836b5",
           "VideoPlayer": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a"
         },
         {
@@ -1762,10 +1761,10 @@
             {
               "__type": "VideoPlayerComponent",
               "__enabled": true,
-              "Loop": true,
-              "PlayOnStart": true,
+              "Loop": false,
+              "PlayOnStart": false,
               "TextureTarget": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
-              "VideoPath": "https://cdn.discordapp.com/attachments/1159407633497870347/1175077119081062410/2023-11-17_07-14-35.mp4?ex=6569ead9\u0026is=655775d9\u0026hm=d6fb1e6e5a900cda041a18c95f4ea86c3f7b3d09edc0b29cd48ee4f3b79ce809\u0026"
+              "VideoPath": ""
             },
             {
               "__type": "ModelScreenComponent",
@@ -1775,8 +1774,34 @@
               "Model": "63c5f5ec-7461-4b5e-9e17-e134dc5af66c"
             }
           ]
+        },
+        {
+          "Id": "9b63fdff-44ca-44b0-9e9c-272a2e1836b5",
+          "Name": "Media Browser",
+          "Position": "0,0,0",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ScreenPanel",
+              "__enabled": true,
+              "AutoScreenScale": true,
+              "Opacity": 1,
+              "Scale": 1,
+              "ZIndex": 200
+            },
+            {
+              "__type": "MediaBrowserComponent",
+              "__enabled": false,
+              "MediaPlayer": "1b41fee2-20c5-4bf7-99b4-f94f7d07df37"
+            }
+          ]
         }
       ]
+    },
+    {
+      "Id": "d0d9950e-469b-4a15-ab3f-d35119d1e837",
+      "Name": "GameObject",
+      "Enabled": true
     }
   ],
   "SceneProperties": {

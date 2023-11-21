@@ -1,24 +1,25 @@
 {
   "RootObject": {
-    "Id": "276e6524-ad25-47bd-b8eb-4ac07b005a74",
-    "Name": "Screen UI",
-    "Enabled": true,
-    "Position": "0,0,0",
-    "Rotation": "0,0,0,1",
-    "Scale": "1,1,1",
-    "Tags": "",
-    "Components": [
+    "Type": "Scene",
+    "GameObjects": [
       {
-        "__type": "ScreenPanel",
-        "__enabled": true,
-        "AutoScreenScale": true,
-        "Opacity": 1,
-        "Scale": 1,
-        "ZIndex": 125
-      },
-      {
-        "__type": "MediaBrowser",
-        "__enabled": true
+        "Id": "b63df6b8-cd60-4821-b5a8-45800ae35f01",
+        "Name": "Object",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "ScreenPanel",
+            "__enabled": true,
+            "AutoScreenScale": true,
+            "Opacity": 1,
+            "Scale": 1,
+            "ZIndex": 140
+          },
+          {
+            "__type": "MediaBrowserComponent",
+            "__enabled": true
+          }
+        ]
       }
     ]
   },

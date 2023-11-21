@@ -3,28 +3,24 @@
 @using Sandbox.UI;
 @using MediaHelpers;
 @attribute [StyleSheet]
-@inherits PanelComponent
+@inherits Panel
 
 @namespace Home.Entities
 
 <root>
-    @if(MediaPlayer is null) return;
     @if(MediaPlayer.IsPlaying || MediaPlayer.Queue.Count > 0)
     {
         <div class="left">
 
-            @* @if(MediaPlayer.IsPlaying)
+            @if(MediaPlayer.IsPlaying)
             {
-                <div class="volume">
+                @* <div class="volume">
+                    <i class="play" onclick=@TogglePause >@GetPlayIcon()</i>
                     <i>volume_up</i>
-                </div>
+                </div> *@
 
                 <label class="header">Currently Playing:</label>
-                <MediaBrowserEntry Video=@MediaPlayer.CurrentlyPlaying />
-
-                <div class="controls">
-                    <i class="play" onclick=@TogglePause >@GetPlayIcon()</i>
-                </div>
+                <MediaBrowserEntry Video=@MediaPlayer.CurrentlyPlaying Browser=@this />
             }
 
             @if(MediaPlayer.Queue.Count > 0)
@@ -36,7 +32,7 @@
                         <MediaBrowserEntry Video=@media Browser=@this />
                     }
                 </div>
-            } *@
+            }
 
         </div>
     }
@@ -60,38 +56,32 @@
 
     </div>
 
-    <img src="/ui/ui_no.png" class="close" onclick=@GameObject.Destroy />
-
+    <img src="/ui/ui_no.png" class="close" onclick=@(() => Component.Enabled = false) />
 </root>
 
 @code
 {
-    [Property] public MediaPlayer MediaPlayer {get; set;}
+    public MediaPlayer MediaPlayer { get; set; }
+    public PanelComponent Component { get; set; }
 
     public Button ButtonSubmit {get; set;}
     public WebPanel WebPanel {get; set;}
-    public string MediaUrl = null;
+    public string MediaUrl = "";
     private string PreviousUrl = "";
 
-    public float Volume {get; set;} = 0.5f;
-
-    public float CurrentTime {get; set;} = 0.0f;
-
-    public void Initialize(MediaPlayer mediaPlayer)
-    {
-        MediaPlayer = mediaPlayer;
-        Volume = MediaPlayer.Volume;
-        CurrentTime = MediaPlayer.CurrentTime;
+    public float Volume {
+        get => MediaPlayer.Volume;
+        set => MediaPlayer.Volume = value;
     }
 
-    public override void Update()
+    public float CurrentTime {
+        get => MediaPlayer.CurrentTime;
+        set => MediaPlayer.Seek(value);
+    }
+
+    protected override void OnAfterTreeRender(bool firstTime)
     {
-        if(MediaPlayer is null) return;
-        if(WebPanel is null) return;
-
-        MediaPlayer.Volume = Volume;
-
-        if(MediaUrl == null)
+        if(firstTime)
         {
             WebPanel.Surface.Url = "https://www.youtube.com";
             PreviousUrl = WebPanel.Surface.Url;
@@ -123,7 +113,7 @@
     {
         if(!ButtonSubmit.HasClass("can-press")) return;
         MediaPlayer.AddToQueue(MediaUrl);
-        GameObject.Destroy();
+        Component.Enabled = false;
     }
 
     public void CheckSite()
@@ -162,6 +152,6 @@
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(WebPanel?.Surface.Url, IsButtonValid());
+        return HashCode.Combine(WebPanel?.Surface.Url, IsButtonValid(), MediaPlayer?.Queue.Count ?? 0);
     }
 }

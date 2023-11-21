@@ -2,6 +2,7 @@ using Home;
 using Home.UI.Arcade;
 using Sandbox;
 using MediaHelpers;
+using System.Diagnostics;
 
 namespace Home.Entities;
 
@@ -13,7 +14,7 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
     // Properties
     [Property] public Interactable Interactable { get; set; }
     [Property] public VideoPlayerComponent VideoPlayer { get; set; }
-    [Property] public GameObject MediaPlayerUI { get; set; }
+    [Property] public PanelComponent MediaPlayerUI { get; set; }
 
     // Variables
     public List<MediaVideo> Queue { get; set; } = new List<MediaVideo>();
@@ -21,8 +22,9 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
     public float CurrentLength { get; set; } = 5;
     public RealTimeSince CurrentTime { get; set; } = 0;
 
-    public bool IsPlaying => CurrentlyPlaying is not null;
-    public bool IsPaused => false; // TODO: Implement
+    public bool IsPlaying = false;
+    public bool IsPaused = false;
+    bool IsLoading = false;
 
     public float Volume
     {
@@ -51,24 +53,46 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
 
     public override void FixedUpdate()
     {
-        if ( GameObject.IsProxy ) return;
-
-        if ( !IsPlaying && Queue.Count > 0 )
+        if ( !IsPlaying && CurrentlyPlaying is not null )
         {
-            PlayNextVideo();
+            LoadCurrentVideo();
+        }
+
+        if ( !GameObject.IsProxy )
+        {
+            if ( !IsPlaying && !IsLoading && Queue.Count > 0 )
+            {
+                CurrentlyPlaying = Queue[0];
+                Queue.RemoveAt( 0 );
+            }
+            else if ( IsPlaying && CurrentTime > CurrentLength )
+            {
+                Stop();
+            }
         }
     }
 
-    [Broadcast]
-    void PlayNextVideo()
+    async void LoadCurrentVideo()
     {
-        CurrentlyPlaying = Queue[0];
-        Queue.RemoveAt( 0 );
+        IsLoading = true;
+
+        string streamUrl = CurrentlyPlaying.Url;
+        if ( MediaHelper.IsYoutubeUrl( streamUrl ) )
+        {
+            YoutubePlayerResponse youtube = await MediaHelper.GetYoutubePlayerResponseFromUrl( streamUrl );
+            CurrentLength = youtube.DurationSeconds + 1f;
+            CurrentTime = 0f;
+            streamUrl = youtube.GetStreamUrl();
+        }
 
         if ( VideoPlayer is not null )
         {
-            VideoPlayer.Play( CurrentlyPlaying.Url );
+            VideoPlayer.Play( streamUrl );
         }
+
+        IsLoading = false;
+
+        IsPlaying = true;
     }
 
     [Broadcast]
@@ -84,16 +108,26 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
         Queue.RemoveAll( x => x.Url == url );
     }
 
+    public void Stop()
+    {
+        IsPlaying = false;
+        CurrentlyPlaying = null;
+        VideoPlayer?.Stop();
+    }
+
     [Broadcast]
     public void Seek( float position )
     {
-        // TODO: Seek to position
+        CurrentTime = position;
+        VideoPlayer.Seek( position );
     }
 
     [Broadcast]
     public void TogglePause()
     {
-        // TODO: Toggle pause
+        if ( CurrentlyPlaying is null ) return;
+        IsPaused = !IsPaused;
+        VideoPlayer.SetPause( IsPaused );
     }
 
     void OnVideoStart( VideoPlayer videoPlayer, SoundHandle soundHandle )
@@ -118,11 +152,17 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
     {
         if ( localUiInstance.IsValid() ) return;
 
-        localUiInstance = SceneUtility.Instantiate( MediaPlayerUI );
-        var mediaBrowser = localUiInstance.GetComponent<MediaBrowser>();
-        if ( mediaBrowser is not null )
+        MediaPlayerUI.Enabled = !MediaPlayerUI.Enabled;
+    }
+
+    public override void Update()
+    {
+        if ( MediaPlayerUI.Enabled && HomePlayer.Local is HomePlayer )
         {
-            mediaBrowser.Initialize( this );
+            if ( HomePlayer.Local.Transform.Position.Distance( Transform.Position ) > 400 )
+            {
+                MediaPlayerUI.Enabled = false;
+            }
         }
     }
 
@@ -138,34 +178,42 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
 
     public void Write( ref ByteStream stream )
     {
-        stream.Write( CurrentLength );
-        stream.Write( CurrentTime );
-        stream.Write<int>( Queue.Count );
+        stream.Write( CurrentlyPlaying?.Url ?? "" );
+
+        List<string> urls = new List<string>();
         foreach ( var video in Queue )
         {
-            video.Write( ref stream );
+            urls.Add( video.Url );
         }
-        stream.Write<bool>( CurrentlyPlaying is not null );
-        CurrentlyPlaying?.Write( ref stream );
+
+        stream.Write( urls.Count );
+        foreach ( var url in urls )
+        {
+            stream.Write( url );
+        }
     }
 
     public void Read( ByteStream stream )
     {
-        CurrentLength = stream.Read<float>();
-        CurrentTime = stream.Read<RealTimeSince>();
-        var queueCount = stream.Read<int>();
+        List<MediaVideo> queue = new List<MediaVideo>();
+
+        string currentUrl = stream.Read<string>();
+        int queueCount = stream.Read<int>();
         for ( int i = 0; i < queueCount; i++ )
         {
-            var video = new MediaVideo();
-            video.Read( stream );
-            Queue.Add( video );
+            string url = stream.Read<string>();
+            queue.Add( MediaVideo.CreateFromUrl( url ) );
         }
 
-        if ( stream.Read<bool>() )
+
+        if ( CurrentlyPlaying.Url != currentUrl )
         {
-            CurrentlyPlaying = new MediaVideo();
-            CurrentlyPlaying.Read( stream );
+            CurrentlyPlaying = MediaVideo.CreateFromUrl( currentUrl );
         }
+
+        Queue.Clear();
+        Queue.AddRange( queue );
+
     }
 
 }

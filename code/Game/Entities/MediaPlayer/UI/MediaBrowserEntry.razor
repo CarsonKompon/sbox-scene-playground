@@ -21,7 +21,7 @@
 
 @code
 {
-    public MediaBrowser Browser { get; set; }
+    public MediaBrowserPanel Browser { get; set; }
 
     public Panel ThumbnailDiv { get; set; }
     public MediaVideo Video { get; set; }
@@ -45,7 +45,8 @@
     {
         base.OnAfterTreeRender(firstTime);
 
-        ThumbnailDiv.Style.BackgroundImage = Video.Thumbnail;
+        if(ThumbnailDiv is not null)
+            ThumbnailDiv.Style.BackgroundImage = Video.Thumbnail;
     }
 }
 

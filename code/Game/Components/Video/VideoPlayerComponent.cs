@@ -30,6 +30,7 @@ public class VideoPlayerComponent : BaseComponent
     protected bool IsInitializing { get; set; } = true;
     public virtual bool VideoLoaded { get; protected set; }
     public virtual bool AudioLoaded { get; protected set; }
+    public bool IsPaused => VideoPlayer?.IsPaused ?? false;
     protected VideoPlayer VideoPlayer;
     protected SoundHandle SoundHandle;
     protected TimeSince VideoLastUpdated { get; set; }
@@ -74,6 +75,20 @@ public class VideoPlayerComponent : BaseComponent
         VideoPlayer?.Present();
     }
 
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        Stop();
+    }
+
+    public override void OnDisabled()
+    {
+        base.OnDisabled();
+
+        Stop();
+    }
+
     public virtual void Stop()
     {
         if ( VideoPlayer == null )
@@ -89,7 +104,10 @@ public class VideoPlayerComponent : BaseComponent
 
     public virtual void Play( string filePath )
     {
+        Stop();
+
         IsInitializing = true;
+        VideoPath = filePath;
 
         VideoPlayer = new VideoPlayer();
         VideoPlayer.OnAudioReady += () =>
@@ -102,5 +120,25 @@ public class VideoPlayerComponent : BaseComponent
         VideoPlayer.Play( FileSystem.Mounted, filePath );
 
         WaitUntilReady();
+    }
+
+    public void TogglePause()
+    {
+        VideoPlayer?.TogglePause();
+    }
+
+    public void SetPause( bool isPaused )
+    {
+        if ( VideoPlayer is null ) return;
+
+        if ( VideoPlayer.IsPaused != isPaused )
+            VideoPlayer.TogglePause();
+    }
+
+    public void Seek( float position )
+    {
+        if ( VideoPlayer is null ) return;
+
+        VideoPlayer.Seek( position );
     }
 }

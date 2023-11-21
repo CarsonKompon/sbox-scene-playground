@@ -1,0 +1,25 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@using MediaHelpers;
+@attribute [StyleSheet]
+@inherits PanelComponent
+
+@namespace Home.Entities
+
+<root>
+    
+    @if(MediaPlayer is null) return;
+    <MediaBrowserPanel MediaPlayer=@MediaPlayer Component=@this />
+
+</root>
+
+@code
+{
+    [Property] public MediaPlayer MediaPlayer {get; set;}    
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(MediaPlayer);
+    }
+}
