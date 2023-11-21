@@ -7,7 +7,7 @@
 
 <root>
 
-    @if(LocalPlayer?.Grabbing is not null)
+    @if((LocalPlayer?.Grabbing ?? Guid.Empty) != Guid.Empty)
     {
         
     }
