@@ -26,7 +26,7 @@ public class Movement : BaseComponent, INetworkBaby
 
 	public override void Update()
 	{
-		if ( !GameObject.IsMine ) return;
+		if ( IsProxy ) return;
 
 		if ( Input.Pressed( "Crouch" ) ) OnCrouch?.Invoke( Player, true );
 		else if ( Input.Released( "Crouch" ) ) OnCrouch?.Invoke( Player, false );

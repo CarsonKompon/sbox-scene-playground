@@ -7,12 +7,15 @@ public sealed class WorldNetworkObject : BaseComponent
 {
 	public override void OnStart()
 	{
-		if ( GameObject.GetComponent<NetworkObject>() is null )
-		{
-			GameObject.AddComponent<NetworkObject>();
-		}
+		// if ( GameObject.GetComponent<NetworkObject>() is null )
+		// {
+		// 	GameObject.AddComponent<NetworkObject>();
+		// }
 
-		NetworkObject.Instantiate( GameObject );
+		// NetworkObject.Instantiate( GameObject );
+		// Destroy();
+
+		GameObject.NetworkSpawn();
 		Destroy();
 	}
 }

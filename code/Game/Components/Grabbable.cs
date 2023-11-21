@@ -15,9 +15,11 @@ public sealed class Grabbable : BaseComponent, INetworkBaby
 
 	public override void Update()
 	{
-		if ( IsGrabbed && Holder == HomePlayer.Local.GameObject.Id )
+		if ( IsProxy ) return;
+
+		var player = HomePlayer.Local;
+		if ( IsGrabbed && player is not null && Holder == player.GameObject.Id )
 		{
-			var player = HomePlayer.Local;
 			if ( !Input.Down( "Action1" ) || Transform.Position.Distance( player.Head.Transform.Position ) > 250f )
 			{
 				StopGrabbing( player );
@@ -27,7 +29,7 @@ public sealed class Grabbable : BaseComponent, INetworkBaby
 
 	public override void FixedUpdate()
 	{
-		if ( GameObject.IsProxy ) return;
+		if ( IsProxy ) return;
 
 		GameObject playerObj = Scene.GetAllObjects( true ).Where( x => x.Id == Holder ).FirstOrDefault();
 

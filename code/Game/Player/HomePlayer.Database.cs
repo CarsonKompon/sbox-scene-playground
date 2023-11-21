@@ -11,7 +11,7 @@ partial class HomePlayer
 
     public async void Initialize( long steamId )
     {
-        if ( !IsController ) return;
+        if ( IsProxy ) return;
 
         if ( Data is null )
         {

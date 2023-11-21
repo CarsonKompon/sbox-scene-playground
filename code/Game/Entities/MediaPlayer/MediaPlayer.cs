@@ -101,6 +101,8 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
         mySoundHandle = soundHandle;
         myVideoPlayer = videoPlayer;
 
+        if ( CurrentlyPlaying is null ) return; // TODO: Make sure this isn't a problem
+
         if ( CurrentlyPlaying.YoutubePlayer is not null )
         {
             CurrentLength = CurrentlyPlaying.YoutubePlayer.DurationSeconds;
@@ -120,7 +122,7 @@ public sealed class MediaPlayer : BaseComponent, INetworkBaby
         var mediaBrowser = localUiInstance.GetComponent<MediaBrowser>();
         if ( mediaBrowser is not null )
         {
-            mediaBrowser.MediaPlayer = this;
+            mediaBrowser.Initialize( this );
         }
     }
 

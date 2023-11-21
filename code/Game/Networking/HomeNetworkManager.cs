@@ -21,19 +21,19 @@ public sealed class HomeNetworkManager : BaseComponent
         var myPlayerObject = SceneUtility.Instantiate( PlayerPrefab, SpawnPoint.Transform.World );
         myPlayerObject.Enabled = true;
 
-        var homePlayer = myPlayerObject.GetComponent<HomePlayer>( false, true );
-        if ( homePlayer is not null )
-        {
-            homePlayer.Initialize( Game.SteamId );
-        }
-
         var nametag = myPlayerObject.GetComponent<HomeNametagPanel>( false, true );
         if ( nametag is not null )
         {
             nametag.Name = Game.UserName;
         }
 
-        NetworkObject.Instantiate( myPlayerObject );
+        myPlayerObject.NetworkSpawn();
+
+        var homePlayer = myPlayerObject.GetComponent<HomePlayer>( false, true );
+        if ( homePlayer is not null )
+        {
+            homePlayer.Initialize( Game.SteamId );
+        }
     }
 
     public override void Update()

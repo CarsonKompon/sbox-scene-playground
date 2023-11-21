@@ -21,7 +21,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	{
 		get
 		{
-			var player = GameManager.ActiveScene.GetComponents<HomePlayer>( true, true ).Where( x => x.GameObject.Enabled && x.GameObject.IsMine && x.Data?.SteamId == Game.SteamId ).FirstOrDefault();
+			var player = GameManager.ActiveScene.GetComponents<HomePlayer>( true, true ).Where( x => x.GameObject.Enabled && !x.GameObject.IsProxy && x.Data?.SteamId == Game.SteamId ).FirstOrDefault();
 			if ( (player?.Data?.SteamId ?? 0) == Game.SteamId )
 			{
 				return player;
@@ -70,8 +70,6 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	}
 	CameraComponent _localCamera = null;
 
-	public bool IsController => GameObject.IsNetworked == false || GameObject.IsMine;
-
 	private float CameraZoom = 0f;
 
 	CharacterController characterController;
@@ -82,7 +80,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 	{
 		if ( !GameObject.Enabled ) return;
 
-		if ( IsController )
+		if ( !IsProxy )
 		{
 			// Check for network updates (TODO: Make sure to only run this locally)
 			CheckForDbUpdates();
@@ -176,7 +174,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkBaby
 		// Hide playermodel if in first person
 		var modelRenderer = Body.GetComponent<AnimatedModelComponent>( false );
 		if ( modelRenderer is not null )
-			modelRenderer.Enabled = IsController ? (!IsFirstPerson) : true;
+			modelRenderer.Enabled = (!IsProxy) ? (!IsFirstPerson) : true;
 	}
 
 	[Broadcast]

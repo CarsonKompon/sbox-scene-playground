@@ -13,11 +13,10 @@
     {
         <div class="left">
 
-            @if(MediaPlayer.IsPlaying)
+            @* @if(MediaPlayer.IsPlaying)
             {
                 <div class="volume">
                     <i>volume_up</i>
-                    <SliderControl min="0.0" max="1.0" step="0.01" default="0.5" Value:bind="@MediaPlayer.Volume" ></SliderControl>
                 </div>
 
                 <label class="header">Currently Playing:</label>
@@ -25,7 +24,6 @@
 
                 <div class="controls">
                     <i class="play" onclick=@TogglePause >@GetPlayIcon()</i>
-                    <SliderControl min="0.0" max="@MediaPlayer.CurrentLength" step="0.01" Value:bind="@CurrentTime" ></SliderControl>
                 </div>
             }
 
@@ -38,7 +36,7 @@
                         <MediaBrowserEntry Video=@media Browser=@this />
                     }
                 </div>
-            }
+            } *@
 
         </div>
     }
@@ -72,35 +70,32 @@
 
     public Button ButtonSubmit {get; set;}
     public WebPanel WebPanel {get; set;}
-    public string MediaUrl = "";
+    public string MediaUrl = null;
     private string PreviousUrl = "";
 
-    public float CurrentTime
-    {
-        get
-        {
-            if(MediaPlayer == null) return 0.0f;
-            if(!MediaPlayer.IsPlaying) return 0.0f;
-            return MediaPlayer.CurrentTime;
-        }
-        set
-        {
-            if(MediaPlayer == null) return;
-            MediaPlayer.Seek(value);
-        }
-    }
+    public float Volume {get; set;} = 0.5f;
 
-    public override void OnAwake()
+    public float CurrentTime {get; set;} = 0.0f;
+
+    public void Initialize(MediaPlayer mediaPlayer)
     {
-        WebPanel.Surface.Url = "https://www.youtube.com";
-        PreviousUrl = WebPanel.Surface.Url;
+        MediaPlayer = mediaPlayer;
+        Volume = MediaPlayer.Volume;
+        CurrentTime = MediaPlayer.CurrentTime;
     }
 
     public override void Update()
     {
-        if(MediaPlayer is null)
+        if(MediaPlayer is null) return;
+        if(WebPanel is null) return;
+
+        MediaPlayer.Volume = Volume;
+
+        if(MediaUrl == null)
         {
-            return;
+            WebPanel.Surface.Url = "https://www.youtube.com";
+            PreviousUrl = WebPanel.Surface.Url;
+            MediaUrl = WebPanel.Surface.Url;
         }
 
         if(WebPanel.Surface.Url != PreviousUrl)

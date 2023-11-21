@@ -26,7 +26,7 @@ public class PlayerMovement : Movement
 
 	public override void Update()
 	{
-		if ( !GameObject.IsMine ) return;
+		if ( IsProxy ) return;
 
 		// Jumping
 		if ( characterController.IsOnGround && Input.Pressed( "Jump" ) )
@@ -40,7 +40,7 @@ public class PlayerMovement : Movement
 	{
 		if ( characterController is null ) return;
 
-		if ( GameObject.IsMine )
+		if ( !IsProxy )
 		{
 			BuildWishVelocity();
 
