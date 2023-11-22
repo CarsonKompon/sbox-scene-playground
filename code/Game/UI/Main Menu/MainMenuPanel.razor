@@ -27,7 +27,7 @@
 			<div class="bottom">
 				<div class="stats">
 					<p class="stat">Started Playing: @(HomeUtils.UnixTimeStampToDateTime(HomeDb.LocalPlayerData.Playtime?.StartedPlaying ?? 0).ToString("MM-dd-yyyy"))</p>
-					<p class="stat">Hours Played: @((HomeDb.LocalPlayerData.Playtime?.MinutesPlayed ?? 0))</p>
+					<p class="stat">Hours Played: @((HomeDb.LocalPlayerData.Playtime?.MinutesPlayed ?? 0) / 60)</p>
 				</div>
 			</div>
 		</div>
@@ -42,6 +42,7 @@
 		DefaultUrl = "/";
 
 		AddDestination("/", typeof(MainMenuFrontPage));
+		AddDestination("/customize", typeof(MainMenuCustomizePage));
 	}
 
 	protected override int BuildHash() => System.HashCode.Combine( HomeDb.LocalPlayerData );

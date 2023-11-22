@@ -1,0 +1,116 @@
+{
+  "RootObject": {
+    "Type": "Scene",
+    "GameObjects": [
+      {
+        "Id": "355f78af-aa79-4e22-893f-9cdbeefc875d",
+        "Name": "Floor",
+        "Position": "-100.7925,-28.13037,0",
+        "Scale": "2.297184,2.297184,2.297184",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "ModelComponent",
+            "__enabled": true,
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/generic/concrete_simple.vmat",
+            "Model": "models/dev/plane.vmdl",
+            "ShouldCastShadows": true,
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "Id": "d63b0872-9f6d-4bfb-b89e-e103e5fccc29",
+        "Name": "Wall",
+        "Position": "-205.5703,0,0",
+        "Rotation": "-0.00000004138946,0.6947207,0.00000000001790568,0.7192795",
+        "Scale": "2.948662,2.948662,2.948662",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "ModelComponent",
+            "__enabled": true,
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/generic/wall_brick_new.vmat",
+            "Model": "models/dev/plane.vmdl",
+            "ShouldCastShadows": true,
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "Id": "94eb7a1b-a7e9-45b6-bf2d-f9ef0970aa38",
+        "Name": "Citizen",
+        "Position": "-177.0766,8.969276,0.000009076988",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "AnimatedModelComponent",
+            "__enabled": true,
+            "BodyGroups": 18446744073709551615,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/citizen/citizen.vmdl",
+            "ShouldCastShadows": true,
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "Id": "f9ec01a3-ec88-48bc-8807-cb3fb7217a37",
+        "Name": "Camera",
+        "Position": "-56.42696,-36.47173,46.52206",
+        "Rotation": "-0.03769096,0.0001477416,0.9992818,0.003917001",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "CameraComponent",
+            "__enabled": true,
+            "BackgroundColor": "0.33333,0.46275,0.52157,1",
+            "ClearFlags": "All",
+            "FieldOfView": 70.05,
+            "Orthographic": false,
+            "OrthographicHeight": 1204,
+            "TargetEye": "None",
+            "ZFar": 10000,
+            "ZNear": 10
+          }
+        ]
+      },
+      {
+        "Id": "8ba0c83e-d305-4aa8-90ab-ea21617e5c43",
+        "Name": "Point Light",
+        "Position": "-11.56585,53.38152,122.7416",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "PointLightComponent",
+            "__enabled": true,
+            "LightColor": "0.91373,0.98039,1,1",
+            "Radius": 400
+          }
+        ]
+      },
+      {
+        "Id": "7ecdfbfe-ea49-4e18-9491-83968c19aa21",
+        "Name": "Point Light",
+        "Position": "-185.0806,-8.707455,17.14802",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "PointLightComponent",
+            "__enabled": true,
+            "LightColor": "0.44603,0.63691,0.69307,1",
+            "Radius": 400
+          }
+        ]
+      }
+    ]
+  },
+  "__references": [
+    "facepunch.concrete_simple",
+    "facepunch.wall_brick_new"
+  ]
+}

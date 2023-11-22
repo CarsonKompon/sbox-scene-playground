@@ -1,0 +1,41 @@
+@using Home;
+@using Sandbox.UI;
+@using System.Text.Json;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace Home.UI.MainMenu
+
+<root>
+
+    <div class="left">
+
+    </div>
+
+</root>
+
+@code
+{
+    GameObject editor;
+	
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        base.OnAfterTreeRender(firstTime);
+        
+        if(firstTime)
+        {
+            var menuObj = GameManager.ActiveScene.GetAllObjects(false).FirstOrDefault(x => x.GetComponent<HomeMainMenuComponent>(false) != null);
+            var menuScript = menuObj.GetComponent<HomeMainMenuComponent>(false);
+            editor = SceneUtility.Instantiate(menuScript.CustomizationEditor, new Transform(Vector3.Up * 10000));
+        }
+    }
+
+    public override void OnDeleted()
+    {
+        editor?.Destroy();
+
+        base.OnDeleted();
+    }
+
+	// protected override int BuildHash() => 
+}
