@@ -1,0 +1,48 @@
+@using Home;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Sandbox.UI.NavHostPanel
+
+@namespace Home.UI.MainMenu
+
+<root>
+
+    <div class="navigator-canvas" slot="navigator-canvas"></div>
+
+	@if(HomeDb.LocalPlayerData is not null)
+	{
+		<div class="player-info">
+			<div class="top">
+				@if(HomeDb.LocalPlayerData.SteamId != null)
+				{
+					<img src="@($"avatar:{HomeDb.LocalPlayerData.SteamId}")" class="avatar" />
+				}
+				<div class="info">
+					<p class="name">@(HomeDb.LocalPlayerData.Name)</p>
+					<p class="money">@(HomeUtils.FormatMoney(HomeDb.LocalPlayerData.Money))</p>
+				</div>
+			</div>
+			<div class="divider" />
+			<div class="bottom">
+				<div class="stats">
+					<p class="stat">Started Playing: @(HomeUtils.UnixTimeStampToDateTime(HomeDb.LocalPlayerData.Playtime?.StartedPlaying ?? 0).ToString("MM-dd-yyyy"))</p>
+					<p class="stat">Hours Played: @((HomeDb.LocalPlayerData.Playtime?.MinutesPlayed ?? 0))</p>
+				</div>
+			</div>
+		</div>
+	}
+
+</root>
+
+@code
+{
+	public MainMenuPanel()
+	{
+		DefaultUrl = "/";
+
+		AddDestination("/", typeof(MainMenuFrontPage));
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( HomeDb.LocalPlayerData );
+}

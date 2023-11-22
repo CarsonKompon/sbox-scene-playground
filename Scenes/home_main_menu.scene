@@ -1,0 +1,103 @@
+{
+  "GameObjects": [
+    {
+      "Id": "f09aa7fc-32a7-47ac-bb16-4ca3b84ed8eb",
+      "Name": "Directional Light",
+      "Rotation": "0.4351622,0.4351622,-0.5573454,0.5573453",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "DirectionalLightComponent",
+          "__enabled": true,
+          "LightColor": "0.91373,0.98039,1,1",
+          "Shadows": true,
+          "SkyColor": "0.05882,0.07451,0.08235,1"
+        }
+      ]
+    },
+    {
+      "Id": "11aa49d9-bd2e-49c7-8b30-76437433a6cc",
+      "Name": "SkyBox",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "SkyBox2D",
+          "__enabled": true,
+          "SkyMaterial": "materials/skybox/light_test_sky_sunny02.vmat",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "6a7dc268-2109-4dc3-8b66-e914d69e27d9",
+      "Name": "Staycation Strip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "MapComponent",
+          "__enabled": true,
+          "MapName": "carsonk.home_staycation_strip"
+        }
+      ]
+    },
+    {
+      "Id": "56a7d8a0-6f83-4b11-b011-54c72ea0d7df",
+      "Name": "Camera",
+      "Position": "-540.3738,220.6978,395.7856",
+      "Rotation": "0.01302304,0.09863579,-0.1302462,0.9864772",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__enabled": true,
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "TargetEye": "None",
+          "ZFar": 10000,
+          "ZNear": 10
+        },
+        {
+          "__type": "DepthOfField",
+          "__enabled": true,
+          "BackBlur": true,
+          "BlurSize": 62.36,
+          "FocalDistance": 112.07,
+          "FrontBlur": false
+        }
+      ]
+    },
+    {
+      "Id": "d129853d-7b1a-46e7-905c-20d1426dcf9f",
+      "Name": "Screen UI",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 91
+        },
+        {
+          "__type": "HomeMainMenuComponent",
+          "__enabled": true,
+          "CanToggle": false
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "TimeScale": 1,
+    "ThreadedAnimation": true,
+    "UseFixedUpdate": true
+  },
+  "Title": "home_main_menu",
+  "Description": "",
+  "__references": []
+}

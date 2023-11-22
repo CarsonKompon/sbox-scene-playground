@@ -150,8 +150,9 @@
               "ZIndex": 500
             },
             {
-              "__type": "HomePauseMenu",
-              "__enabled": true
+              "__type": "HomeMainMenuComponent",
+              "__enabled": true,
+              "CanToggle": true
             }
           ]
         }
@@ -1043,7 +1044,8 @@
           "Static": true,
           "Surface": null
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "Id": "c59e72e1-3372-48e2-8283-f5cdec6ada25",

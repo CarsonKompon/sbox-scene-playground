@@ -14,11 +14,24 @@ public static class HomeDb
     private static string SandboxToken = "";
     private static TimeSince TimeSinceTokenRefresh = 2f;
 
+    public static PlayerData LocalPlayerData = null;
+
+    public static async Task<PlayerData> FetchLocalPlayerData()
+    {
+        if ( LocalPlayerData is null )
+        {
+            LocalPlayerData = await FetchPlayerData( Game.SteamId );
+        }
+        return LocalPlayerData;
+    }
+
     public static async Task<PlayerData> FetchPlayerData( long steamId )
     {
         try
         {
-            return await Http.RequestJsonAsync<PlayerData>( $"{API_URL}/players/{steamId}" );
+            var data = await Http.RequestJsonAsync<PlayerData>( $"{API_URL}/players/{steamId}" );
+            Log.Info( data );
+            return data;
         }
         catch ( Exception e )
         {

@@ -1,0 +1,46 @@
+@using Home;
+@using Home.UI.MainMenu;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [Title( "Home Main Menu" )]
+@attribute [Category( "Home - UI" )]
+@attribute [Icon( "pause", "red", "white" )]
+@inherits PanelComponent
+
+@namespace Home.UI
+
+<root>
+
+   <MainMenuPanel />
+
+</root>
+
+@code
+{
+	[Property] bool CanToggle { get; set; } = false;
+
+	public bool IsOpen = false;
+
+
+	public override void OnStart()
+	{
+		base.OnStart();
+		HomeDb.FetchLocalPlayerData();
+	}
+
+	public override void Update()
+	{
+		if(!CanToggle)
+		{
+			IsOpen = true;
+		}
+		else if(Input.EscapePressed)
+		{
+			IsOpen = !IsOpen;
+		}
+
+		SetClass("hidden", !IsOpen);
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( IsOpen );
+}

@@ -1,0 +1,39 @@
+@using Home;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace Home.UI.MainMenu
+
+<root>
+
+    <div class="left">
+        <div class="logo">
+            <img src="ui/ui_roof.png" class="roof" />
+            <p class="title">Home</p>
+            <p class="subtitle">by Carson Kompon</p>
+        </div>
+
+        <div class="menu-options">
+
+            <a class="button" href="/plazas"><i>apartment</i>Plaza</a>
+            <a class="button" href="/room"><i>door_front</i>Room</a>
+            <div class="divider" />
+            <a class="button" href="/customize"><i>person</i>Customization</a>
+            <a class="button" href="/settings"><i>settings</i>Options</a>
+            <div class=button onpress=@Quit ><i>logout</i>Quit</div>
+
+        </div>
+    </div>
+
+</root>
+
+@code
+{
+	void Quit()
+	{
+		// TODO: Make leave the server or quit game depending on context
+	}
+	// protected override int BuildHash() => 
+}
