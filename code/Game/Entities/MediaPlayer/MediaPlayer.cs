@@ -9,7 +9,7 @@ namespace Home.Entities;
 [Title( "Home Media Player" )]
 [Category( "Home - Entities" )]
 [Icon( "ondemand_video", "red", "white" )]
-public sealed class MediaPlayer : BaseComponent, INetworkBaby
+public sealed class MediaPlayer : BaseComponent, INetworkSerializable
 {
     // Properties
     [Property] public Interactable Interactable { get; set; }

@@ -27,7 +27,7 @@ public sealed class HomeNetworkManager : BaseComponent
             nametag.Name = Game.UserName;
         }
 
-        myPlayerObject.NetworkSpawn();
+        myPlayerObject.Network.Spawn();
 
         var homePlayer = myPlayerObject.GetComponent<HomePlayer>( false, true );
         if ( homePlayer is not null )

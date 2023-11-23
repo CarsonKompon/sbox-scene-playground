@@ -5,7 +5,7 @@ namespace Home;
 [Title( "Base Movement" )]
 [Category( "Home - Movements" )]
 [Icon( "directions_walk", "red", "white" )]
-public class Movement : BaseComponent, INetworkBaby
+public class Movement : BaseComponent, INetworkSerializable
 {
 
 	// References

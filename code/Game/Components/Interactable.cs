@@ -7,7 +7,7 @@ namespace Home;
 [Title( "Interactable" )]
 [Category( "Home" )]
 [Icon( "touch_app", "red", "white" )]
-public sealed class Interactable : BaseComponent, INetworkBaby
+public sealed class Interactable : BaseComponent, INetworkSerializable
 {
 	[Property] public GameObject InteractPrompt { get; set; }
 	[Property] public string InteractPromptText { get; set; } = "Interact";

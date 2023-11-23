@@ -6,7 +6,7 @@ namespace Home;
 [Title( "Grabbable" )]
 [Category( "Home" )]
 [Icon( "pan_tool", "red", "white" )]
-public sealed class Grabbable : BaseComponent, INetworkBaby
+public sealed class Grabbable : BaseComponent, INetworkSerializable
 {
 	public Guid Holder = Guid.Empty;
 	public bool IsGrabbed => Holder != Guid.Empty;

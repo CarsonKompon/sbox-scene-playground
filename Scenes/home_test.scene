@@ -57,6 +57,8 @@
           "FieldOfView": 90,
           "Orthographic": false,
           "OrthographicHeight": 1204,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
           "TargetEye": "None",
           "ZFar": 10000,
           "ZNear": 1
@@ -244,6 +246,8 @@
                   "FieldOfView": 60,
                   "Orthographic": true,
                   "OrthographicHeight": 38.70095,
+                  "RenderExcludeTags": "",
+                  "RenderTags": "",
                   "TargetEye": "None",
                   "ZFar": 70,
                   "ZNear": 10
@@ -1044,8 +1048,7 @@
           "Static": true,
           "Surface": null
         }
-      ],
-      "Children": []
+      ]
     },
     {
       "Id": "c59e72e1-3372-48e2-8283-f5cdec6ada25",
@@ -1080,10 +1083,6 @@
         },
         {
           "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
@@ -1122,10 +1121,6 @@
         {
           "__type": "Grabbable",
           "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ]
     },
@@ -1162,10 +1157,6 @@
         },
         {
           "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
@@ -1204,10 +1195,6 @@
         {
           "__type": "Grabbable",
           "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ]
     },
@@ -1244,10 +1231,6 @@
         },
         {
           "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
@@ -1286,10 +1269,6 @@
         {
           "__type": "Grabbable",
           "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ]
     },
@@ -1326,10 +1305,6 @@
         },
         {
           "__type": "Grabbable",
-          "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
           "__enabled": true
         }
       ]
@@ -1368,10 +1343,6 @@
         {
           "__type": "Grabbable",
           "__enabled": true
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ]
     },
@@ -1404,10 +1375,6 @@
           "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
           "Interactable": "8dabb3bf-a148-489d-a32f-3e45b62241cf",
           "Seat": "3a4edad6-d6e6-4d01-99dc-3efc07c9f6f7"
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ],
       "Children": [
@@ -1473,10 +1440,6 @@
           "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
           "Interactable": "cc1794b6-0ead-4030-a6b9-5e511c74b3e1",
           "Seat": "ae638c81-9b17-4599-9931-a12afc1cb4c0"
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ],
       "Children": [
@@ -1542,10 +1505,6 @@
           "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
           "Interactable": "2c91018d-c178-4110-bc4a-e7f627ed2c6e",
           "Seat": "668b3712-98cf-4691-ad74-0990991709d9"
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ],
       "Children": [
@@ -1611,10 +1570,6 @@
           "ArcadeUI": "prefabs/arcade/ui/carsonswebarcadeui.object",
           "Interactable": "2e4c5e83-f2c9-409b-abcc-89965a069bdc",
           "Seat": "8b414ae9-396d-4d7c-a590-3c292919dfe1"
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ],
       "Children": [
@@ -1706,10 +1661,6 @@
           "Interactable": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a",
           "MediaPlayerUI": "9b63fdff-44ca-44b0-9e9c-272a2e1836b5",
           "VideoPlayer": "ab438112-adac-4145-b2f6-b0b6ac1b5d2a"
-        },
-        {
-          "__type": "WorldNetworkObject",
-          "__enabled": true
         }
       ],
       "Children": [
@@ -1807,7 +1758,9 @@
     }
   ],
   "SceneProperties": {
+    "NetworkFrequency": 60,
     "FixedUpdateFrequency": 50,
+    "Lerping": true,
     "MaxFixedUpdates": 5,
     "TimeScale": 1,
     "ThreadedAnimation": true,

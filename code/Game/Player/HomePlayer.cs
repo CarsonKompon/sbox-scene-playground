@@ -9,7 +9,7 @@ namespace Home;
 [Title( "Home Player" )]
 [Category( "Home" )]
 [Icon( "house", "red", "white" )]
-public sealed partial class HomePlayer : BaseComponent, INetworkBaby
+public sealed partial class HomePlayer : BaseComponent, INetworkSerializable
 {
 	// References
 	[Property] public GameObject Body { get; set; }

@@ -21,10 +21,10 @@
 
     public override void OnStart()
     {
-        if(GameObject.IsNetworkOwner)
+        @* if(GameObject.IsNetworkOwner)
         {
             GameObject.Enabled = false;
-        }
+        } *@
     }
 
     protected override int BuildHash() => System.HashCode.Combine(Name);
