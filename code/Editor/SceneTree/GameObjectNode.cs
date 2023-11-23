@@ -39,6 +39,10 @@ public partial class GameObjectNode : TreeNode<GameObject>
 			hc.Add( Value.Name );
 			hc.Add( Value.IsPrefabInstance );
 			hc.Add( Value.Flags );
+			hc.Add( Value.Networked );
+			hc.Add( Value.Network.IsOwner );
+			hc.Add( Value.IsProxy );
+			hc.Add( Value.Active );
 
 			foreach ( var val in Value.Children )
 			{
@@ -93,7 +97,7 @@ public partial class GameObjectNode : TreeNode<GameObject>
 			icon = "rss_feed";
 			iconColor = Theme.Blue.WithAlpha( 0.8f );
 
-			if ( Value.IsNetworkOwner )
+			if ( Value.Network.IsOwner )
 			{
 				iconColor = Theme.Green.WithAlpha( 0.8f );
 			}

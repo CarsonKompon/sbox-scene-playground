@@ -7,24 +7,24 @@ using System.Text.Json.Nodes;
 
 public abstract partial class BaseComponent
 {
-	public bool IsProxy => GameObject.IsProxy;
+	public GameObject.NetworkAccessor Network => GameObject.Network;
 
-	public bool rpcFromNetwork;
+	public bool IsProxy => GameObject.IsProxy;
 
 	public void __rpc_Broadcast( Action resume, string methodName, params object[] argumentList )
 	{
-		if ( !rpcFromNetwork && GameObject.IsNetworked && SceneNetworkSystem.Instance is not null )
+		if ( !Rpc.Calling && Network.Active && SceneNetworkSystem.Instance is not null )
 		{
 			var msg = new ObjectMessageMsg();
 			msg.Guid = GameObject.Id;
 			msg.Component = GetType().Name;
 			msg.MessageName = methodName;
-			msg.ArgumentData = SceneNetworkSystem.Instance.Packer.Serialize( argumentList );
+			msg.ArgumentData = TypeLibrary.ToBytes( argumentList );
 
 			SceneNetworkSystem.Instance.Broadcast( msg );
 		}
 
-		rpcFromNetwork = false;
+		Rpc.PreCall();
 
 		// we want to call this
 		resume();

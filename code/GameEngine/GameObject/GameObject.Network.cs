@@ -5,22 +5,7 @@ public partial class GameObject
 {
 	internal NetworkObject Net { get; private set; }
 
-	public bool IsNetworkOwner => Net?.IsOwner ?? false;
-
-	public bool IsProxy
-	{
-		get
-		{
-			if ( Net is not null )
-			{
-				return Net.IsProxy;
-			}
-
-			return Parent?.IsProxy ?? false;
-		}
-	}
-
-	public bool IsNetworked => Net is not null;
+	public bool IsProxy => Network.IsProxy;
 
 	public float LastTx { get; set; }
 	public float LastRcv { get; set; }
@@ -40,6 +25,7 @@ public partial class GameObject
 
 			return Net is not null;
 		}
+
 		set
 		{
 			if ( Scene is null ) return;
@@ -53,17 +39,6 @@ public partial class GameObject
 			if ( value ) StartNetworking();
 			else EndNetworking();
 		}
-	}
-
-	/// <summary>
-	/// Create this GameObject on the network. If you have permission to create an object then this
-	/// object will be synced to all other clients.
-	/// </summary>
-	public void NetworkSpawn()
-	{
-		if ( Net is not null ) return;
-
-		Net = new NetworkObject( this, true );
 	}
 
 	/// <summary>
@@ -99,9 +74,7 @@ public partial class GameObject
 		var update = CreateNetworkUpdate();
 
 		SceneNetworkSystem.Instance.Broadcast( update );
-
 		LastTx = RealTime.Now;
-
 	}
 
 
@@ -112,11 +85,11 @@ public partial class GameObject
 		update.Transform = Transform.Local;
 		update.Parent = Parent.Id;
 
-		ByteStream data = ByteStream.Create( 32 );
+		using ByteStream data = ByteStream.Create( 32 );
 
 		foreach ( var c in Components )
 		{
-			if ( c is INetworkBaby net )
+			if ( c is INetworkSerializable net )
 			{
 				ByteStream dataStream = ByteStream.Create( 32 );
 				net.Write( ref dataStream );
@@ -127,6 +100,8 @@ public partial class GameObject
 					data.Write( dataStream.Length ); // Ident of this component somehow
 					data.Write( dataStream );
 				}
+
+				dataStream.Dispose();
 			}
 		}
 
@@ -140,14 +115,14 @@ public partial class GameObject
 		float netRate = Scene.NetworkRate;
 		LastRcv = RealTime.Now;
 
-		Transform.FromNetwork( update.Transform, netRate );
+		Transform.FromNetwork( update.Transform, netRate * 2.0f );
 
 		if ( string.IsNullOrWhiteSpace( update.Data ) )
 			return;
 
 		var data = Convert.FromBase64String( update.Data );
 
-		ByteStream reader = ByteStream.CreateReader( data );
+		using ByteStream reader = ByteStream.CreateReader( data );
 
 		while ( reader.ReadRemaining > 2 )
 		{
@@ -157,7 +132,7 @@ public partial class GameObject
 
 			foreach ( var c in Components )
 			{
-				if ( c is not INetworkBaby net )
+				if ( c is not INetworkSerializable net )
 					continue;
 
 				if ( c.GetType().Name != t )
@@ -168,10 +143,154 @@ public partial class GameObject
 		}
 
 	}
-}
 
-interface INetworkBaby
-{
-	void Write( ref ByteStream stream );
-	void Read( ByteStream stream );
+	/// <summary>
+	/// Stop being the network owner
+	/// </summary>
+	[Broadcast]
+	void Msg_DropOwnership()
+	{
+		if ( Net is null ) return;
+
+		// TODO - check if we're allowed to do this
+		// TODO - rules around this stuff
+
+		if ( Net.Owner != Rpc.CallerId )
+			return;
+
+		Net.Owner = Guid.Empty;
+	}
+
+
+	[Broadcast]
+	void Msg_TakeOwnership()
+	{
+		// TODO - check if we're allowed to do this
+		// TODO - rules around this stuff
+
+		Net.Owner = Rpc.CallerId;
+	}
+
+
+	public void __rpc_Broadcast( Action resume, string methodName, params object[] argumentList )
+	{
+		if ( !Rpc.Calling && Network.Active && SceneNetworkSystem.Instance is not null )
+		{
+			var msg = new ObjectMessageMsg();
+			msg.Guid = Id;
+			msg.Component = null;
+			msg.MessageName = methodName;
+			msg.ArgumentData = TypeLibrary.ToBytes( argumentList );
+
+			SceneNetworkSystem.Instance.Broadcast( msg );
+		}
+
+		Rpc.PreCall();
+
+		// we want to call this
+		resume();
+	}
+
+	GameObject FindNetworkRoot()
+	{
+		if ( Net is not null ) return this;
+		if ( Parent is null || Parent is Scene ) return null;
+
+		return Parent.FindNetworkRoot();
+	}
+
+	/// <summary>
+	/// Access network information for this GameObject
+	/// </summary>
+	public NetworkAccessor Network
+	{
+		get
+		{
+			// Find networking, even if it's in a parent
+			if ( FindNetworkRoot() is GameObject networkRoot ) return new NetworkAccessor( networkRoot );
+
+			// no networking, return for this, so Spawn etc can be called
+			return new NetworkAccessor( this );
+		}
+	}
+
+	public readonly ref struct NetworkAccessor
+	{
+		readonly GameObject go;
+
+		public NetworkAccessor( GameObject o )
+		{
+			go = o;
+		}
+
+		/// <summary>
+		/// Is this object networked
+		/// </summary>
+		public readonly bool Active => go.Net is not null;
+
+		/// <summary>
+		/// Are we the creator of this network object
+		/// </summary>
+		public readonly bool IsOwner => OwnerId == GameNetworkSystem.Local.Id;
+
+		/// <summary>
+		/// The Id of the owner of this object
+		/// </summary>
+		public readonly Guid OwnerId => go.Net?.Owner ?? Guid.Empty;
+
+		/// <summary>
+		/// Are we the creator of this network object
+		/// </summary>
+		public readonly bool IsCreator => CreatorId == GameNetworkSystem.Local.Id;
+
+		/// <summary>
+		/// The Id of the create of this object
+		/// </summary>
+		public readonly Guid CreatorId => go.Net?.Creator ?? Guid.Empty;
+
+		/// <summary>
+		/// Is this object a network proxy. A network proxy is a network object that is not being simulated on the local pc.
+		/// This means it's either owned by no-one and is being simulated by the host, or owned by another client.
+		/// </summary>
+		public readonly bool IsProxy => go.Net?.IsProxy ?? false;
+
+		/// <summary>
+		/// Become the network owner of this object.
+		/// </summary>
+		public readonly bool TakeOwnership()
+		{
+			if ( !Active ) return false;
+
+			if ( IsOwner ) return false;
+
+			go.Msg_TakeOwnership();
+			return true;
+		}
+
+		/// <summary>
+		/// Stop being the owner of this object. Will clear the owner so the object becomes
+		/// controlled by the server, and owned by no-one.
+		/// </summary>
+		public readonly bool DropOwnership()
+		{
+			if ( !Active ) return false;
+			if ( !IsOwner ) return false;
+
+			go.Msg_DropOwnership();
+			return true;
+		}
+
+		/// <summary>
+		/// Spawn on the network. If you have permission to spawn entities, this will spawn on
+		/// everyone else's clients and you will be the owner.
+		/// </summary>
+		public readonly bool Spawn()
+		{
+			if ( Active ) return false;
+
+			go.Net = new NetworkObject( go, true );
+			return true;
+		}
+	}
+
 }
