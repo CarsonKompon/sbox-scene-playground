@@ -37,7 +37,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkSerializable
 	bool isFreeCam = false;
 	RealTimeUntil freeCamTime = 0f;
 
-	public Guid Grabbing = Guid.Empty;
+	public GameObject Grabbing;
 	public bool CanGrab = false;
 	public List<string> InteractLocks = new List<string>();
 
@@ -192,7 +192,7 @@ public sealed partial class HomePlayer : BaseComponent, INetworkSerializable
 		if ( interactTrace.Hit && interactTrace.Body.GameObject is GameObject interactObject )
 		{
 			var grabbable = interactObject.GetComponent<Grabbable>();
-			if ( grabbable is not null && !grabbable.IsGrabbed )
+			if ( grabbable is not null && interactObject.Net.IsUnowned )
 			{
 				CanGrab = true;
 				if ( Input.Pressed( "Action1" ) )

@@ -6,19 +6,16 @@ namespace Home;
 [Title( "Grabbable" )]
 [Category( "Home" )]
 [Icon( "pan_tool", "red", "white" )]
-public sealed class Grabbable : BaseComponent, INetworkSerializable
+public sealed class Grabbable : BaseComponent
 {
-	public Guid Holder = Guid.Empty;
-	public bool IsGrabbed => Holder != Guid.Empty;
-
 	PhysicsComponent rigidBody;
 
 	public override void Update()
 	{
-		if ( IsProxy ) return;
+		if ( !GameObject.Net.IsOwner ) return;
 
 		var player = HomePlayer.Local;
-		if ( IsGrabbed && player is not null && Holder == player.GameObject.Id )
+		if ( player is not null && GameObject.Net.Owner == player.GameObject.Id )
 		{
 			if ( !Input.Down( "Action1" ) || Transform.Position.Distance( player.Head.Transform.Position ) > 250f )
 			{
@@ -31,9 +28,9 @@ public sealed class Grabbable : BaseComponent, INetworkSerializable
 	{
 		if ( IsProxy ) return;
 
-		GameObject playerObj = Scene.GetAllObjects( true ).Where( x => x.Id == Holder ).FirstOrDefault();
+		GameObject playerObj = Scene.GetAllObjects( true ).Where( x => x.Id == GameObject.Net.Owner ).FirstOrDefault();
 
-		if ( IsGrabbed && playerObj is not null )
+		if ( GameObject.Net.IsOwner && playerObj is not null )
 		{
 			var player = playerObj.GetComponent<HomePlayer>();
 			if ( player is null ) return;
@@ -72,53 +69,28 @@ public sealed class Grabbable : BaseComponent, INetworkSerializable
 
 		if ( rigidBody is not null )
 		{
-			rigidBody.Gravity = Holder == Guid.Empty;
+			rigidBody.Gravity = GameObject.Net.IsUnowned;
 		}
-	}
-
-	[Broadcast]
-	public void SetGrabbing( Guid grabber )
-	{
-		bool grabbing = (grabber != Guid.Empty);
-		if ( grabbing )
-		{
-			GameObject.Tags.Add( "player" );
-		}
-		else
-		{
-			GameObject.Tags.Remove( "player" );
-		}
-
-		Holder = grabber;
 	}
 
 	public void StartGrabbing( HomePlayer player )
 	{
-		if ( player.Grabbing != Guid.Empty ) return;
-		if ( IsGrabbed ) return;
+		if ( !GameObject.Net.IsUnowned ) return;
+		if ( player.Grabbing.IsValid() ) return;
 
-		SetGrabbing( player.GameObject.Id );
-		player.Grabbing = GameObject.Id;
+		GameObject.Tags.Add( "player" );
+
+		player.Grabbing = GameObject;
 	}
 
 	public void StopGrabbing( HomePlayer player )
 	{
-		if ( !IsGrabbed ) return;
+		if ( !GameObject.Net.IsOwner ) return;
 
-		if ( player.GameObject.Id == Holder || player.Grabbing == GameObject.Id )
+		if ( player.GameObject.Id == GameObject.Net.Owner || player.Grabbing.Id == GameObject.Id )
 		{
-			SetGrabbing( Guid.Empty );
-			player.Grabbing = Guid.Empty;
+			GameObject.Tags.Remove( "player" );
+			player.Grabbing = null;
 		}
-	}
-
-	public void Write( ref ByteStream stream )
-	{
-		stream.Write( Holder );
-	}
-
-	public void Read( ByteStream stream )
-	{
-		Holder = stream.Read<Guid>();
 	}
 }
