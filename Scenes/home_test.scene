@@ -1048,7 +1048,8 @@
           "Static": true,
           "Surface": null
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "Id": "c59e72e1-3372-48e2-8283-f5cdec6ada25",

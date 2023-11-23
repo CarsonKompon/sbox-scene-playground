@@ -15,7 +15,7 @@ public sealed class Grabbable : BaseComponent
 		if ( !GameObject.Net.IsOwner ) return;
 
 		var player = HomePlayer.Local;
-		if ( player is not null && GameObject.Net.Owner == player.GameObject.Id )
+		if ( player is not null )
 		{
 			if ( !Input.Down( "Action1" ) || Transform.Position.Distance( player.Head.Transform.Position ) > 250f )
 			{
@@ -26,23 +26,19 @@ public sealed class Grabbable : BaseComponent
 
 	public override void FixedUpdate()
 	{
-		if ( IsProxy ) return;
+		rigidBody ??= GetComponent<PhysicsComponent>( false, true );
 
-		GameObject playerObj = Scene.GetAllObjects( true ).Where( x => x.Id == GameObject.Net.Owner ).FirstOrDefault();
+		if ( !GameObject.Net.IsOwner ) return;
 
-		if ( GameObject.Net.IsOwner && playerObj is not null )
+		var player = HomePlayer.Local;
+		if ( player is not null )
 		{
-			var player = playerObj.GetComponent<HomePlayer>();
-			if ( player is null ) return;
-
 			// Move towards a position in front of the holder's head
 			var targetPos = player.Head.Transform.Position + player.Head.Transform.Rotation.Forward * 100f;
 			var targetRot = player.Head.Transform.Rotation;
 
 			var delta = targetPos - Transform.Position;
 			var distance = delta.Length;
-
-			rigidBody ??= GetComponent<PhysicsComponent>( false, true );
 
 			if ( distance > 10f )
 			{
@@ -66,11 +62,6 @@ public sealed class Grabbable : BaseComponent
 				}
 			}
 		}
-
-		if ( rigidBody is not null )
-		{
-			rigidBody.Gravity = GameObject.Net.IsUnowned;
-		}
 	}
 
 	public void StartGrabbing( HomePlayer player )
@@ -78,7 +69,9 @@ public sealed class Grabbable : BaseComponent
 		if ( !GameObject.Net.IsUnowned ) return;
 		if ( player.Grabbing.IsValid() ) return;
 
+		GameObject.Network.TakeOwnership();
 		GameObject.Tags.Add( "player" );
+		rigidBody.Gravity = false;
 
 		player.Grabbing = GameObject;
 	}
@@ -89,8 +82,10 @@ public sealed class Grabbable : BaseComponent
 
 		if ( player.GameObject.Id == GameObject.Net.Owner || player.Grabbing.Id == GameObject.Id )
 		{
+			GameObject.Network.DropOwnership();
 			GameObject.Tags.Remove( "player" );
 			player.Grabbing = null;
+			rigidBody.Gravity = true;
 		}
 	}
 }
