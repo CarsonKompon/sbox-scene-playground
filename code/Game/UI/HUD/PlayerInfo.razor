@@ -6,7 +6,7 @@
 @namespace Home.UI
 
 <root>
-    
+
     <img class="roof" src="UI/ui_roof.png" />
 
     @* <div class="avatar-container"> *@
@@ -31,17 +31,7 @@
 
 @code
 {
-    HomePlayer LocalPlayer
-	{
-		get
-		{
-			if ( _localPlayer == null )
-				_localPlayer = HomePlayer.Local;
-
-			return _localPlayer;
-		}
-	}
-	HomePlayer _localPlayer;
+    public HomePlayer LocalPlayer { get; set; }
 
     protected override int BuildHash()
     {

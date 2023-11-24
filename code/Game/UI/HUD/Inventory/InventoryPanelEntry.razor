@@ -1,0 +1,32 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using Home.Data;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace Home.UI
+
+<root>
+    
+    <div class="icon"></div> @* TODO: Make these images work *@
+    <label class="inventory-count" text=@Item.AvailableQuantity />
+
+</root>
+
+@code
+{
+    public InventoryItem Item { get; set; }
+    
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        base.OnAfterTreeRender(firstTime);
+
+        if(firstTime)
+        {
+            Tooltip = Item.Name;
+        }
+    }
+
+    // TODO: Clicking and dragging to place items
+
+}

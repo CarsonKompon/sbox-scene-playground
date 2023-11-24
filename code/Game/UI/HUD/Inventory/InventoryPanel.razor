@@ -1,0 +1,37 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using Home.Data;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace Home.UI
+
+<root>
+    
+    <div class="inventory-header">
+        <p class="inventory-header-text">Inventory</p>
+    </div>
+    <div class="inventory-container">
+        <div lass="container-offset">
+            @if(Inventory == null) return;
+            @foreach (InventoryItem item in Inventory.Items)
+            {
+                @if(item == null || item.Quantity == 0) continue;
+                <InventoryPanelEntry Item=@item />
+            }
+        </div>
+    </div>
+
+</root>
+
+@code
+{
+    public InventoryData Inventory { get; set; }
+
+    public bool IsOpen => Input.Down("Menu");
+
+    public override void Tick()
+    {
+        SetClass("hide", !IsOpen);
+    }
+}

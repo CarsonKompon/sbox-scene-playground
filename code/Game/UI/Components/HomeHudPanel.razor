@@ -10,9 +10,11 @@
 
 <root>
 
-    <PlayerInfo />
+    <PlayerInfo LocalPlayer=@LocalPlayer />
 
     <Crosshair />
+
+    <InventoryPanel Inventory=@(LocalPlayer?.Data.Inventory ?? null) />
 
 </root>
 
@@ -20,6 +22,18 @@
 {
     
     [Property] public HomeMainMenuComponent PauseMenu { get; set; }
+
+    HomePlayer LocalPlayer
+	{
+		get
+		{
+			if ( _localPlayer == null )
+				_localPlayer = HomePlayer.Local;
+
+			return _localPlayer;
+		}
+	}
+	HomePlayer _localPlayer;
 
     public override void Update()
     {
