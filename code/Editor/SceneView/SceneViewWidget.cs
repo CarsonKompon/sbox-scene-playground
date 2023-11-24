@@ -166,6 +166,7 @@ public partial class SceneViewWidget : Widget
 			EditorScene.Selection.Add( DragObject );
 
 			DragObject.Flags = GameObjectFlags.None;
+			DragObject.Tags.Remove( "isdragdrop" );
 			DragObject = null;
 		}
 
@@ -186,12 +187,12 @@ public partial class SceneViewWidget : Widget
 			DragObject.Enabled = false;
 		}
 
-		var tr = SceneEditorSession.Active.Scene.SceneWorld.Trace
-						.WithoutTags( "dragging" )
-						.Ray( Camera.GetRay( ev.LocalPosition - Renderer.Position, Renderer.Size ), 4096 )
+		var tr = SceneEditorSession.Active.Scene.PhysicsWorld.Trace
+						.WithoutTags( "isdragdrop", "trigger" )
+						.Ray( Camera.GetRay( ev.LocalPosition - Renderer.Position, Renderer.Size ), 2048 )
 						.Run();
 
-		var rot = Rotation.LookAt( tr.HitNormal, Vector3.Up ) * Rotation.From( 90, 0, 0 );
+		var rot = Rotation.LookAt( tr.Normal, Vector3.Up ) * Rotation.From( 90, 0, 0 );
 
 		if ( DragObject is null && (DragInstallTask?.IsCompleted ?? true) )
 		{
@@ -206,7 +207,7 @@ public partial class SceneViewWidget : Widget
 				}
 			}
 
-			if ( ev.Data.Url is not null )
+			if ( DragObject is null && ev.Data.Url is not null )
 			{
 				DragCancelSource?.Cancel();
 				DragCancelSource = new CancellationTokenSource();
@@ -229,8 +230,11 @@ public partial class SceneViewWidget : Widget
 		{
 			DragObject.Enabled = true;
 			DragObject.Flags = GameObjectFlags.NotSaved | GameObjectFlags.Hidden;
+			DragObject.Tags.Add( "isdragdrop" );
 
-			var pos = tr.EndPosition + tr.HitNormal * DragOffset;
+
+
+			var pos = tr.EndPosition + tr.Normal * DragOffset;
 
 			DragObject.Transform.Position = pos;
 			DragObject.Transform.Rotation = rot;
@@ -241,6 +245,8 @@ public partial class SceneViewWidget : Widget
 
 	void CreateDragObjectFromAsset( Asset asset )
 	{
+		asset.RecordOpened();
+
 		//
 		// A prefab asset!
 		//
